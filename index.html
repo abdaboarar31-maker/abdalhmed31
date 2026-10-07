@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>عبد أبو عرار — تعلّم HTML بالعربي</title>
+<meta name="description" content="شروحات HTML بالعربي خطوة بخطوة، مع تجارب حيّة واختبارات.">
+<link rel="icon" href="logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#home"><img src="logo.svg" alt="" width="40" height="40"><span>عبد أبو عرار</span></a>
+  <nav id="nav" class="nav">
+    <a href="#videos" data-i18n="nav_videos">الفيديوهات</a>
+    <a href="#playground" data-i18n="nav_play">جرّب بنفسك</a>
+    <a href="#path" data-i18n="nav_path">المسار</a>
+    <a href="store.html" data-i18n="nav_store">المتجر</a>
+    <a href="#quiz" data-i18n="nav_quiz">اختبار</a>
+    <a href="#about" data-i18n="nav_about">عنّي</a>
+    <a href="#contact" data-i18n="nav_contact">تواصل</a>
+  </nav>
+  <select id="lang" class="lang" aria-label="Language"></select>
+  <button id="theme" class="icon-btn" aria-label="تبديل الوضع">🌙</button>
+  <a class="btn small" data-channel data-i18n="subscribe" href="https://www.youtube.com/channel/UC6V8FpZwiLoSbL07uwB2TAg" target="_blank" rel="noopener">▶ اشترك</a>
+  <button id="burger" class="icon-btn burger" aria-label="القائمة">☰</button>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 data-i18n="h1">تعلّم تصميم المواقع بـ HTML من الصفر</h1>
+        <p class="lead" data-i18n="lead">شرح بسيط وبالعربي، خطوة بخطوة، مع تجارب حيّة بتعملها بنفسك.</p>
+        <div class="actions">
+          <button id="watchFirst" class="btn" type="button" data-i18n="watch">▶ شاهد أول فيديو</button>
+          <a class="btn ghost" href="#playground" data-i18n="tryit">جرّب الكود الآن</a>
+        </div>
+        <div class="goal">
+          <div class="goal-top"><span data-i18n="goal">🎯 هدفنا</span><b id="goalTxt"></b></div>
+          <div class="bar"><i id="goalBar"></i></div>
+        </div>
+        <div class="stats">
+          <div><b id="stSubs">—</b><span data-i18n="st_subs">مشترك</span></div>
+          <div><b id="stViews">—</b><span data-i18n="st_views">مشاهدة</span></div>
+          <div><b id="stVids">—</b><span data-i18n="st_vids">فيديو</span></div>
+        </div>
+      </div>
+      <div class="win" aria-hidden="true">
+        <div class="win-bar"><i></i><i></i><i></i><span>index.html</span></div>
+        <pre id="typed"></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos" class="wrap block">
+    <h2 class="sec" data-i18n="sec_videos">الفيديوهات</h2>
+    <div id="chips" class="chips"></div>
+    <div id="vgrid" class="grid"></div>
+  </section>
+
+  <section id="playground" class="band">
+    <div class="wrap block">
+      <h2 class="sec" data-i18n="sec_play">جرّب بنفسك</h2>
+      <p class="muted mb" data-i18n="play_hint">عدّل على الكود وشوف النتيجة فوراً. ما في شي بينحفظ، جرّب براحتك.</p>
+      <div class="play">
+        <div class="pane">
+          <div class="pane-h"><span data-i18n="code">الكود</span>
+            <span><button id="copy" class="mini" type="button" data-i18n="copy">نسخ</button> <button id="reset" class="mini" type="button" data-i18n="reset">إعادة</button></span>
+          </div>
+          <textarea id="code" spellcheck="false" aria-label="editor"></textarea>
+        </div>
+        <div class="pane">
+          <div class="pane-h"><span data-i18n="result">النتيجة</span></div>
+          <iframe id="preview" title="preview" sandbox="allow-scripts allow-modals"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="path" class="wrap block">
+    <h2 class="sec" data-i18n="sec_path">مسار التعلّم</h2>
+    <ol id="pathList" class="path"></ol>
+  </section>
+
+  <section id="quiz" class="wrap block narrow">
+    <h2 class="sec" data-i18n="sec_quiz">اختبر نفسك</h2>
+    <div id="quizBox" class="panel"></div>
+  </section>
+
+  <section id="about" class="band">
+    <div class="wrap block narrow">
+      <h2 class="sec" data-i18n="sec_about">عنّي</h2>
+      <div class="panel about">
+        <div class="avatar">ع</div>
+        <p data-i18n-html="about">أنا <b>عبد أبو عرار</b>. بشرح تصميم المواقع بـ HTML بالعربي وبطريقة بسيطة، عشان أي حدا يبدأ من الصفر ويبني موقعه الأول.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap block narrow">
+    <h2 class="sec" data-i18n="sec_contact">تواصل معي</h2>
+    <form id="cform" class="panel cform" novalidate>
+      <label><span data-i18n="lbl_name">اسمك</span><input id="cname" autocomplete="name"></label>
+      <label><span data-i18n="lbl_msg">رسالتك</span><textarea id="cmsg" rows="4"></textarea></label>
+      <div class="actions">
+        <button class="btn" type="submit" data-i18n="send">إرسال</button>
+        <a class="btn ghost" data-channel data-i18n="ytbtn" href="#contact">▶ قناتي على يوتيوب</a>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-brand"><img src="logo.svg" alt="" width="34" height="34"><b>عبد أبو عرار</b></div>
+  <p data-i18n="foot_tag">تعلّم HTML بالعربي</p>
+  <p class="credit" data-i18n-html="credit">تصميم وتطوير: <b>عبد أبو عرار</b></p>
+  <p class="rights" data-i18n-html="rights"></p>
+</footer>
+
+<div id="modal" class="modal" hidden>
+  <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mt">
+    <button id="mclose" class="icon-btn mx" aria-label="X">✕</button>
+    <div id="mplayer" class="player"></div>
+    <h3 id="mt"></h3>
+    <p id="md" class="muted"></p>
+    <div id="ml"></div>
+  </div>
+</div>
+
+<div id="cmodal" class="modal" hidden>
+  <div class="mbox cbox" role="dialog" aria-modal="true">
+    <h3 data-i18n="c_title">أهلاً فيك 👋</h3>
+    <p class="muted" data-i18n="c_text">باستخدامك الموقع بتوافق على تعليماته وشروطه. الموافقة بتنحسب كزيارة وحدة بس لعدّاد الزوار، وما بنجمع أي بيانات شخصية.</p>
+    <div class="actions"><button id="cok" class="btn" type="button" data-i18n="c_ok">موافق</button><button id="cno" class="btn ghost" type="button" data-i18n="c_no">لا، شكراً</button></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
