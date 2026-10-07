@@ -204,9 +204,9 @@ const X = {
 
 /* قالب فيديو جديد: لما تنشره حط الـ id (الجزء بعد v= برابط الفيديو) */
 const MORE_VIDEOS = [
-  { id: '', tag: 'full', L: {
-    ar: { title: 'كيف تبني صفحة تسجيل دخول احترافية', desc: 'HTML و CSS و JS خطوة بخطوة.', dur: 'قريباً' },
-    en: { title: 'Build a pro login page', desc: 'HTML, CSS and JS step by step.', dur: 'Soon' } } }
+  { id: 'Zxascnw-MoQ', tag: 'full', L: {
+    ar: { title: 'كيف تبني صفحة تسجيل دخول احترافية', desc: 'HTML و CSS و JS خطوة بخطوة.', dur: '5 دقائق و40 ثانية' },
+    en: { title: 'Build a pro login page', desc: 'HTML, CSS and JS step by step.', dur: '5 min 40 sec' } } }
 ];
 
 /* ===== الترجمات (لإضافة لغة: انسخ كتلة en وترجمها) ===== */
