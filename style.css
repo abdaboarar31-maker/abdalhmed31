@@ -167,3 +167,5 @@ a.pay:hover{border-color:var(--accent)}
 .card .info h4{min-height:2.7em}
 .card .info small{display:block;min-height:1.4em}
 .card .info .row{margin-top:auto}
+
+main{min-height:130vh}
