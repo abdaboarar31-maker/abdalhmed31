@@ -26,7 +26,7 @@ const VIDEO_LIST = [
   { id: 'Zxascnw-MoQ', tag: 'full', code: 'codes/login-page.zip.zip', L: {
     ar: { title: 'كيف تبني صفحة تسجيل دخول احترافية', desc: 'HTML و CSS و JS خطوة بخطوة.', dur: '5 دقائق و40 ثانية' },
     en: { title: 'Build a pro login page', desc: 'HTML, CSS and JS step by step.', dur: '5 min 40 sec' } } },
-  { id: '-VvEYwXMX_8', tag: 'full', first: true, code: , L: {
+  { id: '-VvEYwXMX_8', tag: 'full', first: true, code: '', L: {
     ar: { title: 'شرح HTML من الصفر وبناء أول موقع', desc: 'شرح كامل من البداية: الوسوم الأساسية وبناء صفحة موقع كاملة.', dur: '35 دقيقة' },
     en: { title: 'HTML from scratch: build your first website', desc: 'Full lesson: core tags and building a complete page.', dur: '35 min' } } },
   { id: 'n_17dEUPCo0', tag: 'quick', code: 'codes/html-basics.zip.zip', L: {
