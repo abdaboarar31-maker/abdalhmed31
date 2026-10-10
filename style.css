@@ -179,3 +179,11 @@ main{flex:1}
 
 /* إصلاح: صفحات الفيديوهات والمتجر - عرض كامل بدل ما تتقلص الكروت فوق بعض */
 main.wrap{width:100%}
+
+/* ===== فيديو قادم (قريباً) ===== */
+.vcard.soon{cursor:default}
+.vcard.soon:hover{transform:none;box-shadow:none}
+.vcard.soon .thumb{background:linear-gradient(135deg,#1c2c66,#4d8dff)}
+.soon-b{position:absolute;top:10px;inset-inline-start:10px;background:var(--accent);color:#1b0d04;font-weight:800;border-radius:999px;padding:0 14px;font-size:.85rem}
+.btn.off{background:var(--bg2);color:var(--muted);cursor:default;border:1px solid var(--line)}
+.btn.off:hover{transform:none;box-shadow:none}
