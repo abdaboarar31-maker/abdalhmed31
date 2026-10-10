@@ -63,7 +63,7 @@ function render() {
   $('#vgrid').innerHTML = list.length ? list.map(v => { const L = v.L[LANG] || v.L.ar; return `
     <article class="vcard st" id="v-${esc(v.id)}">
       <a class="thumbbtn" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener" aria-label="${esc(L.title)}">
-        <div class="thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" loading="lazy"><span class="play-b">▶</span><em>${esc(L.dur)}</em></div>
+        <div class="thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'"><span class="play-b">▶</span><em>${esc(L.dur)}</em></div>
       </a>
       <div class="vinfo"><h3>${esc(L.title)}</h3><p>${esc(L.desc)}</p>
         ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" download>${t('dl')}</a>` : ''}</div>
