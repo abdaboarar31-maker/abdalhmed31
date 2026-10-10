@@ -6,13 +6,9 @@ const CONFIG = {
   subsGoal: 1000    // الهدف
 };
 
-// id = الجزء اللي بعد v= برابط الفيديو. مثال: youtube.com/watch?v=AbC123xyz  ->  id: 'AbC123xyz'
-const VIDEOS = [
-  { id: '-VvEYwXMX_8', title: 'شرح HTML من الصفر وبناء أول موقع', dur: '35 دقيقة', tag: 'full',
-    desc: 'شرح كامل من البداية: الوسوم الأساسية وبناء صفحة موقع كاملة.' },
-  { id: 'n_17dEUPCo0', title: 'أساسيات HTML بسرعة', dur: '3 دقائق ونص', tag: 'quick',
-    desc: 'ملخص سريع لأهم أساسيات HTML.' }
-];
+// الفيديوهات بملف videos-data.js
+const VIDEOS = VIDEO_LIST;
+const HOME_COUNT = 3;   // كم فيديو يظهر بالرئيسية
 
 const TAGS = { all: 'الكل', full: 'شرح كامل', quick: 'سريع' };
 
@@ -113,30 +109,25 @@ else {
 
 /* ===== الفيديوهات ===== */
 let tag = 'all';
-function renderChips() {
-  $('#chips').innerHTML = Object.entries(TAGS).map(([k, v]) =>
-    `<button class="chip ${k === tag ? 'on' : ''}" data-tag="${k}" type="button">${v}</button>`).join('');
-}
+function renderChips() {}   // الفلاتر صارت بصفحة جميع الفيديوهات
 function renderVideos() {
-  $('#vgrid').innerHTML = VIDEOS.map((v, i) => ({ v, i })).filter(x => tag === 'all' || x.v.tag === tag).map(({ v, i }) => `
-    <button class="vcard" data-v="${i}" type="button">
-      <div class="thumb">${v.id
-        ? `<img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" loading="lazy">`
-        : `<span class="ph">&lt;/&gt;</span>`}
-        <span class="play-b">▶</span><em>${esc(v.dur)}</em>
-      </div>
-      <div class="vinfo"><h3>${esc(v.title)}</h3><p>${esc(v.desc)}</p></div>
-    </button>`).join('');
+  $('#vgrid').innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => `
+    <article class="vcard">
+      <button class="thumbbtn" data-v="${i}" type="button" aria-label="${esc(v.title)}">
+        <div class="thumb">${v.id
+          ? `<img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" loading="lazy">`
+          : `<span class="ph">&lt;/&gt;</span>`}
+          <span class="play-b">▶</span><em>${esc(v.dur)}</em>
+        </div>
+      </button>
+      <div class="vinfo"><h3>${esc(v.title)}</h3><p>${esc(v.desc)}</p>
+        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" download>${t('dl')}</a>` : ''}</div>
+    </article>`).join('');
 }
-renderChips(); renderVideos();
-$('#chips').addEventListener('click', e => {
-  const c = e.target.closest('[data-tag]'); if (!c) return;
-  tag = c.dataset.tag; renderChips(); renderVideos();
-});
 $('#vgrid').addEventListener('click', e => {
   const c = e.target.closest('[data-v]'); if (c) openVideo(+c.dataset.v);
 });
-$('#watchFirst').addEventListener('click', () => openVideo(0));
+$('#watchFirst').addEventListener('click', () => openVideo(Math.max(0, VIDEOS.findIndex(v => v.first))));
 
 function openVideo(i) {
   const v = VIDEOS[i]; if (!v) return;
@@ -147,6 +138,7 @@ function openVideo(i) {
     : `<div class="noid">...</div>`;
   $('#ml').innerHTML = v.id
     ? `<a class="btn small" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">افتح على يوتيوب</a>` : '';
+  if (v.code) $('#ml').innerHTML += ` <a class="btn small ghost" href="${esc(v.code)}" download>${t('dl')}</a>`;
   $('#modal').hidden = false;
   document.body.style.overflow = 'hidden';
 }
@@ -202,13 +194,6 @@ const X = {
   email: (CONFIG.email || '').trim()     // الرسائل بتوصل لهاد الإيميل
 };
 
-/* قالب فيديو جديد: لما تنشره حط الـ id (الجزء بعد v= برابط الفيديو) */
-const MORE_VIDEOS = [
-  { id: 'Zxascnw-MoQ', tag: 'full', L: {
-    ar: { title: 'كيف تبني صفحة تسجيل دخول احترافية', desc: 'HTML و CSS و JS خطوة بخطوة.', dur: '5 دقائق و40 ثانية' },
-    en: { title: 'Build a pro login page', desc: 'HTML, CSS and JS step by step.', dur: '5 min 40 sec' } } }
-];
-
 /* ===== الترجمات (لإضافة لغة: انسخ كتلة en وترجمها) ===== */
 const T = {
 ar: { name: 'العربية', dir: 'rtl', title: 'عبد أبو عرار — تعلّم HTML بالعربي',
@@ -224,7 +209,7 @@ ar: { name: 'العربية', dir: 'rtl', title: 'عبد أبو عرار — ت�
   c_title: 'أهلاً فيك 👋', c_text: 'باستخدامك الموقع بتوافق على تعليماته وشروطه. الموافقة بتنحسب كزيارة وحدة بس لعدّاد الزوار، وما بنجمع أي بيانات شخصية.',
   c_ok: 'موافق', c_no: 'لا، شكراً', thanks: 'شكراً لك! انحسبت زيارتك 🙌', buy: 'اشترِ الآن', pay_title: 'اختر طريقة الدفع:', pay_soon: 'قريباً',
   pay_note: 'بعد الدفع ابعتلي إثبات الدفع من نموذج «تواصل» وبوصلك الملف على إيميلك.',
-  sent: 'وصلت رسالتك، شكراً!', fill: 'اكتب اسمك ورسالتك أول', fail: 'ما انبعتت الرسالة، جرّب كمان شوي', yt_open: 'افتح على يوتيوب',
+  sent: 'وصلت رسالتك، شكراً!', fill: 'اكتب اسمك ورسالتك أول', fail: 'ما انبعتت الرسالة، جرّب كمان شوي', yt_open: 'افتح على يوتيوب', dl: '⬇️ حمّل ملف الكود', all_videos: 'شاهد جميع الفيديوهات',
   avail: 'متوفر', soon: 'قريباً', q_n: 'سؤال {a} من {b}', q_next: 'السؤال التالي', q_res: 'شوف النتيجة', q_again: 'أعد الاختبار',
   q_best: 'ممتاز! أنت جاهز للدرس الجاي 🔥', q_mid: 'قريب جداً. راجع الفيديو وجرّب تاني.', q_low: 'ولا يهمك، ابدأ من أول فيديو وبتتعلّم.',
   toast_reset: 'رجع الكود الأصلي', toast_copy: 'تم نسخ الكود', tags: { all: 'الكل', full: 'شرح كامل', quick: 'سريع' } },
@@ -241,14 +226,12 @@ en: { name: 'English', dir: 'ltr', title: 'Abd Abu Arar — Learn HTML',
   c_title: 'Welcome 👋', c_text: 'By using this site you agree to its terms. Your agreement counts as one visit in the visitor counter, and we collect no personal data.',
   c_ok: 'I agree', c_no: 'No, thanks', thanks: 'Thank you! Your visit was counted 🙌', buy: 'Buy now', pay_title: 'Choose a payment method:', pay_soon: 'soon',
   pay_note: 'After paying, send me the payment proof via the Contact form and I will email you the file.',
-  sent: 'Message sent, thank you!', fill: 'Please enter your name and message', fail: "Couldn't send, please try again soon", yt_open: 'Open on YouTube',
+  sent: 'Message sent, thank you!', fill: 'Please enter your name and message', fail: "Couldn't send, please try again soon", yt_open: 'Open on YouTube', dl: '⬇️ Download the code', all_videos: 'Watch all videos',
   avail: 'Available', soon: 'Soon', q_n: 'Question {a} of {b}', q_next: 'Next question', q_res: 'See result', q_again: 'Retake quiz',
   q_best: "Excellent! You're ready for the next lesson 🔥", q_mid: 'Very close. Rewatch the video and try again.', q_low: 'No worries, start from the first video and you will learn.',
   toast_reset: 'Original code restored', toast_copy: 'Code copied', tags: { all: 'All', full: 'Full course', quick: 'Quick' } }
 };
 const EN = {
-  videos: [{ title: 'HTML from scratch: build your first website', desc: 'Full lesson: core tags and building a complete page.', dur: '35 min' },
-           { title: 'HTML basics in a flash', desc: 'A quick summary of the most important HTML basics.', dur: '3.5 min' }],
   path: [{ t: 'HTML', d: 'Page structure and core tags' }, { t: 'CSS', d: 'Colors, styling and layout' },
          { t: 'JavaScript', d: 'Interaction and motion' }, { t: 'Publish your site', d: 'Put it online for free' }],
   quiz: [{ q: 'Which tag is used for the main heading?', o: ['<h1>', '<p>', '<a>'] }, { q: 'Which tag creates a link?', o: ['<img>', '<a>', '<div>'] },
@@ -260,8 +243,6 @@ try { LANG = localStorage.getItem('abd-lang') || 'ar'; } catch (e) {}
 if (!T[LANG]) LANG = 'ar';
 const t = k => (T[LANG] && T[LANG][k]) || T.ar[k] || k;
 
-VIDEOS.forEach((v, i) => v.L = { ar: { title: v.title, desc: v.desc, dur: v.dur }, en: EN.videos[i] });
-MORE_VIDEOS.forEach(v => VIDEOS.push(v));
 PATH.forEach((p, i) => p.L = { ar: { t: p.t, d: p.d }, en: EN.path[i] });
 QUIZ.forEach((q, i) => q.L = { ar: { q: q.q, o: q.o }, en: EN.quiz[i] });
 
