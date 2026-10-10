@@ -176,3 +176,6 @@ main{flex:1}
 .tags span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:1px 14px;font-size:.88rem}
 .dprice{font-size:1.5rem;font-weight:800;color:var(--accent);margin:4px 0}
 .vcard.st .actions{margin-top:12px}
+
+/* إصلاح: صفحات الفيديوهات والمتجر - عرض كامل بدل ما تتقلص الكروت فوق بعض */
+main.wrap{width:100%}
