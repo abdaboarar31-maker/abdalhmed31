@@ -33,11 +33,11 @@
 <script>
 const T = {
 ar: { name: 'العربية', dir: 'rtl', title: 'جميع الفيديوهات — عبد أبو عرار', home: 'الرئيسية', store: 'المتجر', h1: 'جميع الفيديوهات',
-  hint: 'كل فيديو تحته ملف الكود، حمّله مجاناً.', dl: '⬇️ حمّل ملف الكود', empty: 'ما في فيديوهات بهالقسم.',
+  hint: 'كل فيديو تحته ملف الكود، حمّله مجاناً.', dl: '⬇️ حمّل ملف الكود', soon: 'قريباً', premieres: 'ينزل', empty: 'ما في فيديوهات بهالقسم.',
   tags: { all: 'الكل', full: 'شرح كامل', quick: 'سريع' },
   credit: 'تصميم وتطوير: <b>عبد أبو عرار</b>', rights: '© {y} عبد أبو عرار. جميع الحقوق محفوظة.' },
 en: { name: 'English', dir: 'ltr', title: 'All videos — Abd Abu Arar', home: 'Home', store: 'Store', h1: 'All videos',
-  hint: 'Every video has its code file below it. Download it for free.', dl: '⬇️ Download the code', empty: 'No videos in this category.',
+  hint: 'Every video has its code file below it. Download it for free.', dl: '⬇️ Download the code', soon: 'Coming soon', premieres: 'Premieres', empty: 'No videos in this category.',
   tags: { all: 'All', full: 'Full course', quick: 'Quick' },
   credit: 'Designed & developed by <b>Abd Abu Arar</b>', rights: '© {y} Abd Abu Arar. All rights reserved.' }
 };
@@ -60,7 +60,12 @@ function render() {
   $('#chips').innerHTML = Object.entries(t('tags')).map(([k, v]) =>
     `<button class="chip ${k === TAG ? 'on' : ''}" data-c="${k}" type="button">${esc(v)}</button>`).join('');
   const list = VIDEO_LIST.filter(v => TAG === 'all' || v.tag === TAG);
-  $('#vgrid').innerHTML = list.length ? list.map(v => { const L = v.L[LANG] || v.L.ar; return `
+  $('#vgrid').innerHTML = list.length ? list.map(v => { const L = v.L[LANG] || v.L.ar; return isSoon(v) ? `
+    <article class="vcard st soon" id="v-${esc(v.id)}">
+      <div class="thumb"><span class="ph">⏳</span><span class="soon-b">${t('soon')}</span></div>
+      <div class="vinfo"><h3>${esc(L.title)}</h3><p>${esc(L.desc)}</p>
+        <span class="btn small dl off">${t('premieres')} ${esc(soonWhen(v, LANG))}</span></div>
+    </article>` : `
     <article class="vcard st" id="v-${esc(v.id)}">
       <a class="thumbbtn" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener" aria-label="${esc(L.title)}">
         <div class="thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'"><span class="play-b">▶</span><em>${esc(L.dur)}</em></div>
