@@ -115,7 +115,7 @@ function renderVideos() {
     <article class="vcard">
       <button class="thumbbtn" data-v="${i}" type="button" aria-label="${esc(v.title)}">
         <div class="thumb">${v.id
-          ? `<img src="https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg" alt="" loading="lazy">`
+          ? `<img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'">`
           : `<span class="ph">&lt;/&gt;</span>`}
           <span class="play-b">▶</span><em>${esc(v.dur)}</em>
         </div>
