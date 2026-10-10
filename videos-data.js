@@ -17,16 +17,19 @@
 /* توقيت النشر: الساعة 10 بتوقيت هالمنطقة (غيّرها إذا بلدك مختلفة) */
 const RELEASE_TZ = 'Asia/Jerusalem';
 const VIDEO_LIST = [
-  { id: 'YndzGRSOXD8', tag: 'full', date: '2026-10-15 10:00', code: 'https://mega.nz/folder/g7RDiKJY#1c6JPPXiCwZEXjEETTy51A', L: {
-    ar: { title: 'تصميم واجهة موقع مع شريط علوي مميز باستخدام HTML & CSS', desc: 'نصمم واجهة موقع كاملة مع شريط علوي مميز خطوة بخطوة.', dur: '' },
-    en: { title: 'Website UI design with a standout top bar using HTML & CSS', desc: 'We build a full website interface with a standout top bar, step by step.', dur: '' } } },
-  { id: 'Zxascnw-MoQ', tag: 'full', code: 'codes/login-page.zip', L: {
+  { id: 'YndzGRSOXD8', tag: 'full', date: '2026-10-15 10:00', code: 'codes/home-html.zip.zip', L: {
+    ar: { title: 'تصميم واجهة موقع مع شريط علوي مميز باستخدام HTML & CSS', desc: 'نصمم واجهة موقع بشريط علوي مميز خطوة بخطوة.', dur: 'فيديو جديد' },
+    en: { title: 'Website interface with a custom top bar using HTML & CSS', desc: 'Design a website interface with a custom top bar, step by step.', dur: 'New video' } } },
+  { id: 'wivKzfT0RjY', tag: 'full', date: '2026-10-12 10:00', code: 'codes/login-ui.zip', L: {
+    ar: { title: 'تصميم واجهة تسجيل دخول احترافية باستخدام HTML و CSS', desc: 'مشروع عملي للمبتدئين من الصفر.', dur: 'فيديو جديد' },
+    en: { title: 'Professional login page design with HTML & CSS', desc: 'A hands-on beginner project from scratch.', dur: 'New video' } } },
+  { id: 'Zxascnw-MoQ', tag: 'full', code: 'codes/login-page.zip.zip', L: {
     ar: { title: 'كيف تبني صفحة تسجيل دخول احترافية', desc: 'HTML و CSS و JS خطوة بخطوة.', dur: '5 دقائق و40 ثانية' },
     en: { title: 'Build a pro login page', desc: 'HTML, CSS and JS step by step.', dur: '5 min 40 sec' } } },
-  { id: '-VvEYwXMX_8', tag: 'full', first: true, code: 'codes/html-website.zip', L: {
+  { id: '-VvEYwXMX_8', tag: 'full', first: true, code: 'codes/website-code.zip.zip', L: {
     ar: { title: 'شرح HTML من الصفر وبناء أول موقع', desc: 'شرح كامل من البداية: الوسوم الأساسية وبناء صفحة موقع كاملة.', dur: '35 دقيقة' },
     en: { title: 'HTML from scratch: build your first website', desc: 'Full lesson: core tags and building a complete page.', dur: '35 min' } } },
-  { id: 'n_17dEUPCo0', tag: 'quick', code: 'codes/html-basics.zip', L: {
+  { id: 'n_17dEUPCo0', tag: 'quick', code: 'codes/html-basics.zip.zip', L: {
     ar: { title: 'أساسيات HTML بسرعة', desc: 'ملخص سريع لأهم أساسيات HTML.', dur: '3 دقائق ونص' },
     en: { title: 'HTML basics in a flash', desc: 'A quick summary of the most important HTML basics.', dur: '3.5 min' } } }
 ];
