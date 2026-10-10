@@ -5,6 +5,7 @@
    - tag = full (شرح كامل) أو quick (سريع)
    - first: true = الفيديو الي بيفتحو زر "شاهد أول فيديو" */
 const VIDEO_LIST = [
+  { id: 'ضع_معرف_الفيديو_هنا', tag: 'quick', code: 'codes/navbar-project.zip', L: { ar: { title: 'تصميم واجهة موقع وشريط علوي مميز', desc: 'تعلم كيفية تصميم واجهة موقع مع شريط علوي (Navbar) احترافي باستخدام HTML و CSS.' }, en: { title: 'Design a Pro Website UI and Navbar', desc: 'Learn how to design a pro website UI and Navbar using HTML & CSS.' } } },
   { id: 'Zxascnw-MoQ', tag: 'full', code: 'codes/login-page.zip', L: {
     ar: { title: 'كيف تبني صفحة تسجيل دخول احترافية', desc: 'HTML و CSS و JS خطوة بخطوة.', dur: '5 دقائق و40 ثانية' },
     en: { title: 'Build a pro login page', desc: 'HTML, CSS and JS step by step.', dur: '5 min 40 sec' } } },
