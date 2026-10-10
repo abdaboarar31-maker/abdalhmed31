@@ -164,4 +164,15 @@ a.pay:hover{border-color:var(--accent)}
 
 body{display:flex;flex-direction:column;min-height:100vh}
 main{flex:1}
-#vgrid{min-height:70vh}
+
+/* ===== الفيديوهات والمتجر (إضافات) ===== */
+.thumbbtn{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:start}
+.dl{margin-top:12px}
+.more{text-align:center;margin-top:28px}
+.vcard:target{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,106,43,.35)}
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:12px 0}
+.shots img{width:100%;border-radius:10px;border:1px solid var(--line)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}
+.tags span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:1px 14px;font-size:.88rem}
+.dprice{font-size:1.5rem;font-weight:800;color:var(--accent);margin:4px 0}
+.vcard.st .actions{margin-top:12px}
