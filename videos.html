@@ -68,10 +68,10 @@ function render() {
     </article>` : `
     <article class="vcard st" id="v-${esc(v.id)}">
       <a class="thumbbtn" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener" aria-label="${esc(L.title)}">
-        <div class="thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'"><span class="play-b">▶</span><em>${esc(L.dur)}</em></div>
+        <div class="thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'"><span class="play-b">▶</span>${L.dur ? `<em>${esc(L.dur)}</em>` : ''}</div>
       </a>
       <div class="vinfo"><h3>${esc(L.title)}</h3><p>${esc(L.desc)}</p>
-        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" download>${t('dl')}</a>` : ''}</div>
+        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>` : ''}</div>
     </article>`; }).join('') : `<p class="muted">${t('empty')}</p>`;
 }
 $('#chips').addEventListener('click', e => { const c = e.target.closest('[data-c]'); if (c) { TAG = c.dataset.c; render(); } });
