@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>المتجر — عبد أبو عرار</title>
+<title>متجر الأكواد — عبد أبو عرار</title>
 <link rel="icon" href="logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -17,8 +17,8 @@
 </header>
 
 <main class="wrap block">
-  <h1 class="sec" data-i18n="h1">متجرنا</h1>
-  <p class="muted mb" data-i18n="hint">كتب ومستندات PDF من إعدادي. اختر المنتج وبعدها طريقة الدفع.</p>
+  <h1 class="sec" data-i18n="h1">متجر الأكواد</h1>
+  <p class="muted mb" data-i18n="hint">مشاريع قوية وقوالب جاهزة. شوف تفاصيل المنتج قبل ما تشتري.</p>
   <div id="chips" class="chips"></div>
   <div id="sgrid" class="grid"></div>
 </main>
@@ -28,6 +28,13 @@
   <p class="credit" data-i18n-html="credit"></p>
   <p class="rights" data-i18n-html="rights"></p>
 </footer>
+
+<div id="dmodal" class="modal" hidden>
+  <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="dt">
+    <button id="dclose" class="icon-btn mx" aria-label="X">✕</button>
+    <div id="dbody"></div>
+  </div>
+</div>
 
 <div id="pmodal" class="modal" hidden>
   <div class="mbox cbox" role="dialog" aria-modal="true" aria-labelledby="pt">
@@ -49,25 +56,27 @@ const PAYMENTS = [
   { name: 'Bit / PayBox', info: '' }
 ];
 
-/* ===== المنتجات: انسخ كتلة وغيّرها. cat = book (كتاب) أو doc (مستند). img = رابط صورة الغلاف (اختياري)
-   links = رابط دفع خاص بالمنتج، مثال: links: { PayPal: 'https://paypal.me/...' } ===== */
+/* ===== المنتجات (أكواد مدفوعة): انسخ كتلة وغيّرها.
+   cat = project (مشروع) أو template (قالب)
+   img = صورة الكرت | shots = لقطات شاشة | demo = id فيديو يوتيوب سريع (30 ثانية - دقيقة)
+   includes = شو بيحتوي | links = رابط دفع خاص بالمنتج، مثال: links: { PayPal: 'https://paypal.me/...' } ===== */
 const PRODUCTS = [
-  { cat: 'book', price: '$5', img: '', links: {}, L: {
-    ar: { title: 'كتاب HTML للمبتدئين', desc: 'ملف PDF بيشرحلك من الصفر لحد ما تبني موقعك.' },
-    en: { title: 'HTML for Beginners', desc: 'A PDF guide that takes you from zero to your first site.' } } },
-  { cat: 'doc', price: '$3', img: '', links: {}, L: {
-    ar: { title: 'ملخص وسوم HTML', desc: 'مستند PDF سريع فيه أهم الوسوم مع أمثلة.' },
-    en: { title: 'HTML Tags Cheat Sheet', desc: 'A quick PDF with the key tags and examples.' } } }
+  { cat: 'project', price: '$9', img: '', demo: '', shots: [], includes: ['HTML', 'CSS', 'JavaScript', 'ملف شرح'], links: {}, L: {
+    ar: { title: 'مشروع تسجيل دخول احترافي', desc: 'صفحة تسجيل دخول وإنشاء حساب جاهزة.', about: 'مشروع كامل لصفحة تسجيل دخول وإنشاء حساب بتصميم عصري بيشتغل على الجوال والكمبيوتر، مع فحص الحقول.' },
+    en: { title: 'Pro login page project', desc: 'Ready login and sign-up page.', about: 'A complete login and sign-up page with a modern design that works on mobile and desktop, with field validation.' } } },
+  { cat: 'template', price: '$7', img: '', demo: '', shots: [], includes: ['HTML', 'CSS', 'ملف شرح'], links: {}, L: {
+    ar: { title: 'قالب موقع شخصي', desc: 'قالب جاهز لموقع تعريفي.', about: 'قالب موقع شخصي متجاوب، بتغيّر النصوص والصور وبينشر على طول.' },
+    en: { title: 'Personal website template', desc: 'A ready portfolio template.', about: 'A responsive personal website template. Change the text and images and publish.' } } }
 ];
 
 const T = {
-ar: { name: 'العربية', dir: 'rtl', title: 'المتجر — عبد أبو عرار', home: 'الرئيسية', h1: 'متجرنا',
-  hint: 'كتب ومستندات PDF من إعدادي. اختر المنتج وبعدها طريقة الدفع.', all: 'الكل', book: 'كتب', doc: 'مستندات',
+ar: { name: 'العربية', dir: 'rtl', title: 'متجر الأكواد — عبد أبو عرار', home: 'الرئيسية', h1: 'متجر الأكواد',
+  hint: 'مشاريع قوية وقوالب جاهزة. شوف تفاصيل المنتج قبل ما تشتري.', all: 'الكل', project: 'مشاريع', template: 'قوالب', details: 'التفاصيل', inc: 'شو بيحتوي المشروع', demo_t: 'عرض سريع للمشروع',
   buy: 'اشترِ الآن', pay_title: 'اختر طريقة الدفع:', pay_soon: 'قريباً', empty: 'ما في منتجات بهالقسم حالياً.',
   pay_note: 'بعد الدفع ابعتلي إثبات الدفع من نموذج «تواصل» بالصفحة الرئيسية وبوصلك الملف على إيميلك.',
   credit: 'تصميم وتطوير: <b>عبد أبو عرار</b>', rights: '© {y} عبد أبو عرار. جميع الحقوق محفوظة. يُمنع نسخ أو إعادة نشر المحتوى دون إذن خطي.' },
-en: { name: 'English', dir: 'ltr', title: 'Store — Abd Abu Arar', home: 'Home', h1: 'Our Store',
-  hint: 'PDF books and documents I made. Pick a product, then choose how to pay.', all: 'All', book: 'Books', doc: 'Documents',
+en: { name: 'English', dir: 'ltr', title: 'Code Store — Abd Abu Arar', home: 'Home', h1: 'Code Store',
+  hint: 'Powerful projects and ready templates. See the details before you buy.', all: 'All', project: 'Projects', template: 'Templates', details: 'Details', inc: 'What is included', demo_t: 'Quick project demo',
   buy: 'Buy now', pay_title: 'Choose a payment method:', pay_soon: 'soon', empty: 'No products in this category yet.',
   pay_note: 'After paying, send me the payment proof via the Contact form on the home page and I will email you the file.',
   credit: 'Designed & developed by <b>Abd Abu Arar</b>', rights: '© {y} Abd Abu Arar. All rights reserved. Copying or republishing the content without written permission is prohibited.' }
@@ -89,17 +98,38 @@ setTheme(th);
 $('#theme').addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
 
 function render() {
-  $('#chips').innerHTML = ['all', 'book', 'doc'].map(k =>
+  $('#chips').innerHTML = ['all', 'project', 'template'].map(k =>
     `<button class="chip ${k === CAT ? 'on' : ''}" data-c="${k}" type="button">${t(k)}</button>`).join('');
   const list = PRODUCTS.map((p, i) => ({ p, i })).filter(x => CAT === 'all' || x.p.cat === CAT);
   $('#sgrid').innerHTML = list.length ? list.map(({ p, i }) => { const L = p.L[LANG] || p.L.ar; return `
-    <article class="vcard st"><div class="thumb book">${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy">` : `<span class="ph">${p.cat === 'doc' ? '📄' : '📘'}</span>`}</div>
+    <article class="vcard st"><button class="thumbbtn" data-d="${i}" type="button" aria-label="${esc(L.title)}"><div class="thumb book">${p.img ? `<img src="${esc(p.img)}" alt="" loading="lazy">` : `<span class="ph">${p.cat === 'template' ? '🎨' : '💻'}</span>`}</div></button>
       <div class="vinfo"><h3>${esc(L.title)}</h3><p>${esc(L.desc)}</p>
-        <div class="buy"><b>${esc(p.price)}</b><button class="btn small" data-b="${i}" type="button">${t('buy')}</button></div></div></article>`; }).join('')
+        <div class="buy"><b>${esc(p.price)}</b><span class="actions"><button class="btn small ghost" data-d="${i}" type="button">${t('details')}</button><button class="btn small" data-b="${i}" type="button">${t('buy')}</button></span></div></div></article>`; }).join('')
     : `<p class="muted">${t('empty')}</p>`;
 }
 $('#chips').addEventListener('click', e => { const c = e.target.closest('[data-c]'); if (c) { CAT = c.dataset.c; render(); } });
-$('#sgrid').addEventListener('click', e => { const b = e.target.closest('[data-b]'); if (b) openPay(+b.dataset.b); });
+$('#sgrid').addEventListener('click', e => {
+  const d = e.target.closest('[data-d]'); if (d) return openDetails(+d.dataset.d);
+  const b = e.target.closest('[data-b]'); if (b) openPay(+b.dataset.b);
+});
+
+function openDetails(i) {
+  const p = PRODUCTS[i], L = p.L[LANG] || p.L.ar;
+  $('#dbody').innerHTML = `
+    ${p.demo ? `<div class="player"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(p.demo)}?rel=0" title="${esc(t('demo_t'))}" allowfullscreen></iframe></div>` : ''}
+    ${p.shots && p.shots.length ? `<div class="shots">${p.shots.map(s => `<img src="${esc(s)}" alt="" loading="lazy">`).join('')}</div>` : ''}
+    <h3 id="dt">${esc(L.title)}</h3><div class="dprice">${esc(p.price)}</div>
+    <p class="muted">${esc(L.about || L.desc)}</p>
+    ${p.includes && p.includes.length ? `<h3 style="margin-top:14px;font-size:1rem">${t('inc')}</h3><div class="tags">${p.includes.map(x => `<span>${esc(x)}</span>`).join('')}</div>` : ''}
+    <button class="btn" data-buy="${i}" type="button">${t('buy')}</button>`;
+  $('#dmodal').hidden = false;
+}
+function closeDetails() { $('#dmodal').hidden = true; $('#dbody').innerHTML = ''; }
+$('#dclose').addEventListener('click', closeDetails);
+$('#dmodal').addEventListener('click', e => {
+  if (e.target.id === 'dmodal') return closeDetails();
+  const b = e.target.closest('[data-buy]'); if (b) { const i = +b.dataset.buy; closeDetails(); openPay(i); }
+});
 
 function openPay(i) {
   const p = PRODUCTS[i], L = p.L[LANG] || p.L.ar;
@@ -115,7 +145,7 @@ function openPay(i) {
 const closePay = () => $('#pmodal').hidden = true;
 $('#pclose').addEventListener('click', closePay);
 $('#pmodal').addEventListener('click', e => { if (e.target.id === 'pmodal') closePay(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closePay(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePay(); closeDetails(); } });
 
 function applyLang(l) {
   LANG = l; try { localStorage.setItem('abd-lang', l); } catch (e) {}
