@@ -17,6 +17,9 @@
 /* توقيت النشر: الساعة 10 بتوقيت هالمنطقة (غيّرها إذا بلدك مختلفة) */
 const RELEASE_TZ = 'Asia/Jerusalem';
 const VIDEO_LIST = [
+  { id: 'YndzGRSOXD8', tag: 'full', date: '2026-10-15 10:00', code: 'https://mega.nz/folder/g7RDiKJY#1c6JPPXiCwZEXjEETTy51A', L: {
+    ar: { title: 'تصميم واجهة موقع مع شريط علوي مميز باستخدام HTML & CSS', desc: 'نصمم واجهة موقع كاملة مع شريط علوي مميز خطوة بخطوة.', dur: '' },
+    en: { title: 'Website UI design with a standout top bar using HTML & CSS', desc: 'We build a full website interface with a standout top bar, step by step.', dur: '' } } },
   { id: 'Zxascnw-MoQ', tag: 'full', code: 'codes/login-page.zip', L: {
     ar: { title: 'كيف تبني صفحة تسجيل دخول احترافية', desc: 'HTML و CSS و JS خطوة بخطوة.', dur: '5 دقائق و40 ثانية' },
     en: { title: 'Build a pro login page', desc: 'HTML, CSS and JS step by step.', dur: '5 min 40 sec' } } },
