@@ -122,11 +122,11 @@ function renderVideos() {
         <div class="thumb">${v.id
           ? `<img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'">`
           : `<span class="ph">&lt;/&gt;</span>`}
-          <span class="play-b">▶</span><em>${esc(v.dur)}</em>
+          <span class="play-b">▶</span>${v.dur ? `<em>${esc(v.dur)}</em>` : ''}
         </div>
       </button>
       <div class="vinfo"><h3>${esc(v.title)}</h3><p>${esc(v.desc)}</p>
-        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" download>${t('dl')}</a>` : ''}</div>
+        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>` : ''}</div>
     </article>`).join('');
 }
 $('#vgrid').addEventListener('click', e => {
@@ -143,7 +143,7 @@ function openVideo(i) {
     : `<div class="noid">...</div>`;
   $('#ml').innerHTML = v.id
     ? `<a class="btn small" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">افتح على يوتيوب</a>` : '';
-  if (v.code) $('#ml').innerHTML += ` <a class="btn small ghost" href="${esc(v.code)}" download>${t('dl')}</a>`;
+  if (v.code) $('#ml').innerHTML += ` <a class="btn small ghost" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>`;
   $('#modal').hidden = false;
   document.body.style.overflow = 'hidden';
 }
