@@ -111,7 +111,12 @@ else {
 let tag = 'all';
 function renderChips() {}   // الفلاتر صارت بصفحة جميع الفيديوهات
 function renderVideos() {
-  $('#vgrid').innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => `
+  $('#vgrid').innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => isSoon(v) ? `
+    <article class="vcard soon">
+      <div class="thumb"><span class="ph">⏳</span><span class="soon-b">${t('soon')}</span></div>
+      <div class="vinfo"><h3>${esc(v.title)}</h3><p>${esc(v.desc)}</p>
+        <span class="btn small dl off">${t('premieres')} ${esc(soonWhen(v, LANG))}</span></div>
+    </article>` : `
     <article class="vcard">
       <button class="thumbbtn" data-v="${i}" type="button" aria-label="${esc(v.title)}">
         <div class="thumb">${v.id
@@ -209,7 +214,7 @@ ar: { name: 'العربية', dir: 'rtl', title: 'عبد أبو عرار — ت�
   c_title: 'أهلاً فيك 👋', c_text: 'باستخدامك الموقع بتوافق على تعليماته وشروطه. الموافقة بتنحسب كزيارة وحدة بس لعدّاد الزوار، وما بنجمع أي بيانات شخصية.',
   c_ok: 'موافق', c_no: 'لا، شكراً', thanks: 'شكراً لك! انحسبت زيارتك 🙌', buy: 'اشترِ الآن', pay_title: 'اختر طريقة الدفع:', pay_soon: 'قريباً',
   pay_note: 'بعد الدفع ابعتلي إثبات الدفع من نموذج «تواصل» وبوصلك الملف على إيميلك.',
-  sent: 'وصلت رسالتك، شكراً!', fill: 'اكتب اسمك ورسالتك أول', fail: 'ما انبعتت الرسالة، جرّب كمان شوي', yt_open: 'افتح على يوتيوب', dl: '⬇️ حمّل ملف الكود', all_videos: 'شاهد جميع الفيديوهات',
+  sent: 'وصلت رسالتك، شكراً!', fill: 'اكتب اسمك ورسالتك أول', fail: 'ما انبعتت الرسالة، جرّب كمان شوي', yt_open: 'افتح على يوتيوب', dl: '⬇️ حمّل ملف الكود', all_videos: 'شاهد جميع الفيديوهات', soon: 'قريباً', premieres: 'ينزل',
   avail: 'متوفر', soon: 'قريباً', q_n: 'سؤال {a} من {b}', q_next: 'السؤال التالي', q_res: 'شوف النتيجة', q_again: 'أعد الاختبار',
   q_best: 'ممتاز! أنت جاهز للدرس الجاي 🔥', q_mid: 'قريب جداً. راجع الفيديو وجرّب تاني.', q_low: 'ولا يهمك، ابدأ من أول فيديو وبتتعلّم.',
   toast_reset: 'رجع الكود الأصلي', toast_copy: 'تم نسخ الكود', tags: { all: 'الكل', full: 'شرح كامل', quick: 'سريع' } },
@@ -226,7 +231,7 @@ en: { name: 'English', dir: 'ltr', title: 'Abd Abu Arar — Learn HTML',
   c_title: 'Welcome 👋', c_text: 'By using this site you agree to its terms. Your agreement counts as one visit in the visitor counter, and we collect no personal data.',
   c_ok: 'I agree', c_no: 'No, thanks', thanks: 'Thank you! Your visit was counted 🙌', buy: 'Buy now', pay_title: 'Choose a payment method:', pay_soon: 'soon',
   pay_note: 'After paying, send me the payment proof via the Contact form and I will email you the file.',
-  sent: 'Message sent, thank you!', fill: 'Please enter your name and message', fail: "Couldn't send, please try again soon", yt_open: 'Open on YouTube', dl: '⬇️ Download the code', all_videos: 'Watch all videos',
+  sent: 'Message sent, thank you!', fill: 'Please enter your name and message', fail: "Couldn't send, please try again soon", yt_open: 'Open on YouTube', dl: '⬇️ Download the code', all_videos: 'Watch all videos', soon: 'Coming soon', premieres: 'Premieres',
   avail: 'Available', soon: 'Soon', q_n: 'Question {a} of {b}', q_next: 'Next question', q_res: 'See result', q_again: 'Retake quiz',
   q_best: "Excellent! You're ready for the next lesson 🔥", q_mid: 'Very close. Rewatch the video and try again.', q_low: 'No worries, start from the first video and you will learn.',
   toast_reset: 'Original code restored', toast_copy: 'Code copied', tags: { all: 'All', full: 'Full course', quick: 'Quick' } }
