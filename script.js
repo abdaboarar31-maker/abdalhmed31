@@ -1,8 +1,8 @@
 /* ===== إعداداتك (عدّل هون) ===== */
 const CONFIG = {
   channelUrl: 'https://www.youtube.com/channel/UC6V8FpZwiLoSbL07uwB2TAg',   // رابط قناتك
-  email: 'abdaboarar31@gmail.com',        //  إيميلك لاستقبال الرسائل
-  subsNow: 50,       //  عدد المشتركين الحالي
+  email: 'abdaboarar31@gmail.com',         // إيميلك لاستقبال الرسائل
+  subsNow: 50,        // عدد المشتركين الحالي
   subsGoal: 1000    // الهدف
 };
 
@@ -43,45 +43,34 @@ const STARTER = `<!DOCTYPE html>
 </html>`;
 
 /* ===== أدوات ===== */
-const $ = (s, r = document) => r.querySelector(s);
-const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const $ = (s, r = document) => r.querySelector(s); const $\$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function toast(msg) {
-  const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+  const el = \$('#toast'); el.textContent = msg; el.classList.add('show');
   clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2600);
 }
 
 /* ===== الوضع الفاتح والداكن ===== */
 function setTheme(mode) {
   document.documentElement.dataset.theme = mode;
-  $('#theme').textContent = mode === 'light' ? '☀️' : '🌙';
+  \$('#theme').textContent = mode === 'light' ? '☀️' : '🌙';
   try { localStorage.setItem('abd-theme', mode); } catch (e) {}
 }
 let saved = 'dark';
 try { saved = localStorage.getItem('abd-theme') || 'dark'; } catch (e) {}
 setTheme(saved);
-$('#theme').addEventListener('click', () =>
+\$('#theme').addEventListener('click', () =>
   setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
 
 /* ===== القائمة ===== */
-$('#burger').addEventListener('click', () => $('#nav').classList.toggle('open'));
-$$('#nav a').forEach(a => a.addEventListener('click', () => $('#nav').classList.remove('open')));
-
-const io = new IntersectionObserver(entries => {
-  entries.forEach(en => {
-    if (en.isIntersecting) {
-      $$('#nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+\$('#burger').addEventListener('click', () => $('#nav').classList.toggle('open')); $\$('#nav a').forEach(a => a.addEventListener('click', () => $('#nav').classList.remove('open')));  const io = new IntersectionObserver(entries => {   entries.forEach(en => {     if (en.isIntersecting) {       $\$('#nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
     }
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
-$$('main section[id]').forEach(s => io.observe(s));
-
-/* ===== روابط القناة ===== */
-const channelLink = CONFIG.channelUrl
-  ? CONFIG.channelUrl + (CONFIG.channelUrl.includes('?') ? '&' : '?') + 'sub_confirmation=1' : '';
-$$('[data-channel]').forEach(a => {
+$$('main section[id]').forEach(s => io.observe(s));  /* ===== روابط القناة ===== */ const channelLink = CONFIG.channelUrl   ? CONFIG.channelUrl + (CONFIG.channelUrl.includes('?') ? '&' : '?') + 'sub_confirmation=1' : ''; $$
+('[data-channel]').forEach(a => {
   if (channelLink) { a.href = channelLink; a.target = '_blank'; a.rel = 'noopener'; }
   else a.addEventListener('click', e => { e.preventDefault(); toast('حط رابط قناتك بأول ملف script.js'); });
 });
@@ -95,23 +84,23 @@ const TYPED = `<!DOCTYPE html>
   <a href="#">اضغط هنا</a>
 </body>
 </html>`;
-const hl = s => esc(s).replace(/(&lt;\/?[a-z0-9!]+)/gi, '<span class="t">$1</span>');
+const hl = s => esc(s).replace(/(&lt;\/?[a-z0-9!]+)/gi, '<span class="t">\$1</span>');
 const CUR = '<span class="cur"></span>';
-if (reduced) $('#typed').innerHTML = hl(TYPED);
+if (reduced) \$('#typed').innerHTML = hl(TYPED);
 else {
   let i = 0;
   const timer = setInterval(() => {
     i++;
-    $('#typed').innerHTML = hl(TYPED.slice(0, i)) + CUR;
+    \$('#typed').innerHTML = hl(TYPED.slice(0, i)) + CUR;
     if (i >= TYPED.length) clearInterval(timer);
   }, 38);
 }
 
 /* ===== الفيديوهات ===== */
 let tag = 'all';
-function renderChips() {}   // الفلاتر صارت بصفحة جميع الفيديوهات
+function renderChips() {}    // الفلاتر صارت بصفحة جميع الفيديوهات
 function renderVideos() {
-  $('#vgrid').innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => isSoon(v) ? `
+  \$('#vgrid').innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => isSoon(v) ? `
     <article class="vcard soon">
       <div class="thumb"><span class="ph">⏳</span><span class="soon-b">${t('soon')}</span></div>
       <div class="vinfo"><h3>${esc(v.title)}</h3><p>${esc(v.desc)}</p>
@@ -122,40 +111,40 @@ function renderVideos() {
         <div class="thumb">${v.id
           ? `<img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'">`
           : `<span class="ph">&lt;/&gt;</span>`}
-          <span class="play-b">▶</span>${v.dur ? `<em>${esc(v.dur)}</em>` : ''}
+          <span class="play-b">▶</span>${v.dur ? `<em>\${esc(v.dur)}</em>` : ''}
         </div>
       </button>
       <div class="vinfo"><h3>${esc(v.title)}</h3><p>${esc(v.desc)}</p>
-        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>` : ''}</div>
+        ${v.code ? `<a class="btn small dl" href="\${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>` : ''}</div>
     </article>`).join('');
 }
-$('#vgrid').addEventListener('click', e => {
+\$('#vgrid').addEventListener('click', e => {
   const c = e.target.closest('[data-v]'); if (c) openVideo(+c.dataset.v);
 });
-$('#watchFirst').addEventListener('click', () => openVideo(Math.max(0, VIDEOS.findIndex(v => v.first))));
+\$('#watchFirst').addEventListener('click', () => openVideo(Math.max(0, VIDEOS.findIndex(v => v.first))));
 
 function openVideo(i) {
   const v = VIDEOS[i]; if (!v) return;
-  $('#mt').textContent = v.title;
-  $('#md').textContent = v.desc;
-  $('#mplayer').innerHTML = v.id
+  \$('#mt').textContent = v.title;
+  \$('#md').textContent = v.desc;
+  \$('#mplayer').innerHTML = v.id
     ? `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(v.id)}?autoplay=1&rel=0" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
     : `<div class="noid">...</div>`;
-  $('#ml').innerHTML = v.id
+  \$('#ml').innerHTML = v.id
     ? `<a class="btn small" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">افتح على يوتيوب</a>` : '';
-  if (v.code) $('#ml').innerHTML += ` <a class="btn small ghost" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>`;
-  $('#modal').hidden = false;
+  if (v.code) \$('#ml').innerHTML += ` <a class="btn small ghost" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>`;
+  \$('#modal').hidden = false;
   document.body.style.overflow = 'hidden';
 }
 function closeVideo() {
-  $('#modal').hidden = true;
-  $('#mplayer').innerHTML = '';
+  \$('#modal').hidden = true;
+  \$('#mplayer').innerHTML = '';
   document.body.style.overflow = '';
 }
-$('#mclose').addEventListener('click', closeVideo);
-$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeVideo(); });
+\$('#mclose').addEventListener('click', closeVideo);
+\$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeVideo(); });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeVideo(); $('#nav').classList.remove('open'); }
+  if (e.key === 'Escape') { closeVideo(); \$('#nav').classList.remove('open'); }
 });
 
 /* ===== المحرر الحي ===== */
@@ -164,24 +153,17 @@ code.value = STARTER;
 let pt;
 const run = () => { prev.srcdoc = code.value; };
 code.addEventListener('input', () => { clearTimeout(pt); pt = setTimeout(run, 250); });
-$('#reset').addEventListener('click', () => { code.value = STARTER; run(); toast('رجع الكود الأصلي'); });
-$('#copy').addEventListener('click', async () => {
+\$('#reset').addEventListener('click', () => { code.value = STARTER; run(); toast('رجع الكود الأصلي'); });
+\$('#copy').addEventListener('click', async () => {
   try { await navigator.clipboard.writeText(code.value); }
   catch (e) { code.select(); document.execCommand('copy'); }
   toast('تم نسخ الكود');
 });
 run();
 
-/* ===== الاختبار (العرض بالأسفل مع اللغات) ===== */
+/* ===== الاختبار ===== */
 let qi = 0, score = 0, locked = false;
-$('#quizBox').addEventListener('click', e => {
-  const opt = e.target.closest('.opt');
-  if (opt && !locked) {
-    locked = true;
-    const pick = +opt.dataset.i, right = QUIZ[qi].a;
-    if (pick === right) score++;
-    $$('.opt').forEach((b, i) => { if (i === right) b.classList.add('ok'); else if (i === pick) b.classList.add('bad'); });
-    $('#qnext').hidden = false;
+$('#quizBox').addEventListener('click', e => {   const opt = e.target.closest('.opt');   if (opt && !locked) {     locked = true;     const pick = +opt.dataset.i, right = QUIZ[qi].a;     if (pick === right) score++;     $$('.opt').forEach((b, i) => { if (i === right) b.classList.add('ok'); else if (i === pick) b.classList.add('bad'); });$('#qnext').hidden = false;
     return;
   }
   if (e.target.id === 'qnext') { qi++; renderQuiz(); }
@@ -190,16 +172,15 @@ $('#quizBox').addEventListener('click', e => {
 
 
 /* ===== إضافات: اللغات، عدّاد الزوار، إحصائيات يوتيوب، المتجر والدفع، رسائل التواصل ===== */
-/* ===== إعدادات (عدّل هون) ===== */
 const X = {
-  ytApiKey: 'AIzaSyC2Z0mIJHVFuUtuPQ1pOiJ6cTZ_ohHpVIg',                          // مفتاح YouTube Data API (للأرقام الحقيقية)
+  ytApiKey: 'AIzaSyC2Z0mIJHVFuUtuPQ1pOiJ6cTZ_ohHpVIg',                       // مفتاح YouTube Data API
   channelId: 'UC6V8FpZwiLoSbL07uwB2TAg', // رقم قناتك
   visitorGoal: 1000,                     // هدف الزوار
-  counterKey: 'abd-abu-arar-site',       // اسم فريد لعدّاد موقعك (غيّره لأي اسم)
+  counterKey: 'abd-abu-arar-site',        // اسم فريد لعدّاد موقعك
   email: (CONFIG.email || '').trim()     // الرسائل بتوصل لهاد الإيميل
 };
 
-/* ===== الترجمات (لإضافة لغة: انسخ كتلة en وترجمها) ===== */
+/* ===== الترجمات ===== */
 const T = {
 ar: { name: 'العربية', dir: 'rtl', title: 'عبد أبو عرار — تعلّم HTML بالعربي',
   nav_videos: 'الفيديوهات', nav_play: 'جرّب بنفسك', nav_path: 'المسار', nav_store: 'المتجر', nav_quiz: 'اختبار', nav_about: 'عنّي', nav_contact: 'تواصل',
@@ -215,7 +196,7 @@ ar: { name: 'العربية', dir: 'rtl', title: 'عبد أبو عرار — ت�
   c_ok: 'موافق', c_no: 'لا، شكراً', thanks: 'شكراً لك! انحسبت زيارتك 🙌', buy: 'اشترِ الآن', pay_title: 'اختر طريقة الدفع:', pay_soon: 'قريباً',
   pay_note: 'بعد الدفع ابعتلي إثبات الدفع من نموذج «تواصل» وبوصلك الملف على إيميلك.',
   sent: 'وصلت رسالتك، شكراً!', fill: 'اكتب اسمك ورسالتك أول', fail: 'ما انبعتت الرسالة، جرّب كمان شوي', yt_open: 'افتح على يوتيوب', dl: '⬇️ حمّل ملف الكود', all_videos: 'شاهد جميع الفيديوهات', soon: 'قريباً', premieres: 'ينزل',
-  avail: 'متوفر', soon: 'قريباً', q_n: 'سؤال {a} من {b}', q_next: 'السؤال التالي', q_res: 'شوف النتيجة', q_again: 'أعد الاختبار',
+  avail: 'متوفر', q_n: 'سؤال {a} من {b}', q_next: 'السؤال التالي', q_res: 'شوف النتيجة', q_again: 'أعد الاختبار',
   q_best: 'ممتاز! أنت جاهز للدرس الجاي 🔥', q_mid: 'قريب جداً. راجع الفيديو وجرّب تاني.', q_low: 'ولا يهمك، ابدأ من أول فيديو وبتتعلّم.',
   toast_reset: 'رجع الكود الأصلي', toast_copy: 'تم نسخ الكود', tags: { all: 'الكل', full: 'شرح كامل', quick: 'سريع' } },
 en: { name: 'English', dir: 'ltr', title: 'Abd Abu Arar — Learn HTML',
@@ -232,7 +213,7 @@ en: { name: 'English', dir: 'ltr', title: 'Abd Abu Arar — Learn HTML',
   c_ok: 'I agree', c_no: 'No, thanks', thanks: 'Thank you! Your visit was counted 🙌', buy: 'Buy now', pay_title: 'Choose a payment method:', pay_soon: 'soon',
   pay_note: 'After paying, send me the payment proof via the Contact form and I will email you the file.',
   sent: 'Message sent, thank you!', fill: 'Please enter your name and message', fail: "Couldn't send, please try again soon", yt_open: 'Open on YouTube', dl: '⬇️ Download the code', all_videos: 'Watch all videos', soon: 'Coming soon', premieres: 'Premieres',
-  avail: 'Available', soon: 'Soon', q_n: 'Question {a} of {b}', q_next: 'Next question', q_res: 'See result', q_again: 'Retake quiz',
+  avail: 'Available', q_n: 'Question {a} of {b}', q_next: 'Next question', q_res: 'See result', q_again: 'Retake quiz',
   q_best: "Excellent! You're ready for the next lesson 🔥", q_mid: 'Very close. Rewatch the video and try again.', q_low: 'No worries, start from the first video and you will learn.',
   toast_reset: 'Original code restored', toast_copy: 'Code copied', tags: { all: 'All', full: 'Full course', quick: 'Quick' } }
 };
@@ -251,9 +232,9 @@ const t = k => (T[LANG] && T[LANG][k]) || T.ar[k] || k;
 PATH.forEach((p, i) => p.L = { ar: { t: p.t, d: p.d }, en: EN.path[i] });
 QUIZ.forEach((q, i) => q.L = { ar: { q: q.q, o: q.o }, en: EN.quiz[i] });
 
-/* ===== المسار (متوفر بكل اللغات) ===== */
+/* ===== المسار ===== */
 function renderPath() {
-  $('#pathList').innerHTML = PATH.map((p, i) => `
+  \$('#pathList').innerHTML = PATH.map((p, i) => `
     <li class="step ${p.ok ? 'done' : ''}"><b class="n">${i + 1}</b>
       <div><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p></div>
       <span class="state">${p.ok ? t('avail') : t('soon')}</span></li>`).join('');
@@ -261,7 +242,7 @@ function renderPath() {
 
 /* ===== الاختبار ===== */
 function renderQuiz() {
-  const box = $('#quizBox');
+  const box = \$('#quizBox');
   if (qi >= QUIZ.length) {
     const m = score === QUIZ.length ? t('q_best') : score >= 2 ? t('q_mid') : t('q_low');
     box.innerHTML = `<div class="result"><div class="big">${score}/${QUIZ.length}</div><p>${m}</p><button class="btn" id="qre" type="button">${t('q_again')}</button></div>`;
@@ -273,11 +254,11 @@ function renderQuiz() {
     <div class="qfoot"><button class="btn small" id="qnext" type="button" hidden>${qi === QUIZ.length - 1 ? t('q_res') : t('q_next')}</button></div>`;
 }
 
-/* ===== عدّاد الزوار الحقيقي (بعد الموافقة) ===== */
+/* ===== عدّاد الزوار الحقيقي ===== */
 let visitors = null;
 function renderGoal() {
-  $('#goalTxt').textContent = (visitors == null ? '…' : visitors) + ' / ' + X.visitorGoal + ' ' + t('visitor');
-  $('#goalBar').style.width = Math.max(3, Math.min(100, (visitors || 0) / X.visitorGoal * 100)) + '%';
+  \$('#goalTxt').textContent = (visitors == null ? '…' : visitors) + ' / ' + X.visitorGoal + ' ' + t('visitor');
+  \$('#goalBar').style.width = Math.max(3, Math.min(100, (visitors || 0) / X.visitorGoal * 100)) + '%';
 }
 async function counter(op) {
   try {
@@ -288,26 +269,26 @@ async function counter(op) {
 }
 function accept() {
   try { localStorage.setItem('abd-consent', '1'); } catch (e) {}
-  $('#cmodal').hidden = true; counter('hit'); toast(t('thanks'));
+  \$('#cmodal').hidden = true; counter('hit'); toast(t('thanks'));
 }
 function decline() {
   try { sessionStorage.setItem('abd-skip', '1'); } catch (e) {}
-  $('#cmodal').hidden = true;
+  \$('#cmodal').hidden = true;
 }
-$('#cok').addEventListener('click', accept);
-$('#cno').addEventListener('click', decline);
+\$('#cok').addEventListener('click', accept);
+\$('#cno').addEventListener('click', decline);
 {
   let c = null, s = null;
   try { c = localStorage.getItem('abd-consent'); s = sessionStorage.getItem('abd-skip'); } catch (e) {}
   counter('get');
-  if (c !== '1' && !s) setTimeout(() => $('#cmodal').hidden = false, 700);
+  if (c !== '1' && !s) setTimeout(() => \$('#cmodal').hidden = false, 700);
 }
 
 /* ===== إحصائيات يوتيوب الحقيقية ===== */
 let ST = {};
 function renderStats() {
   const f = n => n == null ? '—' : new Intl.NumberFormat(LANG === 'ar' ? 'ar-u-nu-latn' : LANG).format(n);
-  $('#stSubs').textContent = f(ST.subs); $('#stViews').textContent = f(ST.views); $('#stVids').textContent = f(ST.vids);
+  \$('#stSubs').textContent = f(ST.subs); $('#stViews').textContent = f(ST.views); $('#stVids').textContent = f(ST.vids);
 }
 async function loadStats() {
   if (!X.ytApiKey) return;
@@ -319,8 +300,8 @@ async function loadStats() {
   renderStats();
 }
 
-/* ===== رسائل التواصل بتوصل لإيميلك ===== */
-$('#cform').addEventListener('submit', async e => {
+/* ===== رسائل التواصل ===== */
+\$('#cform').addEventListener('submit', async e => {
   e.preventDefault(); e.stopImmediatePropagation();
   const name = $('#cname').value.trim(), msg = $('#cmsg').value.trim();
   if (!name || !msg) return toast(t('fill'));
@@ -329,7 +310,7 @@ $('#cform').addEventListener('submit', async e => {
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({ name, message: msg, _subject: 'رسالة جديدة من موقعك: ' + name }) });
     if (!r.ok) throw 0;
-    $('#cform').reset(); toast(t('sent'));
+    \$('#cform').reset(); toast(t('sent'));
   } catch (err) { toast(t('fail')); }
 }, true);
 
@@ -337,23 +318,63 @@ $('#cform').addEventListener('submit', async e => {
 const _toast = toast;
 toast = m => _toast(m === 'رجع الكود الأصلي' ? t('toast_reset') : m === 'تم نسخ الكود' ? t('toast_copy') : m);
 const _ov = openVideo;
-openVideo = i => { _ov(i); const a = $('#ml a'); if (a) a.textContent = t('yt_open'); };
+openVideo = i => { _ov(i); const a = \$('#ml a'); if (a) a.textContent = t('yt_open'); };
 
-/* ===== تطبيق اللغة ===== */
+/* ===== تطبيق اللغة وتحديث القائمة الجديدة والقديمة ===== */
 function applyLang(l) {
   LANG = l; try { localStorage.setItem('abd-lang', l); } catch (e) {}
   const d = document.documentElement; d.lang = l; d.dir = T[l].dir; document.title = T[l].title;
-  $$('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
-  $$('[data-i18n-html]').forEach(el => el.innerHTML = t(el.dataset.i18nHtml).replace('{y}', new Date().getFullYear()));
+  $$('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));$$
+('[data-i18n-html]').forEach(el => el.innerHTML = t(el.dataset.i18nHtml).replace('{y}', new Date().getFullYear()));
   VIDEOS.forEach(v => Object.assign(v, v.L[l] || v.L.ar));
   PATH.forEach(p => Object.assign(p, p.L[l] || p.L.ar));
   QUIZ.forEach(q => Object.assign(q, q.L[l] || q.L.ar));
   Object.assign(TAGS, T[l].tags);
   qi = 0; score = 0;
   renderChips(); renderVideos(); renderPath(); renderQuiz(); renderGoal(); renderStats();
-  $('#lang').value = l;
+  
+  // تحديث نص وزر القائمة المخصصة الجديد
+  const langText = document.querySelector('#lang-btn .lang-text');
+  const activeOption = document.querySelector(`.lang-option[data-lang="${l}"]`);
+  if (langText) {
+    langText.textContent = l === 'ar' ? 'العربية' : 'English';
+  }
+  if (activeOption) {
+    document.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('active'));
+    activeOption.classList.add('active');
+  }
 }
-$('#lang').innerHTML = Object.keys(T).map(k => `<option value="${k}">${T[k].name}</option>`).join('');
-$('#lang').addEventListener('change', e => applyLang(e.target.value));
-applyLang(LANG);
-loadStats();
+
+/* ===== التحكم بالقائمة المخصصة الجديدة (الأيقونة والأعلام) ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  const langBtn = document.getElementById('lang-btn');
+  const langMenu = document.getElementById('lang-menu');
+  const langOptions = document.querySelectorAll('.lang-option');
+
+  if (langBtn && langMenu) {
+    // فتح وإغلاق القائمة عند الضغط
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+    });
+
+    // إغلاق القائمة عند الضغط في أي مكان خارجها
+    document.addEventListener('click', () => {
+      langMenu.classList.remove('show');
+    });
+
+    // اختيار اللغة من القائمة الجديدة
+    langOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedLang = option.getAttribute('data-lang');
+        langMenu.classList.remove('show');
+        applyLang(selectedLang);
+      });
+    });
+  }
+
+  // تطبيق اللغة المحفوظة أو الافتراضية عند التحميل
+  applyLang(LANG);
+  loadStats();
+});
