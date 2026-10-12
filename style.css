@@ -200,63 +200,77 @@ main.wrap{width:100%}
   max-width: 600px;
 }
 
-.social-section-center h3 {
+/* الحاوية الرئيسية بدون أي صندوق أو خلفية */
+.social-section-clean {
+  text-align: center;
+  padding: 40px 20px;
+  margin: 30px auto;
+  width: 100%;
+}
+
+.social-title {
   color: #ffffff;
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
-.social-section-center p {
+.social-subtitle {
   color: #a0a0c0;
-  font-size: 15px;
-  margin-bottom: 25px;
+  font-size: 16px;
+  margin-bottom: 35px;
 }
 
-/* حاوية الأيقونات */
-.social-links-container {
+/* توزيع الأيقونات بمكعبات أبعد وبدون تزاحم */
+.social-links-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 25px; /* مسافة أوسع بين كل أيقونة والثانية */
   flex-wrap: wrap;
 }
 
-/* تنسيق الأيقونات وتأثير العوم */
+/* تكبير الأيقونات وتحسين أداء الحركة لتكون ناعمة جداً */
 .social-icon {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 62px; /* حجم أكبر */
+  height: 62px;
   border-radius: 50%;
-  background-color: #1e1e2f;
+  background-color: #1a1e2e;
   color: #ffffff;
-  font-size: 22px;
+  font-size: 26px; /* أيقونة أكبر داخل الدائرة */
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+  animation: smoothFloat 3.5s ease-in-out infinite;
 }
 
-.social-icon:nth-child(even) { animation-delay: 0.4s; }
-.social-icon:nth-child(3n) { animation-delay: 0.8s; }
-.social-icon:nth-child(5n) { animation-delay: 1.2s; }
+/* توزيع أوقات حركة العوم بشكل ناعم متناسق */
+.social-icon:nth-child(even) { animation-delay: 0.5s; }
+.social-icon:nth-child(3n) { animation-delay: 1s; }
+.social-icon:nth-child(5n) { animation-delay: 1.5s; }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+/* انيميشن خفيف وناعم جداً بدون أي ثقل */
+@keyframes smoothFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
+/* حركة التفاعل عند وضع الماوس (Hover) - استجابة سريعة جداً بدون تعليق */
 .social-icon:hover {
-  transform: translateY(-14px) scale(1.12) !important;
+  animation-play-state: paused; /* إيقاف حركة العوم فوراً عند اللمس لمنع التعليق */
+  transform: translateY(-10px) scale(1.15) !important;
 }
 
-/* الألوان عند التمرير بالماوس */
-.social-icon.youtube:hover { background-color: #FF0000; box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5); }
-.social-icon.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 8px 20px rgba(220, 39, 67, 0.5); }
-.social-icon.tiktok:hover { background-color: #000000; box-shadow: 0 8px 20px rgba(0, 242, 234, 0.5); }
-.social-icon.x-twitter:hover { background-color: #0f1419; box-shadow: 0 8px 20px rgba(15, 20, 25, 0.5); }
-.social-icon.facebook:hover { background-color: #1877F2; box-shadow: 0 8px 20px rgba(24, 119, 242, 0.5); }
-.social-icon.threads:hover { background-color: #000000; box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3); }
-.social-icon.pinterest:hover { background-color: #BD081C; box-shadow: 0 8px 20px rgba(189, 8, 28, 0.5); }
+/* الألوان والظلال عند وضع الماوس */
+.social-icon.youtube:hover { background-color: #FF0000; box-shadow: 0 10px 25px rgba(255, 0, 0, 0.5); }
+.social-icon.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 10px 25px rgba(220, 39, 67, 0.5); }
+.social-icon.tiktok:hover { background-color: #000000; box-shadow: 0 10px 25px rgba(0, 242, 234, 0.5); }
+.social-icon.x-twitter:hover { background-color: #0f1419; box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3); }
+.social-icon.facebook:hover { background-color: #1877F2; box-shadow: 0 10px 25px rgba(24, 119, 242, 0.5); }
+.social-icon.threads:hover { background-color: #000000; box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4); }
+.social-icon.pinterest:hover { background-color: #BD081C; box-shadow: 0 10px 25px rgba(189, 8, 28, 0.5); }
