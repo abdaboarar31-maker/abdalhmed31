@@ -1,3 +1,4 @@
+(function () {
 /* ===== إعداداتك (عدّل هون) ===== */
 const CONFIG = {
   channelUrl: 'https://www.youtube.com/channel/UC6V8FpZwiLoSbL07uwB2TAg',
@@ -102,11 +103,11 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isSoon = v => !!v.soon;
-const soonWhen = v => {
-  const w = v.when || v.soonWhen || '';
-  return typeof w === 'object' ? (w[LANG] || w.ar || '') : w;
-};
+/* videos-data.js ممكن يكون معرّف isSoon و soonWhen، فنستخدمهم إذا موجودين */
+const soonCheck = typeof isSoon === 'function' ? isSoon : (v => !!v.soon);
+const soonText = typeof soonWhen === 'function'
+  ? (v => soonWhen(v, LANG))
+  : (v => { const w = v.when || ''; return typeof w === 'object' ? (w[LANG] || w.ar || '') : w; });
 
 function toast(msg) {
   const el = $('#toast'); if (!el) return;
@@ -170,11 +171,11 @@ else {
 /* ===== الفيديوهات ===== */
 function renderVideos() {
   const grid = $('#vgrid'); if (!grid) return;
-  grid.innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => isSoon(v) ? `
+  grid.innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => soonCheck(v) ? `
     <article class="vcard soon">
       <div class="thumb"><span class="ph">⏳</span><span class="soon-b">${t('soon')}</span></div>
       <div class="vinfo"><h3>${esc(v.title || '')}</h3><p>${esc(v.desc || '')}</p>
-        <span class="btn small dl off">${t('premieres')} ${esc(soonWhen(v))}</span></div>
+        <span class="btn small dl off">${t('premieres')} ${esc(soonText(v))}</span></div>
     </article>` : `
     <article class="vcard">
       <button class="thumbbtn" data-v="${i}" type="button" aria-label="${esc(v.title || '')}">
@@ -358,3 +359,4 @@ document.addEventListener('click', () => { langMenu.hidden = true; });
 
 applyLang(LANG);
 loadStats();
+})();
