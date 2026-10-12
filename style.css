@@ -139,8 +139,51 @@ footer{background:var(--bg2);border-top:1px solid var(--line);text-align:center;
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
 /* ===== إضافات: اللغات والإحصائيات والمتجر والدفع ===== */
-.lang{background:var(--card);border:1px solid var(--line);border-radius:12px;height:40px;padding:0 8px;cursor:pointer}
-.lang option{color:#000}
+document.addEventListener('DOMContentLoaded', () => {
+  const langBtn = document.getElementById('lang-btn');
+  const langMenu = document.getElementById('lang-menu');
+  const langOptions = document.querySelectorAll('.lang-option');
+  const langText = langBtn.querySelector('.lang-text');
+
+  // إظهار وإخفاء القائمة عند الضغط على الزر
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langMenu.classList.toggle('show');
+  });
+
+  // إغلاق القائمة إذا ضغط المستخدم بأي مكان خارجها
+  document.addEventListener('click', () => {
+    langMenu.classList.remove('show');
+  });
+
+  // تغيير اللغة عند اختيار خيار
+  langOptions.forEach(option => {
+    option.addEventListener('click', (e) => {
+      e.preventDefault();
+      const selectedLang = option.getAttribute('data-lang');
+      
+      // إزالة التحديد القديم وإضافته للجديد
+      langOptions.forEach(opt => opt.classList.remove('active'));
+      option.classList.add('active');
+
+      // تحديث النص في الزر الرئيسي
+      if (selectedLang === 'ar') {
+        langText.textContent = 'العربية';
+      } else {
+        langText.textContent = 'English';
+      }
+
+      // إغلاق القائمة
+      langMenu.classList.remove('show');
+
+      // هنا يتم استدعاء دالة تغيير اللغة القديمة الموجودة لديك في الموقع (مثل تغيير اتجاه الصفحة dir و ترجمة النصوص)
+      // إذا كانت دالتك القديمة تعتمد على select قديم، يمكنك ربطها هنا مباشرة:
+      if (typeof changeLanguage === 'function') {
+        changeLanguage(selectedLang);
+      }
+    });
+  });
+});
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;max-width:420px}
 .stats div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}
 .stats b{display:block;font-size:1.5rem;color:var(--accent);line-height:1.4}
@@ -274,74 +317,3 @@ main.wrap{width:100%}
 .social-icon.facebook:hover { background-color: #1877F2; box-shadow: 0 10px 25px rgba(24, 119, 242, 0.5); }
 .social-icon.threads:hover { background-color: #000000; box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4); }
 .social-icon.pinterest:hover { background-color: #BD081C; box-shadow: 0 10px 25px rgba(189, 8, 28, 0.5); }
-
-/* تنسيق قائمة تغيير اللغة المخصصة */
-.lang-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.lang-dropdown .icon-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.lang-dropdown .icon-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.lang-menu {
-  position: absolute;
-  top: 120%;
-  right: 0;
-  background: #1e1e2f;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  display: none;
-  min-width: 130px;
-  z-index: 1000;
-  animation: fadeInLang 0.2s ease;
-}
-
-.lang-menu.show {
-  display: block;
-}
-
-.lang-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-
-.lang-option:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.lang-option.active {
-  background: rgba(255, 107, 107, 0.15);
-  color: #ff6b6b;
-  font-weight: bold;
-}
-
-@keyframes fadeInLang {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
