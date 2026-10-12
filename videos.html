@@ -41,7 +41,7 @@ en: { name: 'English', dir: 'ltr', title: 'All videos — Abd Abu Arar', home: '
   tags: { all: 'All', full: 'Full course', quick: 'Quick' },
   credit: 'Designed & developed by <b>Abd Abu Arar</b>', rights: '© {y} Abd Abu Arar. All rights reserved.' }
 };
-const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const $= s => document.querySelector(s),$$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 let LANG = 'ar', TAG = 'all';
 try { LANG = localStorage.getItem('abd-lang') || 'ar'; } catch (e) {}
@@ -49,18 +49,24 @@ if (!T[LANG]) LANG = 'ar';
 const t = k => T[LANG][k] || T.ar[k] || k;
 
 function setTheme(m) {
-  document.documentElement.dataset.theme = m; $('#theme').textContent = m === 'light' ? '☀️' : '🌙';
+  document.documentElement.dataset.theme = m; \$('#theme').textContent = m === 'light' ? '☀️' : '🌙';
   try { localStorage.setItem('abd-theme', m); } catch (e) {}
 }
 let th = 'dark'; try { th = localStorage.getItem('abd-theme') || 'dark'; } catch (e) {}
 setTheme(th);
-$('#theme').addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
+\$('#theme').addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light'));
 
 function render() {
-  $('#chips').innerHTML = Object.entries(t('tags')).map(([k, v]) =>
+  \$('#chips').innerHTML = Object.entries(t('tags')).map(([k, v]) =>
     `<button class="chip ${k === TAG ? 'on' : ''}" data-c="${k}" type="button">${esc(v)}</button>`).join('');
   const list = VIDEO_LIST.filter(v => TAG === 'all' || v.tag === TAG);
-  $('#vgrid').innerHTML = list.length ? list.map(v => { const L = v.L[LANG] || v.L.ar; return isSoon(v) ? `
+  
+  \$('#vgrid').innerHTML = list.length ? list.map(v => { 
+    const L = v.L[LANG] || v.L.ar; 
+    const durTag = L.dur ? '<em>' + esc(L.dur) + '</em>' : '';
+    const codeBtn = v.code ? '<a class="btn small dl" href="' + esc(v.code) + '" ' + (/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download') + '>' + t('dl') + '</a>' : '';
+
+    return isSoon(v) ? `
     <article class="vcard st soon" id="v-${esc(v.id)}">
       <div class="thumb"><span class="ph">⏳</span><span class="soon-b">${t('soon')}</span></div>
       <div class="vinfo"><h3>${esc(L.title)}</h3><p>${esc(L.desc)}</p>
@@ -68,24 +74,19 @@ function render() {
     </article>` : `
     <article class="vcard st" id="v-${esc(v.id)}">
       <a class="thumbbtn" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener" aria-label="${esc(L.title)}">
-        <div class="thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'"><span class="play-b">▶</span>${L.dur ? `<em>${esc(L.dur)}</em>` : ''}</div>
+        <div class="thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'"><span class="play-b">▶</span>${durTag}</div>
       </a>
       <div class="vinfo"><h3>${esc(L.title)}</h3><p>${esc(L.desc)}</p>
-        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>` : ''}</div>
-    </article>`; }).join('') : `<p class="muted">${t('empty')}</p>`;
+        ${codeBtn}</div>
+    </article>`; 
+  }).join('') : `<p class="muted">${t('empty')}</p>`;
 }
-$('#chips').addEventListener('click', e => { const c = e.target.closest('[data-c]'); if (c) { TAG = c.dataset.c; render(); } });
 
-function applyLang(l) {
-  LANG = l; try { localStorage.setItem('abd-lang', l); } catch (e) {}
-  const d = document.documentElement; d.lang = l; d.dir = T[l].dir; document.title = T[l].title;
-  $$('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
-  $$('[data-i18n-html]').forEach(el => el.innerHTML = t(el.dataset.i18nHtml).replace('{y}', new Date().getFullYear()));
-  $('#lang').value = l; render();
+$('#chips').addEventListener('click', e => { const c = e.target.closest('[data-c]'); if (c) { TAG = c.dataset.c; render(); } });  function applyLang(l) {   LANG = l; try { localStorage.setItem('abd-lang', l); } catch (e) {}   const d = document.documentElement; d.lang = l; d.dir = T[l].dir; document.title = T[l].title;   $$('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));$$('[data-i18n-html]').forEach(el => el.innerHTML = t(el.dataset.i18nHtml).replace('{y}', new Date().getFullYear()));$('#lang').value = l; render();
   if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
 }
-$('#lang').innerHTML = Object.keys(T).map(k => `<option value="${k}">${T[k].name}</option>`).join('');
-$('#lang').addEventListener('change', e => applyLang(e.target.value));
+\$('#lang').innerHTML = Object.keys(T).map(k => `<option value="${k}">${T[k].name}</option>`).join('');
+\$('#lang').addEventListener('change', e => applyLang(e.target.value));
 applyLang(LANG);
 </script>
 </body>
