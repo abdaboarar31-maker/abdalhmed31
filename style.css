@@ -274,3 +274,74 @@ main.wrap{width:100%}
 .social-icon.facebook:hover { background-color: #1877F2; box-shadow: 0 10px 25px rgba(24, 119, 242, 0.5); }
 .social-icon.threads:hover { background-color: #000000; box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4); }
 .social-icon.pinterest:hover { background-color: #BD081C; box-shadow: 0 10px 25px rgba(189, 8, 28, 0.5); }
+
+/* تنسيق قائمة تغيير اللغة المخصصة */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-dropdown .icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.lang-dropdown .icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.lang-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #1e1e2f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: none;
+  min-width: 130px;
+  z-index: 1000;
+  animation: fadeInLang 0.2s ease;
+}
+
+.lang-menu.show {
+  display: block;
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.lang-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lang-option.active {
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+@keyframes fadeInLang {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
