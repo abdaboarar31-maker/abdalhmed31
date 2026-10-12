@@ -187,3 +187,41 @@ main.wrap{width:100%}
 .soon-b{position:absolute;top:10px;inset-inline-start:10px;background:var(--accent);color:#1b0d04;font-weight:800;border-radius:999px;padding:0 14px;font-size:.85rem}
 .btn.off{background:var(--bg2);color:var(--muted);cursor:default;border:1px solid var(--line)}
 .btn.off:hover{transform:none;box-shadow:none}
+
+
+.social-links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.social-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #1e1e2f;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.social-icon:hover {
+  transform: translateY(-5px);
+  color: #ffffff;
+}
+
+.social-icon.youtube:hover { background-color: #FF0000; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4); }
+.social-icon.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); }
+.social-icon.tiktok:hover { background-color: #000000; box-shadow: 0 5px 15px rgba(0, 242, 234, 0.4); }
+.social-icon.x-twitter:hover { background-color: #0f1419; box-shadow: 0 5px 15px rgba(15, 20, 25, 0.4); }
+.social-icon.facebook:hover { background-color: #1877F2; box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4); }
+.social-icon.threads:hover { background-color: #000000; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); }
+.social-icon.pinterest:hover { background-color: #BD081C; box-shadow: 0 5px 15px rgba(189, 8, 28, 0.4); }
