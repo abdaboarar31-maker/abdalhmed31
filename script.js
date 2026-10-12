@@ -274,7 +274,7 @@ $('#quizBox').addEventListener('click', e => {
 /* ===== عدّاد الزوار ===== */
 let visitors = null;
 function renderGoal() {
-  $('#goalTxt').textContent = (visitors == null ? '…' : visitors) + ' / ' + CONFIG.visitorGoal + ' ' + t('visitor');
+  $('#goalTxt').textContent = (visitors == null ? '…' : visitors) + '/' + CONFIG.visitorGoal + ' ' + t('visitor');
   $('#goalBar').style.width = Math.max(3, Math.min(100, (visitors || 0) / CONFIG.visitorGoal * 100)) + '%';
 }
 async function counter(op) {
