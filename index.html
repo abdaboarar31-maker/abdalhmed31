@@ -15,6 +15,18 @@
 .lg-menu[hidden]{display:none}
 .lg-menu button{display:block;width:100%;text-align:start;background:none;border:0;color:#fff;padding:10px 12px;border-radius:8px;font:inherit;cursor:pointer}
 .lg-menu button:hover,.lg-menu button.on{background:rgba(255,255,255,.14)}
+/* شكل الإحصائيات الجديد: 3 بطاقات جنب بعض */
+.stats{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:12px!important;margin-top:22px!important}
+.stats>div{position:relative;display:flex!important;flex-direction:column;align-items:center;gap:4px;padding:18px 8px 14px!important;border-radius:20px!important;text-align:center;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04))!important;border:1px solid rgba(255,255,255,.18)!important;box-shadow:0 8px 24px rgba(0,0,0,.22);backdrop-filter:blur(6px);transition:transform .25s}
+.stats>div:hover{transform:translateY(-4px)}
+.stats>div::before{font-size:22px;line-height:1}
+.stats>div:nth-child(1)::before{content:"👥"}
+.stats>div:nth-child(2)::before{content:"👁️"}
+.stats>div:nth-child(3)::before{content:"🎬"}
+.stats>div b{font-size:clamp(22px,5vw,32px)!important;font-weight:800;background:linear-gradient(90deg,#ffb347,#ff6a2b);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.stats>div span{font-size:13px;opacity:.85}
+.new-b{display:inline-block;margin-inline-start:4px;padding:2px 8px;border-radius:50px;background:linear-gradient(90deg,#ff6a2b,#ec4899);color:#fff;font-size:11px;font-weight:800;vertical-align:middle;animation:newpulse 1.6s ease-in-out infinite}
+@keyframes newpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 </style>
 </head>
 <body>
@@ -22,7 +34,7 @@
 <header class="top">
   <a class="brand" href="#home"><img src="logo.svg" alt="" width="40" height="40"><span>عبد أبو عرار</span></a>
   <nav id="nav" class="nav">
-    <a href="css-designs.html">تصاميم CSS</a>
+    <a href="css-designs.html">تصاميم CSS <span class="new-b">جديد</span></a>
     <a href="#videos" data-i18n="nav_videos">الفيديوهات</a>
     <a href="#playground" data-i18n="nav_play">جرّب بنفسك</a>
     <a href="#path" data-i18n="nav_path">المسار</a>
