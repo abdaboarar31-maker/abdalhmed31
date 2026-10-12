@@ -6,7 +6,10 @@ const CONFIG = {
   visitorGoal: 1000,
   ytApiKey: 'AIzaSyC2Z0mIJHVFuUtuPQ1pOiJ6cTZ_ohHpVIg',
   channelId: 'UC6V8FpZwiLoSbL07uwB2TAg',
-  counterKey: 'abd-abu-arar-site'
+  counterKey: 'abd-abu-arar-site',
+  /* إذا بدك تكتب الأرقام بإيدك (مثلاً من YouTube Studio) شيل // وعدّل الأرقام: */
+  // statsOverride: { subs: 2, views: 81, vids: 8 }
+  statsOverride: null
 };
 
 /* الفيديوهات من ملف videos-data.js */
@@ -315,6 +318,7 @@ async function loadStats() {
     const s = (await r.json()).items[0].statistics;
     ST = { subs: s.hiddenSubscriberCount ? null : +s.subscriberCount, views: +s.viewCount, vids: +s.videoCount };
   } catch (e) {}
+  if (CONFIG.statsOverride) ST = CONFIG.statsOverride;
   renderStats();
 }
 
