@@ -98,7 +98,7 @@ else {
 
 /* ===== الفيديوهات ===== */
 let tag = 'all';
-function renderChips() {}    // الفلاتر صارت بصفحة جميع الفيديوهات
+function renderChips() {}
 function renderVideos() {
   \$('#vgrid').innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => isSoon(v) ? `
     <article class="vcard soon">
@@ -170,14 +170,13 @@ $('#quizBox').addEventListener('click', e => {   const opt = e.target.closest('.
   if (e.target.id === 'qre') { qi = 0; score = 0; renderQuiz(); }
 });
 
-
 /* ===== إضافات: اللغات، عدّاد الزوار، إحصائيات يوتيوب، المتجر والدفع، رسائل التواصل ===== */
 const X = {
-  ytApiKey: 'AIzaSyC2Z0mIJHVFuUtuPQ1pOiJ6cTZ_ohHpVIg',                       // مفتاح YouTube Data API
-  channelId: 'UC6V8FpZwiLoSbL07uwB2TAg', // رقم قناتك
-  visitorGoal: 1000,                     // هدف الزوار
-  counterKey: 'abd-abu-arar-site',        // اسم فريد لعدّاد موقعك
-  email: (CONFIG.email || '').trim()     // الرسائل بتوصل لهاد الإيميل
+  ytApiKey: 'AIzaSyC2Z0mIJHVFuUtuPQ1pOiJ6cTZ_ohHpVIg',
+  channelId: 'UC6V8FpZwiLoSbL07uwB2TAg',
+  visitorGoal: 1000,
+  counterKey: 'abd-abu-arar-site',
+  email: (CONFIG.email || '').trim()
 };
 
 /* ===== الترجمات ===== */
@@ -295,7 +294,7 @@ async function loadStats() {
   try {
     const r = await fetch('https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + X.channelId + '&key=' + X.ytApiKey);
     const s = (await r.json()).items[0].statistics;
-    ST = { subs: s.hiddenSubscriberCount ? null : +s.subscriberCount, views: +s.viewCount, vids: +s.videoCount };
+    ST = { subs: s.hiddenSubscriberCount ? null : +s.subscriberCount, views: +s.videoCount ? +s.videoCount : s.viewCount, vids: +s.videoCount };
   } catch (e) {}
   renderStats();
 }
@@ -314,13 +313,7 @@ async function loadStats() {
   } catch (err) { toast(t('fail')); }
 }, true);
 
-/* ===== تعريب رسائل الكود الأصلي ===== */
-const _toast = toast;
-toast = m => _toast(m === 'رجع الكود الأصلي' ? t('toast_reset') : m === 'تم نسخ الكود' ? t('toast_copy') : m);
-const _ov = openVideo;
-openVideo = i => { _ov(i); const a = \$('#ml a'); if (a) a.textContent = t('yt_open'); };
-
-/* ===== تطبيق اللغة وتحديث القائمة الجديدة والقديمة ===== */
+/* ===== تطبيق اللغة وتحديث القائمة الجديدة ===== */
 function applyLang(l) {
   LANG = l; try { localStorage.setItem('abd-lang', l); } catch (e) {}
   const d = document.documentElement; d.lang = l; d.dir = T[l].dir; document.title = T[l].title;
@@ -333,7 +326,6 @@ function applyLang(l) {
   qi = 0; score = 0;
   renderChips(); renderVideos(); renderPath(); renderQuiz(); renderGoal(); renderStats();
   
-  // تحديث نص وزر القائمة المخصصة الجديد
   const langText = document.querySelector('#lang-btn .lang-text');
   const activeOption = document.querySelector(`.lang-option[data-lang="${l}"]`);
   if (langText) {
@@ -345,25 +337,22 @@ function applyLang(l) {
   }
 }
 
-/* ===== التحكم بالقائمة المخصصة الجديدة (الأيقونة والأعلام) ===== */
+/* ===== التحكم بالقائمة المخصصة الجديدة ===== */
 document.addEventListener('DOMContentLoaded', () => {
   const langBtn = document.getElementById('lang-btn');
   const langMenu = document.getElementById('lang-menu');
   const langOptions = document.querySelectorAll('.lang-option');
 
   if (langBtn && langMenu) {
-    // فتح وإغلاق القائمة عند الضغط
     langBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       langMenu.classList.toggle('show');
     });
 
-    // إغلاق القائمة عند الضغط في أي مكان خارجها
     document.addEventListener('click', () => {
       langMenu.classList.remove('show');
     });
 
-    // اختيار اللغة من القائمة الجديدة
     langOptions.forEach(option => {
       option.addEventListener('click', (e) => {
         e.preventDefault();
@@ -374,7 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // تطبيق اللغة المحفوظة أو الافتراضية عند التحميل
   applyLang(LANG);
   loadStats();
 });
