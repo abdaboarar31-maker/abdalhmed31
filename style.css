@@ -189,39 +189,74 @@ main.wrap{width:100%}
 .btn.off:hover{transform:none;box-shadow:none}
 
 
+/* تنسيق الحاوية لتكون في منتصف الصفحة وبشكل أنيق */
+.social-section-center {
+  text-align: center;
+  padding: 50px 20px;
+  margin: 40px auto;
+  background: rgba(30, 30, 47, 0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  max-width: 600px;
+}
+
+.social-section-center h3 {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.social-section-center p {
+  color: #a0a0c0;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+/* حاوية الأيقونات */
 .social-links-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
-  padding: 20px;
 }
 
+/* تنسيق الأيقونات وتأثير العوم */
 .social-icon {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #1e1e2f;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 22px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  animation: float 3s ease-in-out infinite;
+}
+
+.social-icon:nth-child(even) { animation-delay: 0.4s; }
+.social-icon:nth-child(3n) { animation-delay: 0.8s; }
+.social-icon:nth-child(5n) { animation-delay: 1.2s; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 .social-icon:hover {
-  transform: translateY(-5px);
-  color: #ffffff;
+  transform: translateY(-14px) scale(1.12) !important;
 }
 
-.social-icon.youtube:hover { background-color: #FF0000; box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4); }
-.social-icon.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4); }
-.social-icon.tiktok:hover { background-color: #000000; box-shadow: 0 5px 15px rgba(0, 242, 234, 0.4); }
-.social-icon.x-twitter:hover { background-color: #0f1419; box-shadow: 0 5px 15px rgba(15, 20, 25, 0.4); }
-.social-icon.facebook:hover { background-color: #1877F2; box-shadow: 0 5px 15px rgba(24, 119, 242, 0.4); }
-.social-icon.threads:hover { background-color: #000000; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); }
-.social-icon.pinterest:hover { background-color: #BD081C; box-shadow: 0 5px 15px rgba(189, 8, 28, 0.4); }
+/* الألوان عند التمرير بالماوس */
+.social-icon.youtube:hover { background-color: #FF0000; box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5); }
+.social-icon.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 8px 20px rgba(220, 39, 67, 0.5); }
+.social-icon.tiktok:hover { background-color: #000000; box-shadow: 0 8px 20px rgba(0, 242, 234, 0.5); }
+.social-icon.x-twitter:hover { background-color: #0f1419; box-shadow: 0 8px 20px rgba(15, 20, 25, 0.5); }
+.social-icon.facebook:hover { background-color: #1877F2; box-shadow: 0 8px 20px rgba(24, 119, 242, 0.5); }
+.social-icon.threads:hover { background-color: #000000; box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3); }
+.social-icon.pinterest:hover { background-color: #BD081C; box-shadow: 0 8px 20px rgba(189, 8, 28, 0.5); }
