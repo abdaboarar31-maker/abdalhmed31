@@ -172,7 +172,7 @@ else {
 }
 
 /* ===== الفيديوهات ===== */
-function renderVideos() {
+function renderVideos(){
   const grid = $('#vgrid'); if (!grid) return;
   grid.innerHTML = VIDEOS.slice(0, HOME_COUNT).map((v, i) => soonCheck(v) ? `
     <article class="vcard soon">
@@ -360,7 +360,15 @@ langMenu.addEventListener('click', e => {
   langMenu.hidden = true; applyLang(b.dataset.l);
 });
 document.addEventListener('click', () => { langMenu.hidden = true; });
-
+  if (window.YTAUTO) YTAUTO.load().then(function (all) {
+    if (!all) return;
+    var known = {}; VIDEOS.forEach(function (v) { known[v.id] = 1; });
+    var fresh = all.filter(function (v) { return !v.short && !known[v.id]; }).map(function (v) {
+      var m = Math.max(1, Math.round(v.secs / 60));
+      return { id: v.id, tag: 'full', code: '', title: v.title, desc: v.desc, dur: LANG === 'en' ? m + ' min' : m + ' دقيقة' };
+    });
+    if (fresh.length) { VIDEOS.unshift.apply(VIDEOS, fresh); render(); }
+  });
 applyLang(LANG);
 loadStats();
 })();
