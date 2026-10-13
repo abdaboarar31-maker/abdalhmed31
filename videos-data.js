@@ -17,6 +17,9 @@
 /* توقيت النشر: الساعة 10 بتوقيت هالمنطقة (غيّرها إذا بلدك مختلفة) */
 const RELEASE_TZ = 'Asia/Jerusalem';
 const VIDEO_LIST = [
+     { id: 'TXEcbefL01M', tag: 'quick', code: '', L: {
+    ar: { title: 'كود CSS بينكتب قدامك وبيتحول لكرت زجاجي', desc: 'شوف الكود وهو بيتحول لتصميم زجاجي مباشرة.', dur: '30 ثانية' },
+    en: { title: 'CSS code that turns into a glass card', desc: 'Watch the code turn into a glass design live.', dur: '30 sec' } } },
   { id: 'YndzGRSOXD8', tag: 'full', date: '2026-10-15 10:00', code: 'codes/home-html.zip.zip', L: {
     ar: { title: 'تصميم واجهة موقع مع شريط علوي مميز باستخدام HTML & CSS', desc: 'نصمم واجهة موقع بشريط علوي مميز خطوة بخطوة.', dur: 'فيديو جديد' },
     en: { title: 'Website interface with a custom top bar using HTML & CSS', desc: 'Design a website interface with a custom top bar, step by step.', dur: 'New video' } } },
