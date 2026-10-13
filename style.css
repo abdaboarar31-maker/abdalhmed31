@@ -388,3 +388,7 @@ main.wrap{width:100%}
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* تحسين ترويسة الجوال */
+@media (max-width:760px){.top{gap:6px}.brand span{white-space:nowrap;font-size:.95rem}.top .btn.small{white-space:nowrap;flex-shrink:0;padding:6px 10px;font-size:.8rem}}
+@media (max-width:400px){.brand img{width:30px;height:30px}}
