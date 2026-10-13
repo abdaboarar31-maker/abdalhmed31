@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://abdcode.pages.dev/</loc>
-  </url>
+  <url><loc>https://abdcode.pages.dev/</loc></url>
+  <url><loc>https://abdcode.pages.dev/store.html</loc></url>
+  <url><loc>https://abdcode.pages.dev/videos.html</loc></url>
+  <url><loc>https://abdcode.pages.dev/css-designs.html</loc></url>
 </urlset>
