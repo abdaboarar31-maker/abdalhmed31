@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>كيف تضيف صورة في HTML؟ شرح للمبتدئين | عبد أبو عرار</title>
+<meta name="description" content="تعلّم إضافة صورة لصفحتك بوسم img: الكود، شرح src وalt وwidth، وتجربة مباشرة بدون تثبيت أي برنامج.">
+<meta property="og:title" content="كيف تضيف صورة في HTML؟ شرح للمبتدئين">
+<meta property="og:description" content="الكود + الشرح + تجربة مباشرة.">
+<link rel="stylesheet" href="base.css">
+</head>
+<body><div class="wrap">
+<header><a class="logo" href="index.html">عبد أبو عرار</a><a href="index.html">الرئيسية</a></header>
+<h1>كيف تضيف صورة في HTML؟</h1>
+<p>بسطر واحد بتحط أي صورة بصفحتك. هاد أول شي بتحتاجه لتبني موقع حقيقي.</p>
+<h2>الكود</h2>
+<pre>&lt;img src="logo.svg" alt="شعار الموقع" width="120"&gt;</pre>
+<h2>شو معنى كل جزء؟</h2>
+<ul>
+<li><b>src:</b> مسار الصورة أو رابطها.</li>
+<li><b>alt:</b> وصف نصي يظهر لو الصورة ما تحمّلت، ويساعد جوجل وقارئات الشاشة.</li>
+<li><b>width:</b> عرض الصورة بالبكسل.</li>
+</ul>
+<h2>جرّب بنفسك</h2>
+<textarea id="t" aria-label="محرر الكود">&lt;img src="logo.svg" alt="شعار الموقع" width="120"&gt;</textarea>
+<iframe id="f" title="النتيجة"></iframe>
+<h2>أخطاء شائعة</h2>
+<ul>
+<li>اسم الصورة غلط أو الحروف الكبيرة والصغيرة مختلفة.</li>
+<li>الصورة بمجلد ثاني ونسيت المسار (مثلاً <code>images/me.jpg</code>).</li>
+<li>نسيان وسم alt.</li>
+</ul>
+<div class="box"><p>عجبك الشرح؟ شاهد الفيديو واشترك بالقناة.</p><br><a class="btn" href="https://www.youtube.com/@abdalhmed777">▶ قناتي على يوتيوب</a></div>
+<nav class="pn"><a href="codes.html">أكواد جاهزة</a><a href="index.html#path">كل الدروس</a></nav>
+<footer>تصميم وتطوير: عبد أبو عرار</footer>
+</div>
+<script>
+const t=document.getElementById('t'),f=document.getElementById('f');
+const r=()=>{f.srcdoc='<body style="margin:12px;font-family:sans-serif">'+t.value};
+t.addEventListener('input',r);r();
+</script>
+</body></html>
