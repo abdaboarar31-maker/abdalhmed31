@@ -48,13 +48,3 @@ function releaseMs(v) {
 }
 const isSoon = v => !!v.date && Date.now() < releaseMs(v);
 const soonWhen = (v, lang) => new Intl.DateTimeFormat(lang === 'en' ? 'en' : 'ar-u-nu-latn', { weekday: 'long', hour: 'numeric', minute: '2-digit' }).format(new Date(releaseMs(v)));
-
-if (window.YTAUTO) YTAUTO.load().then(function (all) {
-    if (!all) return;
-    var known = {}; VIDEOS.forEach(function (v) { known[v.id] = 1; });
-    var fresh = all.filter(function (v) { return !v.short && !known[v.id]; }).map(function (v) {
-      var m = Math.max(1, Math.round(v.secs / 60));
-      return { id: v.id, tag: 'full', code: '', title: v.title, desc: v.desc, dur: LANG === 'en' ? m + ' min' : m + ' دقيقة' };
-    });
-    if (fresh.length) { VIDEOS.unshift.apply(VIDEOS, fresh); render(); }
-  });

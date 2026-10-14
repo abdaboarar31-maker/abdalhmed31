@@ -360,58 +360,41 @@ langMenu.addEventListener('click', e => {
   langMenu.hidden = true; applyLang(b.dataset.l);
 });
 document.addEventListener('click', () => { langMenu.hidden = true; });
-  if (window.YTAUTO) YTAUTO.load().then(function (all) {
-    if (!all) return;
-    var known = {}; VIDEOS.forEach(function (v) { known[v.id] = 1; });
-    var fresh = all.filter(function (v) { return !v.short && !known[v.id]; }).map(function (v) {
-      var m = Math.max(1, Math.round(v.secs / 60));
-      return { id: v.id, tag: 'full', code: '', title: v.title, desc: v.desc, dur: LANG === 'en' ? m + ' min' : m + ' دقيقة' };
-    });
-    if (fresh.length) { VIDEOS.unshift.apply(VIDEOS, fresh); render(); }
-  });
-applyLang(LANG);
-loadStats();
-})();
-
 /* ===== فيديوهات يوتيوب التلقائية + شريط "فيديو جديد" ===== */
-const fmtDur = s => { const m = Math.max(1, Math.round(s / 60)); return LANG === 'en' ? m + ' min' : m + ' دقيقة'; };
-
 function showNewBar(v) {
   let seen = null; try { seen = localStorage.getItem('abd-newbar'); } catch (e) {}
   if (!v || seen === v.id || Date.now() - v.published > 7 * 864e5) return;
-  
-  const bar = document.createElement('div'); 
+  const bar = document.createElement('div');
   bar.className = 'newbar';
   const i = VIDEOS.findIndex(x => x.id === v.id);
   const label = LANG === 'en' ? 'New video:' : 'نزل فيديو جديد:';
   const go = LANG === 'en' ? 'Watch now' : 'شاهد الآن';
-  
   bar.innerHTML = '<span>🆕 ' + label + ' <b>' + esc(v.title) + '</b></span>' +
     (v.short || i < 0 ? '<a class="btn small" href="css-designs.html#v-' + esc(v.id) + '">' + go + '</a>'
                       : '<button class="btn small" type="button" data-nb="' + i + '">' + go + '</button>') +
     '<button class="nb-x" type="button" aria-label="X">✕</button>';
-    
   bar.addEventListener('click', e => {
     if (e.target.closest('[data-nb]')) openVideo(+e.target.closest('[data-nb]').dataset.nb);
     if (e.target.closest('.nb-x')) { try { localStorage.setItem('abd-newbar', v.id); } catch (er) {} bar.remove(); }
   });
-  
-  document.body.insertBefore(bar, document.querySelector('.top').nextSibling);
+  const top = document.querySelector('.top');
+  if (top) top.after(bar);
 }
-
 async function loadAuto() {
   if (!window.YTAUTO) return;
-  const all = await YTAUTO.load(); 
-  if (!all || !all.length) return;
-  
-  const known = new Set(VIDEOS.map(v => v.id));
-  const fresh = all.filter(v => !v.short && !known.has(v.id)).map(v => ({ id: v.id, tag: 'full', code: '', title: v.title, desc: v.desc, dur: fmtDur(v.secs) }));
-  
-  if (fresh.length) { 
-    VIDEOS.unshift(...fresh); 
-    renderVideos(); 
-  }
-  showNewBar(all[0]);
+  try {
+    const all = await YTAUTO.load();
+    if (!all || !all.length) return;
+    const known = new Set(VIDEOS.map(v => v.id));
+    const fresh = all.filter(v => !v.short && !known.has(v.id)).map(v => {
+      const m = Math.max(1, Math.round(v.secs / 60));
+      return { id: v.id, tag: 'full', code: '', title: v.title, desc: v.desc, dur: LANG === 'en' ? m + ' min' : m + ' دقيقة' };
+    });
+    if (fresh.length) { VIDEOS.unshift(...fresh); renderVideos(); }
+    showNewBar(all[0]);
+  } catch (e) {}
 }
-
+applyLang(LANG);
+loadStats();
 loadAuto();
+})();

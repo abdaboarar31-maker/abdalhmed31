@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تصاميم CSS | Abd Code</title>
+<title>تصاميم CSS | عبد أبو عرار</title>
+<meta name="description" content="تصاميم CSS جاهزة مع معاينة حية وفيديو شرح، انسخ الكود مجاناً.">
+<link rel="icon" href="logo.svg">
 <style>
   body { margin: 0; background: #0f172a; color: #fff; font-family: Tahoma, Arial, sans-serif; }
   header { text-align: center; padding: 40px 16px 10px; }
@@ -24,7 +26,7 @@
 </style>
 </head>
 <body>
-  <div class="topbar"><a class="home-btn" href="index.html">← الرئيسية</a></div>
+  <div class="topbar"><a class="home-btn" href="index.html">← الرئيسية</a> <a class="home-btn" href="codes.html">أكواد جاهزة</a></div>
   <header>
     <h1>تصاميم CSS ✨</h1>
     <p>شاهد النتيجة وانسخ الكود مجاناً</p>
@@ -194,7 +196,7 @@ designs.forEach((d) => {
   const b = document.createElement("button");
   b.textContent = "نسخ الكود";
   b.onclick = () => {
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(code).catch(() => {});
     b.textContent = "تم النسخ ✅";
     setTimeout(() => (b.textContent = "نسخ الكود"), 2000);
   };
