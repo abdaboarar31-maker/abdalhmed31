@@ -48,9 +48,9 @@ const STARTER = `<!DOCTYPE html>
 
 /* ===== الترجمات ===== */
 const T = {
-  ar: { name: 'العربية', dir: 'rtl', title: 'عبد أبو عرار — تعلّم HTML بالعربي',
+  ar: { name: 'العربية', dir: 'rtl', title: 'Abd Code — تعلّم HTML بالعربي',
     nav_videos: 'الفيديوهات', nav_play: 'جرّب بنفسك', nav_path: 'المسار', nav_store: 'المتجر', nav_quiz: 'اختبار', nav_about: 'عنّي', nav_contact: 'تواصل',
-    subscribe: '▶ اشترك', h1: 'تعلّم تصميم المواقع بـ HTML من الصفر', lead: 'شرح بسيط وبالعربي، خطوة بخطوة، مع تجارب حيّة بتعملها بنفسك.',
+    subscribe: '▶ اشترك', h1: 'تعلّم تصميم المواقع بـ <span class="grad">HTML</span> من الصفر', badge: '🔥 مجاني · بالعربي · للمبتدئين', stats_title: '📊 أرقام قناتي على يوتيوب', live_total: 'زائر زار الموقع', live_today: 'اليوم', live_none: 'كن أول زائر اليوم 👋', lead: 'شرح بسيط وبالعربي، خطوة بخطوة، مع تجارب حيّة بتعملها بنفسك.',
     watch: '▶ شاهد أول فيديو', tryit: 'جرّب الكود الآن', goal: '🎯 هدفنا: زوّار حقيقيون', visitor: 'زائر',
     st_subs: 'مشترك', st_views: 'مشاهدة', st_vids: 'فيديو', sec_videos: 'الفيديوهات', sec_play: 'جرّب بنفسك',
     play_hint: 'عدّل على الكود وشوف النتيجة فوراً. ما في شي بينحفظ، جرّب براحتك.', code: 'الكود', result: 'النتيجة', copy: 'نسخ', reset: 'إعادة',
@@ -66,9 +66,9 @@ const T = {
     avail: 'متوفر', q_n: 'سؤال {a} من {b}', q_next: 'السؤال التالي', q_res: 'شوف النتيجة', q_again: 'أعد الاختبار',
     q_best: 'ممتاز! أنت جاهز للدرس الجاي 🔥', q_mid: 'قريب جداً. راجع الفيديو وجرّب تاني.', q_low: 'ولا يهمك، ابدأ من أول فيديو وبتتعلّم.',
     toast_reset: 'رجع الكود الأصلي', toast_copy: 'تم نسخ الكود', channel_missing: 'حط رابط قناتك بأول ملف script.js' },
-  en: { name: 'English', dir: 'ltr', title: 'Abd Abu Arar — Learn HTML',
+  en: { name: 'English', dir: 'ltr', title: 'Abd Code — Learn HTML',
     nav_videos: 'Videos', nav_play: 'Playground', nav_path: 'Roadmap', nav_store: 'Store', nav_quiz: 'Quiz', nav_about: 'About', nav_contact: 'Contact',
-    subscribe: '▶ Subscribe', h1: 'Learn web design with HTML from scratch', lead: 'Simple, step-by-step lessons with live experiments you try yourself.',
+    subscribe: '▶ Subscribe', h1: 'Learn web design with <span class="grad">HTML</span> from scratch', badge: '🔥 Free · Arabic · Beginner-friendly', stats_title: '📊 My YouTube channel in numbers', live_total: 'visitors so far', live_today: 'today', live_none: 'Be the first visitor today 👋', lead: 'Simple, step-by-step lessons with live experiments you try yourself.',
     watch: '▶ Watch the first video', tryit: 'Try the code now', goal: '🎯 Our goal: real visitors', visitor: 'visitors',
     st_subs: 'subscribers', st_views: 'views', st_vids: 'videos', sec_videos: 'Videos', sec_play: 'Try it yourself',
     play_hint: 'Edit the code and see the result instantly. Nothing is saved, so experiment freely.', code: 'Code', result: 'Result', copy: 'Copy', reset: 'Reset',
@@ -275,16 +275,20 @@ $('#quizBox').addEventListener('click', e => {
 });
 
 /* ===== عدّاد الزوار ===== */
-let visitors = null;
+let visitors = null, today = null;
+const dayKey = 'd-' + new Date().toISOString().slice(0, 10);
 function renderGoal() {
-  $('#goalTxt').textContent = (visitors == null ? '…' : visitors) + '/' + CONFIG.visitorGoal + ' ' + t('visitor');
-  $('#goalBar').style.width = Math.max(3, Math.min(100, (visitors || 0) / CONFIG.visitorGoal * 100)) + '%';
+  const el = $('#liveTxt'); if (!el) return;
+  if (visitors == null) { el.textContent = '…'; return; }
+  el.textContent = visitors + ' ' + t('live_total') + ' · ' + (today > 0 ? t('live_today') + ': ' + today : t('live_none'));
 }
 async function counter(op) {
-  try {
-    const r = await fetch('https://abacus.jasoncameron.dev/' + op + '/' + CONFIG.counterKey + '/visits');
-    visitors = r.ok ? (await r.json()).value : (r.status === 404 ? 0 : null);
-  } catch (e) {}
+  const base = 'https://abacus.jasoncameron.dev/' + op + '/' + CONFIG.counterKey + '/';
+  const read = async k => {
+    try { const r = await fetch(base + k); return r.ok ? (await r.json()).value : (r.status === 404 ? 0 : null); }
+    catch (e) { return null; }
+  };
+  [visitors, today] = await Promise.all([read('visits'), read(dayKey)]);
   renderGoal();
 }
 function accept() {
