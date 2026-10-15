@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أكاديمية Abd Code — تعلّم HTML وCSS وJavaScript مجاناً بالعربي</title>
+<meta name="description" content="دروس HTML بالعربي من الصفر مع محرر كود حي وتمارين بتتصحح لحالها. مجاناً وبدون تسجيل.">
+<link rel="canonical" href="https://abdcode.pages.dev/academy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abd Code">
+<meta property="og:title" content="أكاديمية Abd Code — تعلّم البرمجة مجاناً بالعربي">
+<meta property="og:description" content="مسارات مرتبة، كود حي، وتمارين بتتصحح لحالها. بدون تسجيل.">
+<meta property="og:url" content="https://abdcode.pages.dev/academy.html">
+<link rel="icon" href="logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1128;--bg2:#0f1838;--card:#141f47;--tx:#eef1ff;--mu:#9aa6d6;--ln:#25326a;--ac:#ff6a2b;--bl:#4d8dff;--ok:#22c55e;--bad:#ef4444}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Tajawal',Tahoma,sans-serif;line-height:1.8;min-height:100vh;
+background-image:radial-gradient(40% 50% at 20% 20%,rgba(255,106,43,.12),transparent 70%),radial-gradient(45% 55% at 80% 30%,rgba(77,141,255,.12),transparent 70%),radial-gradient(50% 60% at 50% 85%,rgba(139,92,246,.11),transparent 70%);background-size:140% 140%;background-attachment:fixed;background-repeat:no-repeat;animation:wv 30s ease-in-out infinite alternate}
+@keyframes wv{0%{background-position:0 0,100% 0,50% 100%}100%{background-position:100% 100%,0 100%,60% 0}}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+[hidden]{display:none!important}
+.top{position:sticky;top:10px;z-index:30;margin:10px auto 0;width:min(1180px,calc(100% - 24px));display:flex;align-items:center;gap:10px;padding:6px 18px;border-radius:20px;border:1px solid var(--ln);background:linear-gradient(110deg,rgba(255,106,43,.30),rgba(139,92,246,.30),rgba(77,141,255,.30)) 0 0/300% 100%,rgba(10,17,40,.8);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.28);transition:background-position 1.4s}
+.top:hover{background-position:100% 0,0 0}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.2rem;direction:ltr;background:linear-gradient(90deg,var(--ac),#ffc23c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand img{width:32px;height:32px}
+.nav{display:flex;gap:4px;margin-inline-start:auto;overflow-x:auto}
+.nav a{padding:5px 12px;border-radius:99px;color:var(--mu);white-space:nowrap;font-weight:500}
+.nav a:hover,.nav a.on{background:var(--card);color:var(--tx)}
+.wrap{max-width:1100px;margin:0 auto;padding:44px 5% 70px}
+.badge{display:inline-block;padding:4px 16px;border-radius:99px;font-weight:700;font-size:.9rem;background:rgba(255,106,43,.14);border:1px solid rgba(255,106,43,.45);color:var(--ac);margin-bottom:14px}
+h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.25;font-weight:800}
+.g{background:linear-gradient(90deg,#ffc23c,var(--ac));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mu);font-size:1.15rem;margin:12px 0 26px;max-width:640px}
+.nums{display:flex;gap:clamp(20px,5vw,56px);flex-wrap:wrap;margin-bottom:40px}
+.nums b{display:block;font-size:2.4rem;font-weight:800;line-height:1.1;background:linear-gradient(90deg,#ffc23c,var(--ac));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nums span{color:var(--mu);font-weight:500}
+.sec{font-size:1.6rem;font-weight:800;margin-bottom:16px}
+.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.tk{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--ln);border-radius:22px;padding:24px;text-align:start;display:flex;flex-direction:column;gap:8px}
+.tk::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--c,var(--ac))}
+.tk.on{cursor:pointer;transition:transform .25s,box-shadow .25s;border-color:var(--c,var(--ac))}
+.tk.on:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,.35)}
+.tk .ic{font-size:2.2rem}.tk h2{font-size:1.45rem}.tk p{color:var(--mu);font-size:.97rem}
+.meta{display:flex;gap:8px;flex-wrap:wrap;font-size:.82rem}
+.meta i{font-style:normal;background:var(--bg2);border:1px solid var(--ln);border-radius:99px;padding:0 12px}
+.bar{height:8px;background:var(--bg2);border-radius:99px;overflow:hidden}
+.bar u{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),#ffc23c);border-radius:99px;transition:width .6s}
+.cta{color:var(--ac);font-weight:800}
+.soon{color:var(--mu);font-size:.92rem}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:44px}
+.how div{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:16px 18px}
+.how b{display:block;font-size:1.05rem}.how span{color:var(--mu);font-size:.93rem}
+.trophy{background:linear-gradient(135deg,rgba(34,197,94,.2),rgba(255,194,60,.18));border:1px solid var(--ok);border-radius:18px;padding:14px 20px;margin-bottom:22px;font-weight:800}
+.topbar{height:6px;background:var(--bg2);border-radius:99px;overflow:hidden;margin-bottom:18px}
+.topbar u{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),#ffc23c);transition:width .6s}
+.lay{display:grid;grid-template-columns:280px 1fr;gap:22px;align-items:start}
+.side{background:var(--card);border:1px solid var(--ln);border-radius:20px;padding:16px;position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}
+.side h3{font-size:1.05rem;margin-bottom:6px}
+.side h4{font-size:.8rem;color:var(--mu);margin:12px 4px 4px;font-weight:500}
+.side button{display:flex;align-items:center;gap:10px;width:100%;text-align:start;background:none;border:0;border-radius:10px;padding:7px 10px;color:var(--mu)}
+.side button:hover:not(:disabled){background:var(--bg2)}
+.side button.cur{background:var(--bg2);color:var(--tx);font-weight:800}
+.side .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-size:.8rem}
+.side button.ok .n{background:var(--ok);color:#052e12;font-weight:800}
+.side button:disabled{opacity:.45;cursor:default}
+.main{background:var(--card);border:1px solid var(--ln);border-radius:24px;padding:clamp(18px,4vw,36px);min-width:0}
+.crumb{color:var(--mu);font-size:.9rem}
+.main h2{font-size:1.9rem;margin:2px 0 14px}
+.main p{margin-bottom:12px}
+code{direction:ltr;unicode-bidi:embed;background:var(--bg2);border-radius:6px;padding:0 6px;color:var(--ac);font-family:ui-monospace,Consolas,monospace}
+pre{direction:ltr;text-align:left;background:#0b1020;color:#cfd8ff;border:1px solid var(--ln);border-radius:14px;padding:14px;overflow-x:auto;margin:12px 0;font:14px/1.7 ui-monospace,Consolas,monospace}
+.tip{background:rgba(77,141,255,.12);border-inline-start:4px solid var(--bl);border-radius:10px;padding:10px 16px;margin:12px 0}
+.task{background:var(--bg2);border:2px dashed var(--ac);border-radius:16px;padding:14px 18px;margin:20px 0 12px}
+.task b{color:var(--ac)}
+.ed{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ed>div{border:1px solid var(--ln);border-radius:14px;overflow:hidden;min-width:0}
+.ed h5{font-size:.85rem;padding:6px 12px;background:var(--bg2);color:var(--mu);font-weight:500}
+textarea{width:100%;min-height:240px;border:0;background:#0b1020;color:#e6ebff;padding:12px;font:14px/1.7 ui-monospace,Consolas,monospace;direction:ltr;text-align:left;resize:vertical;outline:none;display:block;tab-size:2}
+iframe{width:100%;height:240px;border:0;background:#fff;display:block}
+.act{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.btn{background:var(--ac);color:#1b0d04;border:0;border-radius:12px;padding:10px 22px;font-weight:800;transition:transform .15s}
+.btn:hover:not(:disabled){transform:translateY(-2px)}
+.btn.g{background:transparent;color:var(--tx);border:2px solid var(--ln)}
+.btn:disabled{opacity:.4;cursor:default}
+#msg{font-weight:800}
+.pop{animation:pop .5s}
+@keyframes pop{0%{transform:scale(.7)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.nav2{display:flex;justify-content:space-between;margin-top:26px;gap:10px}
+.nav2 .btn.next{box-shadow:0 0 0 0 rgba(255,106,43,.6)}
+.nav2 .btn.next.hot{animation:pl 1.4s infinite}
+@keyframes pl{70%{box-shadow:0 0 0 14px rgba(255,106,43,0)}}
+.cf{position:fixed;top:-30px;z-index:90;font-size:1.6rem;pointer-events:none;animation:fall 1.8s ease-in forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg);opacity:.2}}
+footer{text-align:center;color:var(--mu);padding:20px 5% 30px;border-top:1px solid var(--ln)}
+footer a{color:var(--ac)}
+@media (max-width:860px){
+ .lay{grid-template-columns:1fr}.side{position:static;max-height:none}
+ .side .u{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.side h4{display:none}.side button{width:auto;white-space:nowrap;border:1px solid var(--ln)}
+ .ed{grid-template-columns:1fr}.top{width:calc(100% - 16px);top:8px;padding:6px 12px}.brand span{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="" width="32" height="32"><span>Abd Code</span></a>
+  <nav class="nav"><a href="index.html">الرئيسية</a><a href="academy.html" class="on">الأكاديمية</a><a href="studio.html">ستوديو الكود</a><a href="codes.html">أكواد جاهزة</a></nav>
+</header>
+
+<main id="home" class="wrap">
+  <span class="badge">🎓 مجاني بالكامل · بدون تسجيل</span>
+  <h1>تعلّم البرمجة <span class="g">من الصفر</span><br>بالعربي، خطوة بخطوة</h1>
+  <p class="lead">مسارات مرتبة، شرح بسيط، محرر كود حي، وتمارين بتتصحح لحالها. تقدمك بينحفظ على جهازك.</p>
+  <div class="nums"><div><b id="nL">7</b><span>درس</span></div><div><b id="nE">7</b><span>تمرين</span></div><div><b>3</b><span>مسارات</span></div></div>
+  <div id="trophy" class="trophy" hidden>🏆 مبروك! خلّصت كل دروس مسار HTML المتوفرة. بنضيف دروس جديدة قريباً.</div>
+  <h2 class="sec">اختر مسارك</h2>
+  <div class="tracks">
+    <button class="tk on" id="goHtml" type="button" style="--c:#ff6a2b"><span class="ic">🧱</span><h2>مسار HTML</h2><p>هيكل الصفحة، النصوص، الروابط، الصور، القوائم، الجداول والنماذج.</p>
+      <div class="meta"><i>مبتدئ</i><i>3 وحدات</i><i id="cnt"></i></div><div class="bar"><u id="pb"></u></div><span class="cta" id="pt"></span></button>
+    <div class="tk" style="--c:#4d8dff"><span class="ic">🎨</span><h2>مسار CSS</h2><p>الألوان، الخطوط، التخطيط، والحركة.</p><div class="meta"><i>مبتدئ</i></div><span class="soon">قريباً…</span></div>
+    <div class="tk" style="--c:#ffc23c"><span class="ic">⚡</span><h2>مسار JavaScript</h2><p>التفاعل، الأحداث، وبناء مشاريع صغيرة.</p><div class="meta"><i>متوسط</i></div><span class="soon">قريباً…</span></div>
+  </div>
+  <div class="how"><div><b>📖 1. اقرأ</b><span>شرح قصير وواضح بالعربي</span></div><div><b>⌨️ 2. جرّب</b><span>عدّل الكود وشوف النتيجة فوراً</span></div><div><b>✅ 3. حلّ</b><span>تمرين بيقلك صح أو غلط</span></div><div><b>🏆 4. تقدّم</b><span>علامة ✓ وشريط تقدم لكل درس</span></div></div>
+</main>
+
+<main id="les" class="wrap" hidden>
+  <div class="topbar"><u id="tb"></u></div>
+  <div class="lay">
+    <aside class="side"><h3>🧱 مسار HTML</h3><div id="list"></div><button class="btn g" id="back" type="button" style="margin-top:12px;width:100%;justify-content:center">← كل المسارات</button></aside>
+    <article class="main">
+      <div class="crumb" id="crumb"></div>
+      <h2 id="ttl" tabindex="-1"></h2>
+      <div id="body"></div>
+      <div class="task"><b>🎯 تمرين:</b> <span id="task"></span></div>
+      <div class="ed">
+        <div><h5>الكود (عدّل عليه)</h5><textarea id="code" spellcheck="false" aria-label="code"></textarea></div>
+        <div><h5>النتيجة</h5><iframe id="prev" title="preview" sandbox=""></iframe></div>
+      </div>
+      <div class="act"><button class="btn" id="chk" type="button">تحقق من حلّي ✓</button><button class="btn g" id="hint" type="button">💡 تلميح</button><button class="btn g" id="sol" type="button">عرض الحل</button><button class="btn g" id="rst" type="button">إعادة</button></div>
+      <p id="msg" style="margin-top:12px"></p>
+      <div class="nav2"><button class="btn g" id="prevL" type="button">→ السابق</button><button class="btn next" id="nextL" type="button">التالي ←</button></div>
+    </article>
+  </div>
+</main>
+<footer>© <span id="yr"></span> Abd Code · <a href="index.html">الرئيسية</a> · <a href="privacy.html">الخصوصية</a></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const U=['الوحدة 1 · الأساسيات','الوحدة 2 · المحتوى','الوحدة 3 · التفاعل'];
+const L=[
+{u:0,t:'هيكل الصفحة',b:`<p>كل صفحة HTML بتبدأ بنفس الهيكل. فيه جزئين: <code>head</code> للمعلومات الخفيفة (مثل عنوان التبويب)، و<code>body</code> لكل شي بيظهر للزائر.</p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="ar"&gt;
+  &lt;head&gt;
+    &lt;title&gt;عنوان التبويب&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;أهلاً&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre><div class="tip">💡 لاحظ إنو كل وسم بيفتح <code>&lt;p&gt;</code> وبيسكّر <code>&lt;/p&gt;</code>.</div>`,
+ task:'اكتب وسم <code>title</code> جوا <code>head</code>، ووسم <code>h1</code> جوا <code>body</code> (وحط فيهم نص).',
+ start:'<!DOCTYPE html>\n<html lang="ar">\n<head>\n  \n</head>\n<body>\n  \n</body>\n</html>',
+ sol:'<!DOCTYPE html>\n<html lang="ar">\n<head>\n  <title>موقعي</title>\n</head>\n<body>\n  <h1>أهلاً بيك</h1>\n</body>\n</html>',
+ ok:d=>{const t=d.head.querySelector('title'),h=d.body.querySelector('h1');return t&&t.textContent.trim()&&h&&h.textContent.trim()},
+ hint:'لازم title جوا head فيه نص، وh1 جوا body فيه نص.'},
+{u:0,t:'العناوين والفقرات',b:`<p>العناوين من <code>h1</code> (الأكبر) لـ <code>h6</code> (الأصغر). والفقرة بتنكتب بوسم <code>p</code>.</p>
+<pre>&lt;h1&gt;عنوان رئيسي&lt;/h1&gt;
+&lt;h2&gt;عنوان فرعي&lt;/h2&gt;
+&lt;p&gt;هاي فقرة.&lt;/p&gt;</pre><div class="tip">💡 استخدم <code>h1</code> مرة وحدة بالصفحة، قوقل بيحبها هيك.</div>`,
+ task:'اكتب عنوان <code>h1</code> واحد وتحتو فقرتين <code>p</code>، وكلهم فيهم نص.',
+ start:'<h1></h1>\n',sol:'<h1>موقعي الأول</h1>\n<p>هاي الفقرة الأولى.</p>\n<p>وهاي الفقرة التانية.</p>',
+ ok:d=>d.querySelectorAll('h1').length===1&&d.querySelectorAll('p').length>=2&&[...d.querySelectorAll('h1,p')].every(e=>e.textContent.trim()),
+ hint:'لازم h1 واحد بس، وفقرتين p على الأقل، وكلهم فيهم نص.'},
+{u:0,t:'الروابط',b:`<p>الرابط بيتعمل بوسم <code>a</code>، والعنوان بيتحط بالخاصية <code>href</code>. النص بين الوسمين هو اللي بيضغط عليه الزائر.</p>
+<pre>&lt;a href="https://abdcode.pages.dev"&gt;موقعي&lt;/a&gt;</pre>`,
+ task:'اعمل رابط <code>a</code> فيه نص، وعنوانو <code>href</code> بيبدأ بـ <code>https://</code>.',
+ start:'<a>اضغط هنا</a>',sol:'<a href="https://abdcode.pages.dev">اضغط هنا</a>',
+ ok:d=>{const a=d.querySelector('a[href^="https://"]');return a&&a.textContent.trim()},
+ hint:'لازم a فيه href بيبدأ بـ https:// ونص.'},
+{u:1,t:'الصور',b:`<p>وسم <code>img</code> بيعرض صورة. <code>src</code> فيه رابط الصورة، و<code>alt</code> نص بديل بيوصفها (مهم لقوقل وللمكفوفين). وسم img ما إلو وسم إغلاق.</p>
+<pre>&lt;img src="https://picsum.photos/200" alt="صورة عشوائية"&gt;</pre>`,
+ task:'اعرض صورة بوسم <code>img</code> فيها <code>src</code> و<code>alt</code> مكتوب (مش فاضي).',
+ start:'<img src="https://picsum.photos/200" alt="">',sol:'<img src="https://picsum.photos/200" alt="صورة عشوائية">',
+ ok:d=>{const i=d.querySelector('img[src]');return i&&i.alt.trim()},hint:'اكتب وصف للصورة جوا alt="...".'},
+{u:1,t:'القوائم',b:`<p><code>ul</code> قائمة نقطية، و<code>ol</code> قائمة مرقمة، وكل عنصر جواتهم بوسم <code>li</code>.</p>
+<pre>&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+&lt;/ul&gt;</pre>`,
+ task:'اعمل قائمة <code>ul</code> فيها 3 عناصر <code>li</code> على الأقل، وكلهم فيهم نص.',
+ start:'<ul>\n  <li></li>\n</ul>',sol:'<ul>\n  <li>HTML</li>\n  <li>CSS</li>\n  <li>JavaScript</li>\n</ul>',
+ ok:d=>{const l=d.querySelectorAll('ul>li');return l.length>=3&&[...l].every(e=>e.textContent.trim())},hint:'3 عناصر li جوا ul، وكلهم فيهم نص.'},
+{u:1,t:'الجداول',b:`<p>الجدول بيتعمل بـ <code>table</code>. كل صف <code>tr</code>، وخلية العنوان <code>th</code>، وخلية البيانات <code>td</code>.</p>
+<pre>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;الاسم&lt;/th&gt;&lt;th&gt;العمر&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;عبد&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</pre>`,
+ task:'اعمل جدول فيه صف عناوين (2 <code>th</code>) وصفين بيانات (<code>td</code>).',
+ start:'<table>\n  <tr><th></th><th></th></tr>\n</table>',sol:'<table>\n  <tr><th>الاسم</th><th>العمر</th></tr>\n  <tr><td>عبد</td><td>20</td></tr>\n  <tr><td>سارة</td><td>22</td></tr>\n</table>',
+ ok:d=>d.querySelectorAll('th').length>=2&&d.querySelectorAll('tr').length>=3&&d.querySelectorAll('td').length>=4,hint:'لازم 3 صفوف tr: واحد للعناوين th، وصفين فيهم td (خليتين بكل صف).'},
+{u:2,t:'النماذج',b:`<p>النموذج <code>form</code> بيجمع معلومات من الزائر. <code>input</code> خانة كتابة (نوعها بـ <code>type</code>)، و<code>button</code> زر الإرسال.</p>
+<pre>&lt;form&gt;
+  &lt;input type="text" placeholder="اسمك"&gt;
+  &lt;button&gt;إرسال&lt;/button&gt;
+&lt;/form&gt;</pre><div class="tip">💡 هيك بتتعمل صفحة "تواصل معي" بموقعك.</div>`,
+ task:'اعمل <code>form</code> فيه <code>input</code> نوعو <code>text</code> وزر <code>button</code>.',
+ start:'<form>\n  \n</form>',sol:'<form>\n  <input type="text" placeholder="اسمك">\n  <button>إرسال</button>\n</form>',
+ ok:d=>d.querySelector('form input[type="text"]')&&d.querySelector('form button'),hint:'جوا form: input بـ type="text"، وبعدو button.'}
+];
+let done=new Set(),cur=0;
+try{done=new Set(JSON.parse(localStorage.getItem('abd-academy-html')||'[]'))}catch(e){}
+const save=()=>{try{localStorage.setItem('abd-academy-html',JSON.stringify([...done]))}catch(e){}};
+$('#yr').textContent=new Date().getFullYear();$('#nL').textContent=L.length;$('#nE').textContent=L.length;
+function prog(){const p=Math.round(done.size/L.length*100);$('#pb').style.width=p+'%';$('#tb').style.width=p+'%';
+ $('#cnt').textContent=L.length+' دروس';$('#pt').textContent=done.size?`تقدمك ${p}% · كمّل من وين وقفت ←`:'ابدأ المسار ←';$('#trophy').hidden=done.size<L.length}
+function list(){$('#list').innerHTML=U.map((u,k)=>`<h4>${u}</h4><div class="u">`+L.map((x,i)=>x.u===k?`<button type="button" data-i="${i}" class="${i===cur?'cur':''} ${done.has(i)?'ok':''}"><span class="n">${done.has(i)?'✓':i+1}</span>${x.t}</button>`:'').join('')+'</div>').join('')}
+function run(){$('#prev').srcdoc=$('#code').value}
+function show(i){cur=i;const x=L[i];location.hash='lesson-'+(i+1);
+ $('#crumb').textContent=`${U[x.u]} · الدرس ${i+1} من ${L.length}`;$('#ttl').textContent=x.t;$('#body').innerHTML=x.b;$('#task').innerHTML=x.task;
+ $('#code').value=x.start;$('#msg').textContent='';run();list();prog();
+ $('#prevL').disabled=i===0;$('#nextL').disabled=i+1>=L.length;$('#nextL').classList.toggle('hot',done.has(i)&&i+1<L.length);
+ $('#home').hidden=true;$('#les').hidden=false;window.scrollTo(0,0);document.title=x.t+' — أكاديمية Abd Code'}
+function home(){$('#les').hidden=true;$('#home').hidden=false;history.replaceState(null,'',location.pathname);document.title='أكاديمية Abd Code — تعلّم HTML وCSS وJavaScript مجاناً بالعربي';prog();window.scrollTo(0,0)}
+function burst(){for(let i=0;i<26;i++){const s=document.createElement('span');s.className='cf';s.textContent=['🎉','✨','⭐','🔥'][i%4];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.5+'s';document.body.append(s);setTimeout(()=>s.remove(),2500)}}
+let tm;$('#code').addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(run,250)});
+$('#code').addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const t=e.target,s=t.selectionStart;t.value=t.value.slice(0,s)+'  '+t.value.slice(t.selectionEnd);t.selectionStart=t.selectionEnd=s+2}});
+$('#rst').onclick=()=>{$('#code').value=L[cur].start;run();$('#msg').textContent=''};
+$('#sol').onclick=()=>{$('#code').value=L[cur].sol;run();$('#msg').style.color='var(--mu)';$('#msg').textContent='👀 هاد الحل. اضغط تحقق، وجرّب تكتبو بنفسك المرة الجاي.'};
+$('#hint').onclick=()=>{$('#msg').style.color='var(--bl)';$('#msg').textContent='💡 '+L[cur].hint};
+$('#chk').onclick=()=>{const d=new DOMParser().parseFromString($('#code').value,'text/html'),m=$('#msg');
+ if(L[cur].ok(d)){const first=!done.has(cur);done.add(cur);save();m.style.color='var(--ok)';m.textContent='🎉 أحسنت! حلّك صح';m.classList.remove('pop');void m.offsetWidth;m.classList.add('pop');
+  if(first)burst();list();prog();$('#nextL').classList.toggle('hot',cur+1<L.length)}
+ else{m.style.color='var(--bad)';m.textContent='❌ مش بعد، جرّب تاني. اضغط "تلميح" إذا بدك مساعدة.'}};
+$('#list').onclick=e=>{const b=e.target.closest('[data-i]');if(b)show(+b.dataset.i)};
+$('#prevL').onclick=()=>show(cur-1);$('#nextL').onclick=()=>show(cur+1);$('#back').onclick=home;
+$('#goHtml').onclick=()=>{let n=0;while(n<L.length-1&&done.has(n))n++;show(n)};
+const h=/lesson-(\d+)/.exec(location.hash);prog();if(h&&L[+h[1]-1])show(+h[1]-1);
+</script>
+</body>
+</html>

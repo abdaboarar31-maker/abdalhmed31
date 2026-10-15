@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ستوديو الكود — اكتب HTML وCSS وJavaScript وشوف النتيجة | Abd Code</title>
+<meta name="description" content="محرر كود أونلاين مجاني بالعربي: اكتب HTML وCSS وJavaScript وشوف النتيجة مباشرة، مع قوالب جاهزة وتحميل الصفحة.">
+<link rel="canonical" href="https://abdcode.pages.dev/studio.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abd Code">
+<meta property="og:title" content="ستوديو الكود — محرر HTML وCSS وJavaScript أونلاين">
+<meta property="og:description" content="اكتب كودك وشوف النتيجة فوراً. مجاني وبدون تسجيل.">
+<meta property="og:url" content="https://abdcode.pages.dev/studio.html">
+<link rel="icon" href="logo.svg">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1128;--bg2:#0f1838;--card:#141f47;--tx:#eef1ff;--mu:#9aa6d6;--ln:#25326a;--ac:#ff6a2b;--bl:#4d8dff;--ok:#22c55e}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--tx);font-family:'Tajawal',Tahoma,sans-serif;line-height:1.6;display:flex;flex-direction:column;
+background-image:radial-gradient(40% 50% at 20% 20%,rgba(255,106,43,.10),transparent 70%),radial-gradient(45% 55% at 80% 30%,rgba(77,141,255,.10),transparent 70%);background-attachment:fixed;background-repeat:no-repeat}
+a{color:inherit;text-decoration:none}button,select{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.top{flex:none;margin:10px auto 0;width:min(1400px,calc(100% - 24px));display:flex;align-items:center;gap:10px;padding:6px 18px;border-radius:20px;border:1px solid var(--ln);background:linear-gradient(110deg,rgba(255,106,43,.30),rgba(139,92,246,.30),rgba(77,141,255,.30)) 0 0/300% 100%,rgba(10,17,40,.85);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.28);transition:background-position 1.4s}
+.top:hover{background-position:100% 0,0 0}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.2rem;direction:ltr;background:linear-gradient(90deg,var(--ac),#ffc23c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand img{width:32px;height:32px}
+.nav{display:flex;gap:4px;margin-inline-start:auto;overflow-x:auto}
+.nav a{padding:5px 12px;border-radius:99px;color:var(--mu);white-space:nowrap;font-weight:500}
+.nav a:hover,.nav a.on{background:var(--card);color:var(--tx)}
+.bar{flex:none;margin:10px auto 0;width:min(1400px,calc(100% - 24px));display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar h1{font-size:1.2rem;margin-inline-end:auto}
+.b{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:6px 14px;font-weight:500}
+.b:hover{border-color:var(--ac)}
+.b.p{background:var(--ac);color:#1b0d04;border-color:var(--ac);font-weight:800}
+select.b{padding-inline-end:8px}
+.work{flex:1;min-height:0;margin:10px auto 12px;width:min(1400px,calc(100% - 24px));display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pane{display:flex;flex-direction:column;min-height:0;min-width:0;background:var(--card);border:1px solid var(--ln);border-radius:18px;overflow:hidden}
+.tabs{flex:none;display:flex;background:var(--bg2);border-bottom:1px solid var(--ln)}
+.tabs button{flex:1;background:none;border:0;padding:8px;color:var(--mu);font-weight:800;direction:ltr;border-bottom:3px solid transparent}
+.tabs button.on{color:var(--tx);border-bottom-color:var(--ac);background:var(--card)}
+.tabs button[data-t="html"].on{border-color:#ff6a2b}.tabs button[data-t="css"].on{border-color:#4d8dff}.tabs button[data-t="js"].on{border-color:#ffc23c}
+.ed{flex:1;min-height:0;position:relative}
+textarea{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0b1020;color:#e6ebff;padding:14px;font:14px/1.7 ui-monospace,Consolas,monospace;direction:ltr;text-align:left;resize:none;outline:none;tab-size:2;white-space:pre;overflow:auto}
+textarea[hidden]{display:none}
+.stat{flex:none;padding:4px 14px;font-size:.8rem;color:var(--mu);background:var(--bg2);border-top:1px solid var(--ln);direction:ltr;text-align:left}
+.pv{flex:1;min-height:0;background:#e9ecf5;display:flex;justify-content:center;overflow:auto}
+iframe{height:100%;width:100%;max-width:100%;border:0;background:#fff;transition:width .3s}
+.mob{display:none}
+@media (max-width:860px){
+ body{height:auto;min-height:100%}
+ .work{grid-template-columns:1fr;flex:none}
+ .pane{height:62vh}
+ .pane.off{display:none}
+ .mob{display:flex;gap:8px;width:min(1400px,calc(100% - 24px));margin:10px auto 0}.mob .b{flex:1}.mob .b.on{background:var(--ac);color:#1b0d04;font-weight:800}
+ .top{width:calc(100% - 16px)}.brand span{display:none}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="" width="32" height="32"><span>Abd Code</span></a>
+  <nav class="nav"><a href="index.html">الرئيسية</a><a href="academy.html">الأكاديمية</a><a href="studio.html" class="on">ستوديو الكود</a><a href="codes.html">أكواد جاهزة</a></nav>
+</header>
+
+<div class="bar">
+  <h1>🧪 ستوديو الكود</h1>
+  <select id="tpl" class="b" aria-label="قوالب"><option value="">📂 قوالب جاهزة…</option><option value="hello">صفحة ترحيب</option><option value="btn">زر متوهج</option><option value="glass">كرت زجاجي</option><option value="count">عدّاد (JavaScript)</option></select>
+  <button class="b" id="dev" type="button" title="حجم المعاينة">🖥️ كمبيوتر</button>
+  <button class="b" id="cp" type="button">📋 نسخ</button>
+  <button class="b p" id="dl" type="button">⬇ تحميل الصفحة</button>
+  <button class="b" id="rs" type="button">🗑️ مسح</button>
+</div>
+<div class="mob"><button class="b on" id="mC" type="button">الكود</button><button class="b" id="mP" type="button">النتيجة</button></div>
+
+<main class="work">
+  <section class="pane" id="pc">
+    <div class="tabs" role="tablist"><button class="on" data-t="html" type="button">HTML</button><button data-t="css" type="button">CSS</button><button data-t="js" type="button">JavaScript</button></div>
+    <div class="ed"><textarea id="html" spellcheck="false" aria-label="HTML"></textarea><textarea id="css" spellcheck="false" aria-label="CSS" hidden></textarea><textarea id="js" spellcheck="false" aria-label="JavaScript" hidden></textarea></div>
+    <div class="stat" id="stat">HTML · 0 سطر</div>
+  </section>
+  <section class="pane" id="pp">
+    <div class="tabs"><button class="on" type="button" style="cursor:default">النتيجة (مباشرة)</button></div>
+    <div class="pv"><iframe id="out" title="result" sandbox="allow-scripts allow-modals"></iframe></div>
+  </section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s),T={html:$('#html'),css:$('#css'),js:$('#js')};
+const TPL={
+hello:{html:'<h1>أهلاً بيك 👋</h1>\n<p>هاد أول موقع بكتبو بنفسي.</p>\n<button id="b">اضغط هون</button>',css:'body{font-family:sans-serif;text-align:center;padding:40px;background:#0f1838;color:#fff}\nbutton{padding:10px 24px;border:0;border-radius:10px;background:#ff6a2b;font-size:1rem;cursor:pointer}',js:'document.getElementById("b").onclick=()=>alert("مرحبا! 🎉");'},
+btn:{html:'<button class="btn">اضغط هنا</button>',css:'body{display:grid;place-items:center;height:100vh;margin:0;background:#0b1220}\n.btn{padding:14px 34px;border:0;border-radius:50px;font-size:18px;color:#fff;background:linear-gradient(90deg,#ff5a1f,#ffc23c);cursor:pointer;box-shadow:0 0 20px #ff5a1f88;transition:.3s}\n.btn:hover{transform:scale(1.08);box-shadow:0 0 35px #ff5a1f}',js:''},
+glass:{html:'<div class="glass"><h2>كرت زجاجي</h2><p>تصميم بسيط وأنيق</p></div>',css:'body{display:grid;place-items:center;height:100vh;margin:0;background:linear-gradient(135deg,#ff5a1f,#3a1cff);font-family:sans-serif}\n.glass{padding:28px 36px;color:#fff;text-align:center;background:rgba(255,255,255,.15);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.35);border-radius:20px}',js:''},
+count:{html:'<h1 id="n">0</h1>\n<button id="p">+1</button> <button id="r">صفّر</button>',css:'body{font-family:sans-serif;text-align:center;padding:40px;background:#0f1838;color:#fff}\n#n{font-size:5rem;margin:0}\nbutton{padding:10px 24px;border:0;border-radius:10px;background:#ff6a2b;font-size:1.1rem;cursor:pointer}',js:'let c=0;const n=document.getElementById("n");\ndocument.getElementById("p").onclick=()=>n.textContent=++c;\ndocument.getElementById("r").onclick=()=>n.textContent=c=0;'}
+};
+const KEY='abd-studio';let cur='html',dev=0;
+function load(){let s=null;try{s=JSON.parse(localStorage.getItem(KEY))}catch(e){}s=s||TPL.hello;for(const k in T)T[k].value=s[k]||''}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({html:T.html.value,css:T.css.value,js:T.js.value}))}catch(e){}}
+function doc(){return '<!DOCTYPE html>\n<html lang="ar" dir="rtl">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>صفحتي</title>\n<style>\n'+T.css.value+'\n</style>\n</head>\n<body>\n'+T.html.value+'\n<script>\n'+T.js.value+'\n<\/script>\n</body>\n</html>'}
+function stat(){const n=T[cur].value.split('\n').length;$('#stat').textContent=({html:'HTML',css:'CSS',js:'JavaScript'})[cur]+' · '+n+' سطر'}
+let tm;function run(){$('#out').srcdoc=doc();stat()}
+for(const k in T){T[k].addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(()=>{run();save()},300)});
+ T[k].addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const t=e.target,s=t.selectionStart;t.value=t.value.slice(0,s)+'  '+t.value.slice(t.selectionEnd);t.selectionStart=t.selectionEnd=s+2}})}
+document.querySelectorAll('.tabs [data-t]').forEach(b=>b.onclick=()=>{cur=b.dataset.t;document.querySelectorAll('.tabs [data-t]').forEach(x=>x.classList.toggle('on',x===b));for(const k in T)T[k].hidden=k!==cur;T[cur].focus();stat()});
+$('#tpl').onchange=e=>{const t=TPL[e.target.value];if(!t)return;if(T.html.value.trim()&&!confirm('بدك تستبدل الكود الحالي بالقالب؟'))return void(e.target.value='');for(const k in T)T[k].value=t[k];save();run();e.target.value=''};
+$('#dev').onclick=()=>{dev=(dev+1)%3;const w=['100%','768px','390px'][dev];$('#out').style.width=w;$('#dev').textContent=['🖥️ كمبيوتر','📟 تابلت','📱 جوال'][dev]};
+$('#cp').onclick=async()=>{const b=$('#cp');try{await navigator.clipboard.writeText(doc())}catch(e){const t=document.createElement('textarea');t.value=doc();document.body.append(t);t.select();document.execCommand('copy');t.remove()}b.textContent='تم النسخ ✓';setTimeout(()=>b.textContent='📋 نسخ',1500)};
+$('#dl').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([doc()],{type:'text/html'}));a.download='my-page.html';a.click();URL.revokeObjectURL(a.href)};
+$('#rs').onclick=()=>{if(confirm('تمسح كل الكود؟')){for(const k in T)T[k].value='';save();run()}};
+const mc=()=>{$('#pc').classList.remove('off');$('#pp').classList.add('off');$('#mC').classList.add('on');$('#mP').classList.remove('on')},mp=()=>{$('#pp').classList.remove('off');$('#pc').classList.add('off');$('#mP').classList.add('on');$('#mC').classList.remove('on')};
+$('#mC').onclick=mc;$('#mP').onclick=()=>{run();mp()};
+function resp(){if(matchMedia('(max-width:860px)').matches){if(!$('#mP').classList.contains('on'))mc()}else{$('#pc').classList.remove('off');$('#pp').classList.remove('off')}}
+addEventListener('resize',resp);load();run();resp();
+</script>
+</body>
+</html>
