@@ -7,4 +7,12 @@
   <url><loc>https://abdcode.pages.dev/codes.html</loc></url>
   <url><loc>https://abdcode.pages.dev/lesson-images.html</loc></url>
   <url><loc>https://abdcode.pages.dev/privacy.html</loc></url>
+
+  <url>
+    <loc>https://abdcode.pages.dev/academy.html</loc>
+  </url>
+  <url>
+    <loc>https://abdcode.pages.dev/studio.html</loc>
+  </url>
+
 </urlset>
