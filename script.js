@@ -50,7 +50,7 @@ const STARTER = `<!DOCTYPE html>
 const T = {
   ar: { name: 'العربية', dir: 'rtl', title: 'Abd Code — تعلّم HTML بالعربي',
     nav_videos: 'الفيديوهات', nav_play: 'جرّب بنفسك', nav_path: 'المسار', nav_store: 'المتجر', nav_quiz: 'اختبار', nav_about: 'عنّي', nav_contact: 'تواصل',
-    subscribe: '▶ اشترك', h1: 'تعلّم تصميم المواقع بـ <span class="grad">HTML</span> من الصفر', badge: '🔥 مجاني · بالعربي · للمبتدئين', stats_title: '📊 أرقام قناتي على يوتيوب', live_total: 'زائر زار الموقع', live_today: 'اليوم', live_none: 'كن أول زائر اليوم 👋', lead: 'شرح بسيط وبالعربي، خطوة بخطوة، مع تجارب حيّة بتعملها بنفسك.',
+    subscribe: '▶ اشترك', sub_big: 'اشترك بقناتي على اليوتيوب', nav_home: 'الرئيسية', dl_count: 'تحميل', h1: 'تعلّم تصميم المواقع بـ <span class="grad">HTML</span> من الصفر', badge: '🔥 مجاني · بالعربي · للمبتدئين', stats_title: '📊 أرقام القناة والموقع', live_total: 'زائر زار الموقع', live_today: 'اليوم', live_none: 'كن أول زائر اليوم 👋', lead: 'شرح بسيط وبالعربي، خطوة بخطوة، مع تجارب حيّة بتعملها بنفسك.',
     watch: '▶ شاهد أول فيديو', tryit: 'جرّب الكود الآن', goal: '🎯 هدفنا: زوّار حقيقيون', visitor: 'زائر',
     st_subs: 'مشترك', st_views: 'مشاهدة', st_vids: 'فيديو', sec_videos: 'الفيديوهات', sec_play: 'جرّب بنفسك',
     play_hint: 'عدّل على الكود وشوف النتيجة فوراً. ما في شي بينحفظ، جرّب براحتك.', code: 'الكود', result: 'النتيجة', copy: 'نسخ', reset: 'إعادة',
@@ -68,7 +68,7 @@ const T = {
     toast_reset: 'رجع الكود الأصلي', toast_copy: 'تم نسخ الكود', channel_missing: 'حط رابط قناتك بأول ملف script.js' },
   en: { name: 'English', dir: 'ltr', title: 'Abd Code — Learn HTML',
     nav_videos: 'Videos', nav_play: 'Playground', nav_path: 'Roadmap', nav_store: 'Store', nav_quiz: 'Quiz', nav_about: 'About', nav_contact: 'Contact',
-    subscribe: '▶ Subscribe', h1: 'Learn web design with <span class="grad">HTML</span> from scratch', badge: '🔥 Free · Arabic · Beginner-friendly', stats_title: '📊 My YouTube channel in numbers', live_total: 'visitors so far', live_today: 'today', live_none: 'Be the first visitor today 👋', lead: 'Simple, step-by-step lessons with live experiments you try yourself.',
+    subscribe: '▶ Subscribe', sub_big: 'Subscribe to my YouTube channel', nav_home: 'Home', dl_count: 'downloads', h1: 'Learn web design with <span class="grad">HTML</span> from scratch', badge: '🔥 Free · Arabic · Beginner-friendly', stats_title: '📊 My channel & site in numbers', live_total: 'visitors so far', live_today: 'today', live_none: 'Be the first visitor today 👋', lead: 'Simple, step-by-step lessons with live experiments you try yourself.',
     watch: '▶ Watch the first video', tryit: 'Try the code now', goal: '🎯 Our goal: real visitors', visitor: 'visitors',
     st_subs: 'subscribers', st_views: 'views', st_vids: 'videos', sec_videos: 'Videos', sec_play: 'Try it yourself',
     play_hint: 'Edit the code and see the result instantly. Nothing is saved, so experiment freely.', code: 'Code', result: 'Result', copy: 'Copy', reset: 'Reset',
@@ -118,6 +118,42 @@ function toast(msg) {
   clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2600);
 }
 
+/* ===== أرقام منسّقة + عدّاد التحميلات ===== */
+function fmtNum(n) { return new Intl.NumberFormat(LANG === 'ar' ? 'ar-u-nu-latn' : LANG).format(n); }
+function setNum(el, n) {
+  if (!el) return;
+  if (n == null) { el.textContent = '—'; return; }
+  if (reduced || el.dataset.v === String(n)) { el.textContent = fmtNum(n); el.dataset.v = n; return; }
+  el.dataset.v = n;
+  const t0 = performance.now(), dur = 1100;
+  (function step(now) {
+    const p = Math.min(1, ((now || t0) - t0) / dur);
+    el.textContent = fmtNum(Math.round(n * (1 - Math.pow(1 - p, 3))));
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+const DL = {};
+const dlKey = v => 'dl-' + String(v.id || v.code || 'x').replace(/[^A-Za-z0-9_-]/g, '-').slice(0, 55);
+const dlLabel = k => DL[k] > 0 ? '⬇ ' + fmtNum(DL[k]) + ' ' + t('dl_count') : '';
+async function dlCall(op, k) {
+  try {
+    const r = await fetch('https://abacus.jasoncameron.dev/' + op + '/' + CONFIG.counterKey + '/' + k);
+    return r.ok ? (await r.json()).value : (r.status === 404 ? 0 : null);
+  } catch (e) { return null; }
+}
+function loadDlCounts() {
+  $$('[data-dlc]').forEach(async el => {
+    const k = el.dataset.dlc;
+    if (DL[k] == null) { const n = await dlCall('get', k); if (n != null) DL[k] = n; }
+    el.textContent = dlLabel(k);
+  });
+}
+document.addEventListener('click', async e => {
+  const a = e.target.closest('[data-dl]'); if (!a) return;
+  const k = a.dataset.dl, n = await dlCall('hit', k);
+  if (n != null) { DL[k] = n; $$('[data-dlc="' + k + '"]').forEach(el => { el.textContent = dlLabel(k); }); }
+});
+
 /* ===== الوضع الفاتح والداكن ===== */
 function setTheme(mode) {
   document.documentElement.dataset.theme = mode;
@@ -152,11 +188,13 @@ $$('[data-channel]').forEach(a => {
 
 /* ===== الكود اللي بينكتب ===== */
 const TYPED = `<!DOCTYPE html>
-<html>
+<html lang="ar">
+<head>
+  <title>Abd Code</title>
+</head>
 <body>
-  <h1>موقعي الأول</h1>
-  <p>تعلّمت HTML!</p>
-  <a href="#">اضغط هنا</a>
+  <h1>Abd Code</h1>
+  <p>تعلّم HTML بالعربي</p>
 </body>
 </html>`;
 const hl = s => esc(s).replace(/(&lt;\/?[a-z0-9!]+)/gi, '<span class="t">$1</span>');
@@ -189,13 +227,15 @@ function renderVideos(){
         </div>
       </button>
       <div class="vinfo"><h3>${esc(v.title || '')}</h3><p>${esc(v.desc || '')}</p>
-        ${v.code ? `<a class="btn small dl" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>` : ''}</div>
+        ${v.code ? `<a class="btn small dl" data-dl="${dlKey(v)}" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a><span class="dlc" data-dlc="${dlKey(v)}">${dlLabel(dlKey(v))}</span>` : ''}</div>
     </article>`).join('');
+  loadDlCounts();
 }
 $('#vgrid').addEventListener('click', e => {
   const c = e.target.closest('[data-v]'); if (c) openVideo(+c.dataset.v);
 });
-$('#watchFirst').addEventListener('click', () => {
+const wf = $('#watchFirst');
+if (wf) wf.addEventListener('click', () => {
   if (!VIDEOS.length) return;
   openVideo(Math.max(0, VIDEOS.findIndex(v => v.first)));
 });
@@ -209,7 +249,8 @@ function openVideo(i) {
     : `<div class="noid">...</div>`;
   $('#ml').innerHTML = v.id
     ? `<a class="btn small" href="https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}" target="_blank" rel="noopener">${t('yt_open')}</a>` : '';
-  if (v.code) $('#ml').innerHTML += ` <a class="btn small ghost" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a>`;
+  if (v.code) $('#ml').innerHTML += ` <a class="btn small ghost" data-dl="${dlKey(v)}" href="${esc(v.code)}" ${/^https?:/.test(v.code) ? 'target="_blank" rel="noopener"' : 'download'}>${t('dl')}</a> <span class="dlc" data-dlc="${dlKey(v)}">${dlLabel(dlKey(v))}</span>`;
+  loadDlCounts();
   $('#modal').hidden = false;
   document.body.style.overflow = 'hidden';
 }
@@ -278,9 +319,10 @@ $('#quizBox').addEventListener('click', e => {
 let visitors = null, today = null;
 const dayKey = 'd-' + new Date().toISOString().slice(0, 10);
 function renderGoal() {
+  setNum($('#stVisit'), visitors);
   const el = $('#liveTxt'); if (!el) return;
   if (visitors == null) { el.textContent = '…'; return; }
-  el.textContent = visitors + ' ' + t('live_total') + ' · ' + (today > 0 ? t('live_today') + ': ' + today : t('live_none'));
+  el.textContent = today > 0 ? t('live_today') + ': ' + fmtNum(today) : t('live_none');
 }
 async function counter(op) {
   const base = 'https://abacus.jasoncameron.dev/' + op + '/' + CONFIG.counterKey + '/';
@@ -311,10 +353,9 @@ $('#cno').addEventListener('click', decline);
 /* ===== إحصائيات يوتيوب الحقيقية ===== */
 let ST = {};
 function renderStats() {
-  const f = n => n == null ? '—' : new Intl.NumberFormat(LANG === 'ar' ? 'ar-u-nu-latn' : LANG).format(n);
-  $('#stSubs').textContent = f(ST.subs);
-  $('#stViews').textContent = f(ST.views);
-  $('#stVids').textContent = f(ST.vids);
+  setNum($('#stSubs'), ST.subs);
+  setNum($('#stViews'), ST.views);
+  setNum($('#stVids'), ST.vids);
 }
 async function loadStats() {
   try {

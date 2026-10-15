@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://abdcode.pages.dev/">
 <link rel="icon" href="logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 .lg{position:relative}
@@ -20,16 +20,6 @@
 .lg-menu[hidden]{display:none}
 .lg-menu button{display:block;width:100%;text-align:start;background:none;border:0;color:#fff;padding:10px 12px;border-radius:8px;font:inherit;cursor:pointer}
 .lg-menu button:hover,.lg-menu button.on{background:rgba(255,255,255,.14)}
-/* شكل الإحصائيات الجديد: 3 بطاقات جنب بعض */
-.stats{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:12px!important;margin-top:22px!important}
-.stats>div{position:relative;display:flex!important;flex-direction:column;align-items:center;gap:4px;padding:18px 8px 14px!important;border-radius:20px!important;text-align:center;background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04))!important;border:1px solid rgba(255,255,255,.18)!important;box-shadow:0 8px 24px rgba(0,0,0,.22);backdrop-filter:blur(6px);transition:transform .25s}
-.stats>div:hover{transform:translateY(-4px)}
-.stats>div::before{font-size:22px;line-height:1}
-.stats>div:nth-child(1)::before{content:"👥"}
-.stats>div:nth-child(2)::before{content:"👁️"}
-.stats>div:nth-child(3)::before{content:"🎬"}
-.stats>div b{font-size:clamp(22px,5vw,32px)!important;font-weight:800;background:linear-gradient(90deg,#ffb347,#ff6a2b);-webkit-background-clip:text;background-clip:text;color:transparent!important}
-.stats>div span{font-size:13px;opacity:.85}
 .new-b{display:inline-block;margin-inline-start:4px;padding:2px 8px;border-radius:50px;background:linear-gradient(90deg,#ff6a2b,#ec4899);color:#fff;font-size:11px;font-weight:800;vertical-align:middle;animation:newpulse 1.6s ease-in-out infinite}
 @keyframes newpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 </style>
@@ -49,19 +39,14 @@
 <header class="top">
   <a class="brand" href="#home"><img src="logo.svg" alt="" width="40" height="40"><span>Abd Code</span></a>
   <nav id="nav" class="nav">
-    <a href="css-designs.html">تصاميم CSS <span class="new-b">جديد</span></a>
-    <a href="codes.html">أكواد جاهزة</a>
+    <a href="#home" data-i18n="nav_home">الرئيسية</a>
     <a href="#videos" data-i18n="nav_videos">الفيديوهات</a>
-    <a href="#playground" data-i18n="nav_play">جرّب بنفسك</a>
-    <a href="#path" data-i18n="nav_path">المسار</a>
+    <a href="codes.html">أكواد جاهزة</a>
+    <a href="css-designs.html">تصاميم CSS <span class="new-b">جديد</span></a>
     <a href="store.html" data-i18n="nav_store">المتجر</a>
-    <a href="#quiz" data-i18n="nav_quiz">اختبار</a>
-    <a href="#about" data-i18n="nav_about">عنّي</a>
-    <a href="#contact" data-i18n="nav_contact">تواصل</a>
   </nav>
   <div class="lg"><button id="langBtn" class="icon-btn" type="button" aria-label="Language">🌐</button><div id="langMenu" class="lg-menu" hidden></div></div>
   <button id="theme" class="icon-btn" aria-label="تبديل الوضع">🌙</button>
-  <a class="btn small" data-channel data-i18n="subscribe" href="https://www.youtube.com/channel/UC6V8FpZwiLoSbL07uwB2TAg" target="_blank" rel="noopener">▶ اشترك</a>
   <button id="burger" class="icon-btn burger" aria-label="القائمة">☰</button>
 </header>
 
@@ -73,33 +58,34 @@
         <h1 data-i18n-html="h1">تعلّم تصميم المواقع بـ <span class="grad">HTML</span> من الصفر</h1>
         <p class="lead" data-i18n="lead">شرح بسيط وبالعربي، خطوة بخطوة، مع تجارب حيّة بتعملها بنفسك.</p>
         <div class="actions">
-          <button id="watchFirst" class="btn" type="button" data-i18n="watch">▶ شاهد أول فيديو</button>
-          <a class="btn ghost" href="#playground" data-i18n="tryit">جرّب الكود الآن</a>
-          <a class="btn" href="https://hibr-store.pages.dev/" target="_blank" rel="noopener">📚 متجر حبر للكتب</a>
-        </div>
-        <div class="live"><span class="dot"></span><span id="liveTxt">…</span></div>
-        <div class="statsrow">
-          <p class="stats-title" data-i18n="stats_title">📊 أرقام قناتي على يوتيوب</p>
-          <div class="stats">
-            <div><b id="stSubs">—</b><span data-i18n="st_subs">مشترك</span></div>
-            <div><b id="stViews">—</b><span data-i18n="st_views">مشاهدة</span></div>
-            <div><b id="stVids">—</b><span data-i18n="st_vids">فيديو</span></div>
-          </div>
+          <a class="btn yt-btn" data-channel href="https://www.youtube.com/channel/UC6V8FpZwiLoSbL07uwB2TAg" target="_blank" rel="noopener"><i class="fab fa-youtube" aria-hidden="true"></i><span data-i18n="sub_big">اشترك بقناتي على اليوتيوب</span></a>
         </div>
       </div>
       <div class="win" aria-hidden="true">
         <div class="win-bar"><i></i><i></i><i></i><span>index.html</span></div>
         <pre id="typed"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="ar"&gt;
-  &lt;head&gt;
-    &lt;title&gt;موقعي الأول&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;أهلاً بك في عالم الويب!&lt;/h1&gt;
-  &lt;/body&gt;
+&lt;head&gt;
+  &lt;title&gt;Abd Code&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Abd Code&lt;/h1&gt;
+  &lt;p&gt;تعلّم HTML بالعربي&lt;/p&gt;
+&lt;/body&gt;
 &lt;/html&gt;</code></pre>
       </div>
     </div>
+  </section>
+
+  <section class="numband" aria-label="stats">
+    <p class="stats-title" data-i18n="stats_title">📊 أرقام القناة والموقع</p>
+    <div class="nums">
+      <div class="num"><b id="stSubs">—</b><span data-i18n="st_subs">مشترك</span></div>
+      <div class="num"><b id="stViews">—</b><span data-i18n="st_views">مشاهدة</span></div>
+      <div class="num"><b id="stVids">—</b><span data-i18n="st_vids">فيديو</span></div>
+      <div class="num"><b id="stVisit">—</b><span data-i18n="visitor">زائر</span></div>
+    </div>
+    <div class="live"><span class="dot"></span><span id="liveTxt">…</span></div>
   </section>
 
   <div class="social-section-clean">
@@ -188,7 +174,7 @@
   <div class="foot-brand"><img src="logo.svg" alt="" width="34" height="34"><b>Abd Code</b></div>
   <p data-i18n="foot_tag">تعلّم HTML بالعربي</p>
   <p class="credit" data-i18n-html="credit">تصميم وتطوير: <b>عبد أبو عرار</b></p>
-  <p class="credit"><a href="privacy.html">سياسة الخصوصية</a> · <a href="codes.html">أكواد جاهزة</a></p>
+  <p class="credit"><a href="privacy.html">سياسة الخصوصية</a> · <a href="codes.html">أكواد جاهزة</a> · <a href="#contact">تواصل معي</a></p>
   <p class="rights" data-i18n-html="rights"></p>
 </footer>
 
@@ -214,6 +200,6 @@
 <script src="config.js"></script>
 <script src="yt-auto.js"></script>
 <script src="videos-data.js"></script>
-<script src="script.js"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

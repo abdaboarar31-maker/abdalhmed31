@@ -24,6 +24,7 @@ h1{max-width:1000px;margin:18px auto 6px;font-size:clamp(1.5rem,5vw,2.4rem)}
 .card h2{font-size:1rem;padding:12px 14px 8px}
 iframe{width:100%;height:170px;border:0;border-block:1px solid var(--line)}
 pre{direction:ltr;text-align:left;margin:0;padding:12px 14px;max-height:120px;overflow:auto;font:12px/1.5 Consolas,monospace;color:var(--ok);background:#0a1126;white-space:pre-wrap}
+.cn{color:var(--mut);padding:6px 14px;font-size:.85rem}.cn:empty{display:none}
 .cp{font:inherit;font-weight:700;border:0;background:var(--b);color:#1b1200;padding:10px;cursor:pointer}
 .cp.done{background:var(--ok)}
 .cp:focus-visible,.tabs button:focus-visible{outline:3px solid #fff;outline-offset:2px}
@@ -73,18 +74,23 @@ body{background:linear-gradient(135deg,#ff5a1f,#3a1cff)}
 .g{font-size:44px;background:linear-gradient(90deg,#ffc23c,#ff5a1f,#ff2e93);-webkit-background-clip:text;background-clip:text;color:transparent}
 </style>`}
 ];
+const NS='abd-abu-arar-site';
+async function cnt(op,k){try{const r=await fetch('https://abacus.jasoncameron.dev/'+op+'/'+NS+'/'+k);return r.ok?(await r.json()).value:(r.status===404?0:null)}catch(_){return null}}
+const showCn=(el,n)=>{el.textContent=n>0?'📋 اننسخ '+n.toLocaleString('en')+' مرة':''};
 const cats=['الكل',...new Set(D.map(d=>d.c))],tabs=document.getElementById('tabs'),grid=document.getElementById('grid');
 function draw(c){
   grid.innerHTML='';
   D.filter(d=>c==='الكل'||d.c===c).forEach(d=>{
     const e=document.createElement('article');e.className='card';
-    e.innerHTML='<h2></h2><iframe title="معاينة"></iframe><pre></pre><button class="cp">انسخ الكود</button>';
+    e.innerHTML='<h2></h2><iframe title="معاينة"></iframe><pre></pre><small class="cn"></small><button class="cp">انسخ الكود</button>';
     e.querySelector('h2').textContent=d.t;
     e.querySelector('pre').textContent=d.k;
     e.querySelector('iframe').srcdoc='<body style="margin:0;display:grid;place-items:center;height:100vh;background:#0b1220;font-family:sans-serif">'+d.k;
-    const b=e.querySelector('.cp');
+    const b=e.querySelector('.cp'),cn=e.querySelector('.cn'),key='copy-'+D.indexOf(d);
+    cnt('get',key).then(n=>{if(n!=null)showCn(cn,n)});
     b.onclick=async()=>{
       try{await navigator.clipboard.writeText(d.k)}catch(_){const t=document.createElement('textarea');t.value=d.k;document.body.append(t);t.select();document.execCommand('copy');t.remove()}
+      cnt('hit',key).then(n=>{if(n!=null)showCn(cn,n)});
       b.textContent='تم النسخ ✓';b.classList.add('done');setTimeout(()=>{b.textContent='انسخ الكود';b.classList.remove('done')},1800);
     };
     grid.append(e);

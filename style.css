@@ -425,3 +425,69 @@ main.wrap{width:100%}
 .statsrow .stats span{font-size:.95rem;color:var(--muted)}
 @media (max-width:600px){.statsrow .stats b{font-size:2rem}.statsrow .stats div{padding:0 10px}}
 @media (prefers-reduced-motion:reduce){.dot{animation:none}}
+
+
+/* ===== تعديلات 2026-10: زر الاشتراك، الشريط الملوّن، خلفية الموج، الأرقام، عداد التحميل ===== */
+
+/* زر الاشتراك بيوتيوب */
+.yt-btn{display:inline-flex;align-items:center;gap:12px;background:#ff0000;color:#fff;font-size:1.15rem;padding:14px 30px;border-radius:16px;box-shadow:0 8px 24px rgba(255,0,0,.35)}
+.yt-btn i{font-size:1.5rem}
+.yt-btn:hover{background:#e60000;box-shadow:0 12px 30px rgba(255,0,0,.5)}
+
+/* الشريط العلوي: مزيج ألوان بيتحرك لما تمرر الماوس */
+.top{
+  background-color:var(--bg);
+  background-color:color-mix(in srgb,var(--bg) 80%,transparent);
+  background-image:linear-gradient(110deg,rgba(255,106,43,.30),rgba(139,92,246,.30),rgba(77,141,255,.30),rgba(236,72,153,.30));
+  background-size:300% 100%;
+  background-position:0% 0;
+  transition:background-position 1.4s ease
+}
+.top:hover{background-position:100% 0}
+:root[data-theme="light"] .top{background-image:linear-gradient(110deg,rgba(255,106,43,.22),rgba(139,92,246,.20),rgba(77,141,255,.22),rgba(236,72,153,.20))}
+
+/* خلفية الموقع: ألوان هادية بتتحرك ببطء مثل الموج */
+body{
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(40% 50% at 20% 20%,rgba(255,106,43,.12),transparent 70%),
+    radial-gradient(45% 55% at 80% 30%,rgba(77,141,255,.12),transparent 70%),
+    radial-gradient(50% 60% at 50% 85%,rgba(139,92,246,.11),transparent 70%),
+    radial-gradient(35% 45% at 90% 90%,rgba(236,72,153,.09),transparent 70%);
+  background-size:140% 140%;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  animation:waveBg 30s ease-in-out infinite alternate
+}
+@keyframes waveBg{
+  0%{background-position:0% 0%,100% 0%,50% 100%,100% 100%}
+  50%{background-position:30% 40%,70% 30%,40% 60%,80% 70%}
+  100%{background-position:100% 100%,0% 100%,60% 0%,0% 0%}
+}
+.hero{background:radial-gradient(circle at 88% 8%,rgba(255,106,43,.12),transparent 42%),radial-gradient(circle at 4% 92%,rgba(77,141,255,.10),transparent 45%)}
+.band{background:color-mix(in srgb,var(--bg2) 72%,transparent)}
+footer{background:color-mix(in srgb,var(--bg2) 82%,transparent)}
+
+/* الأرقام: بدون مربعات، بالنص */
+.numband{text-align:center;padding:54px 5% 34px}
+.numband .stats-title{margin-bottom:26px;font-size:1.05rem}
+.nums{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(22px,6vw,76px)}
+.num{min-width:110px}
+.num b{display:block;font-size:clamp(2.5rem,7vw,4.6rem);font-weight:800;line-height:1.1;background:linear-gradient(90deg,#ffc23c,#ff6a2b,#ec4899);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:numShine 6s linear infinite alternate}
+.num span{color:var(--muted);font-size:1rem;font-weight:600}
+@keyframes numShine{to{background-position:100% 0}}
+.numband .live{margin-top:30px;font-size:1.02rem}
+
+/* عدد التحميلات */
+.dlc{margin-inline-start:10px;color:var(--muted);font-size:.9rem;font-weight:600}
+.dlc:empty{display:none}
+
+@media (prefers-reduced-motion:reduce){body,.num b{animation:none}.top{transition:none}}
+
+/* كروت المسار: بدون شفافية عشان ما تضيع بالخلفية */
+.step{opacity:1}
+.step:not(.done) div{opacity:.8}
+
+/* عرض مريح للأقسام الضيقة على الشاشات الكبيرة */
+.wrap.narrow{max-width:860px}
+#path.wrap{max-width:900px}
