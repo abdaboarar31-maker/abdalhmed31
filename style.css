@@ -491,3 +491,10 @@ footer{background:color-mix(in srgb,var(--bg2) 82%,transparent)}
 /* عرض مريح للأقسام الضيقة على الشاشات الكبيرة */
 .wrap.narrow{max-width:860px}
 #path.wrap{max-width:900px}
+
+/* شريط عائم أقصر بزوايا منحنية */
+.top{position:sticky;top:10px;margin:10px auto 0;width:min(1180px,calc(100% - 24px));padding:6px 20px;border-radius:20px;border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.28)}
+.top .icon-btn{width:36px;height:36px}
+.brand img{width:34px;height:34px}
+html{scroll-padding-top:84px}
+@media (max-width:760px){.top{top:8px;margin-top:8px;width:calc(100% - 16px);padding:6px 12px;border-radius:16px}.nav{border-radius:16px;margin-top:8px;border:1px solid var(--line)}}
