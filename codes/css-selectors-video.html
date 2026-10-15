@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<!--
+  شرح السيلكتورز في CSS (فيديو تفاعلي)
+  بواسطة: Abd Code | https://abdcode.pages.dev
+
+  طريقة الاستخدام:
+  1. افتح الملف بالمتصفح.
+  2. اضغط زر "ابدأ" والمشاهد بتمشي لحالها.
+  3. لتغيير مدة المشهد: غيّر الرقم T بالسكربت (5500 = 5.5 ثانية).
+  4. لتعديل أو إضافة مشهد: عدّل المصفوفة S بالسكربت.
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>شرح السيلكتورز في CSS</title>
+<style>
+:root{--bg:#0b1020;--card:#151b33;--tx:#eef2ff;--ac:#38bdf8;--ac2:#a78bfa;--ok:#4ade80;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;overflow:hidden}
+#app{height:100%;max-width:480px;margin:auto;position:relative}
+#bar{position:absolute;top:8px;left:12px;right:12px;height:4px;background:#ffffff22;border-radius:4px;overflow:hidden}
+#bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2))}
+.scene{position:absolute;inset:0;padding:34px 20px 20px;display:flex;flex-direction:column;gap:16px;justify-content:center;opacity:0;transform:translateY(20px);transition:.6s;pointer-events:none}
+.scene.on{opacity:1;transform:none}
+.num{color:var(--ac);font-weight:700;font-size:15px}
+h1{font-size:30px;line-height:1.3;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{opacity:.8;font-size:17px;line-height:1.6}
+pre{direction:ltr;text-align:left;background:var(--card);border:1px solid #ffffff18;border-radius:14px;padding:14px;font:15px/1.7 ui-monospace,Consolas,monospace;overflow-x:auto}
+.k{color:var(--ac2)}.v{color:var(--ok)}.s{color:var(--ac)}.c{color:#8892b0}
+.demo{background:var(--card);border-radius:14px;padding:16px;min-height:130px;display:flex;flex-direction:column;gap:8px;font-size:17px}
+.demo *{transition:.6s}
+.demo p,.demo h2,.demo li{padding:2px 6px;border-radius:6px}
+.big{font-size:60px;text-align:center}
+/* demos */
+.go .d1 p{color:#38bdf8}
+.go .d2 .card{background:#fbbf24;color:#111;transform:scale(1.04)}
+.go .d2 #hd{background:#f472b6;color:#111}
+.d2 div{padding:8px;border-radius:8px;background:#ffffff14}
+.go .d3 h2{color:#f87171}
+.go .d4 .a>p{color:#4ade80}
+.go .d4 .a p span{color:#4ade80}
+.d4 .a{padding:6px;border:1px dashed #ffffff44;border-radius:8px}
+.d5 a{display:inline-block;padding:10px 20px;border-radius:10px;background:#334;color:#fff;width:max-content}
+.go .d5 a{background:#fb923c;color:#111;transform:scale(1.1)}
+.go .d6 li:first-child{background:#f87171;color:#111}
+.go .d6 li:nth-child(2){background:#4ade80;color:#111}
+.d7 .b::before{content:"";opacity:0}
+.go .d7 .b::before{content:"★ ";opacity:1;color:#fbbf24}
+.d7 .b{font-size:24px}
+.go .d8 .w1{color:#38bdf8}.go .d8 .w2{color:#fbbf24}.go .d8 .w3{color:#f87171;font-weight:700}
+#start{position:absolute;inset:0;z-index:5;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;padding:20px}
+#start button{font:700 20px inherit;padding:14px 34px;border:0;border-radius:14px;background:linear-gradient(90deg,var(--ac),var(--ac2));color:#0b1020;font-family:inherit}
+#hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:12px;opacity:.4}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="start">
+    <div class="big">🎯</div>
+    <h1>السيلكتورز في CSS</h1>
+    <p class="sub">ابدأ تسجيل الشاشة، بعدين اضغط الزر.<br>الفيديو بيشتغل لحاله (55 ثانية بالضبط، مناسب للـ Shorts)</p>
+    <button id="go">ابدأ</button>
+    <p class="sub" style="font-size:14px;opacity:.5">abdcode.pages.dev</p>
+  </div>
+  <div id="bar"><i></i></div>
+  <div id="stage"></div>
+</div>
+<script>
+/* المشاهد: n = رقم المشهد، t = العنوان، s = الجملة، c = الكود، d = النتيجة */
+const S=[
+{n:"",t:"شرح السيلكتورز<br>في CSS من الصفر",s:"كيف تختار العنصر اللي بدك تنسقه؟",d:'<div class="big">🎯</div>',c:""},
+{n:"1 · سيلكتور الوسم",t:"حسب اسم الوسم",s:"بينطبق على كل الوسوم من نفس النوع",c:'<span class="s">p</span> { <span class="k">color</span>: <span class="v">blue</span>; }',d:'<div class="d1"><p>فقرة أولى</p><p>فقرة ثانية</p><p>فقرة ثالثة</p></div>'},
+{n:"2 · الكلاس والـ id",t:"نقطة للكلاس، هاش للـ id",s:"الكلاس لأكتر من عنصر، والـ id لعنصر واحد",c:'<span class="s">.card</span> { <span class="k">background</span>: <span class="v">gold</span>; }\n<span class="s">#hd</span> { <span class="k">background</span>: <span class="v">pink</span>; }',d:'<div class="d2"><div class="card">.card</div><div class="card">.card</div><div id="hd">#hd</div></div>'},
+{n:"3 · دمج السيلكتورز",t:"الفاصلة = هاد وهاد",s:"بتطبق نفس التنسيق على أكتر من سيلكتور",c:'<span class="s">h1, h2</span> { <span class="k">color</span>: <span class="v">red</span>; }',d:'<div class="d3"><h2>عنوان h2</h2><p>فقرة عادية</p><h2>عنوان تاني</h2></div>'},
+{n:"4 · العلاقات",t:"الابن المباشر  >",s:"بتختار الأبناء المباشرين فقط، مش الأحفاد",c:'<span class="s">div > p</span> { <span class="k">color</span>: <span class="v">green</span>; }',d:'<div class="d4"><div class="a"><p>ابن مباشر ✅</p><section><p>حفيد ❌</p></section></div></div>'},
+{n:"5 · Pseudo-class",t:"حالات العنصر :hover",s:"لما تمرر الماوس على العنصر",c:'<span class="s">a:hover</span> { <span class="k">background</span>: <span class="v">orange</span>; }',d:'<div class="d5"><a>مرّر الماوس</a></div>'},
+{n:"6 · الترتيب",t:":first-child و :nth-child",s:"اختيار العنصر حسب مكانه",c:'<span class="s">li:first-child</span> { <span class="k">background</span>: <span class="v">red</span>; }\n<span class="s">li:nth-child(2)</span> { <span class="k">background</span>: <span class="v">green</span>; }',d:'<ul class="d6" style="list-style:none;padding:0;display:flex;flex-direction:column;gap:6px"><li>الأول</li><li>التاني</li><li>التالت</li></ul>'},
+{n:"7 · Pseudo-element",t:"::before و ::after",s:"بتضيف محتوى بدون ما تكتب HTML",c:'<span class="s">.b::before</span> { <span class="k">content</span>: <span class="v">"★ "</span>; }',d:'<div class="d7"><div class="b">عنصر عادي</div></div>'},
+{n:"8 · الأولوية",t:"مين بيغلب؟",s:"id أقوى من class، وclass أقوى من الوسم",c:'<span class="c">/* id &gt; class &gt; tag */</span>\n<span class="s">p</span> { color: blue }\n<span class="s">.x</span> { color: gold }\n<span class="s">#y</span> { color: red }',d:'<div class="d8"><p class="w1">وسم  p</p><p class="w2">كلاس  .x</p><p class="w3">id  #y ← الأقوى 🏆</p></div>'},
+{n:"",t:"خلصنا! 🎉",s:"إذا استفدت اعمل لايك واشترك<br>الفيديو الجاي: CSS Grid",d:'<div class="big">👍</div>',c:""}
+];
+const st=document.getElementById('stage'),bar=document.querySelector('#bar i');
+S.forEach(x=>{const e=document.createElement('div');e.className='scene';
+e.innerHTML=(x.n?`<div class="num">${x.n}</div>`:'')+`<h1>${x.t}</h1><div class="sub">${x.s}</div>`+(x.c?`<pre>${x.c}</pre>`:'')+`<div class="demo">${x.d}</div>`;st.appendChild(e)});
+/* T = مدة كل مشهد بالمللي ثانية (5500 = 5.5 ثانية) */
+const sc=[...document.querySelectorAll('.scene')];let i=-1,timer,T=5500;
+function show(k){if(k>=sc.length){return}
+i=k;sc.forEach((e,j)=>{e.classList.toggle('on',j===k);if(j!==k)e.classList.remove('go')});
+setTimeout(()=>sc[k]&&sc[k].classList.add('go'),1800);
+bar.style.transition='none';bar.style.width=(k/sc.length*100)+'%';
+requestAnimationFrame(()=>requestAnimationFrame(()=>{bar.style.transition='width '+T+'ms linear';bar.style.width=((k+1)/sc.length*100)+'%'}));
+clearTimeout(timer);if(k<sc.length-1)timer=setTimeout(()=>show(k+1),T)}
+document.getElementById('go').onclick=()=>{document.getElementById('start').style.display='none';show(0)};
+document.getElementById('app').addEventListener('click',e=>{if(e.target.id==='go')return;if(i>=0&&i<sc.length-1)show(i+1)});
+</script>
+</body>
+</html>
