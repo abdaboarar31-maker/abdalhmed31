@@ -54,3 +54,4 @@ export async function onRequest({ request, env, waitUntil }) {
   }
   return J({ ok: true });
 }
+
