@@ -1,0 +1,50 @@
+// functions/api/reviews.js — يستخدم نفس KV (VISITS) + متغير سري ADMIN_KEY
+const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+const read = async (env, k) => { try { return JSON.parse((await env.VISITS.get(k)) || '[]'); } catch (e) { return []; } };
+const write = (env, k, v) => env.VISITS.put(k, JSON.stringify(v));
+const isAdmin = (env, key) => !!env.ADMIN_KEY && key === env.ADMIN_KEY;
+
+export async function onRequest({ request, env }) {
+  const url = new URL(request.url);
+
+  if (request.method === 'GET') {
+    if (url.searchParams.has('admin')) {
+      if (!isAdmin(env, url.searchParams.get('admin'))) return J({ error: 'no' }, 403);
+      return J({ pending: await read(env, 'pending') });
+    }
+    const list = await read(env, 'reviews');
+    const avg = list.length ? list.reduce((a, r) => a + r.rating, 0) / list.length : 0;
+    return J({ reviews: list.slice(0, 30), count: list.length, avg: Math.round(avg * 10) / 10 });
+  }
+  if (request.method !== 'POST') return J({ error: 'method' }, 405);
+
+  let b; try { b = await request.json(); } catch (e) { return J({ error: 'bad' }, 400); }
+
+  // إدارة: قبول أو حذف
+  if (b.action) {
+    if (!isAdmin(env, b.key)) return J({ error: 'no' }, 403);
+    const pending = await read(env, 'pending');
+    const item = pending.find(r => r.id === b.id);
+    if (!item) return J({ error: 'notfound' }, 404);
+    await write(env, 'pending', pending.filter(r => r.id !== b.id));
+    if (b.action === 'approve') {
+      const reviews = await read(env, 'reviews');
+      reviews.unshift(item);
+      await write(env, 'reviews', reviews.slice(0, 100));
+    }
+    return J({ ok: true });
+  }
+
+  // رأي جديد من طالب
+  if (b.website) return J({ ok: true }); // فخ للبوتات
+  const text = String(b.text || '').trim().slice(0, 400);
+  const rating = Math.round(Number(b.rating));
+  if (text.length < 5 || !(rating >= 1 && rating <= 5)) return J({ error: 'invalid' }, 400);
+  const ip = request.headers.get('CF-Connecting-IP') || 'x';
+  if (await env.VISITS.get('rl_' + ip)) return J({ error: 'wait' }, 429);
+  await env.VISITS.put('rl_' + ip, '1', { expirationTtl: 120 });
+  const pending = await read(env, 'pending');
+  pending.unshift({ id: Date.now() + '' + Math.floor(Math.random() * 1000), name: String(b.name || '').trim().slice(0, 30) || 'طالب', rating, text, at: new Date().toISOString().slice(0, 10) });
+  await write(env, 'pending', pending.slice(0, 100));
+  return J({ ok: true });
+}
