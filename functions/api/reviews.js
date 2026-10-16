@@ -4,7 +4,7 @@ const read = async (env, k) => { try { return JSON.parse((await env.VISITS.get(k
 const write = (env, k, v) => env.VISITS.put(k, JSON.stringify(v));
 const isAdmin = (env, key) => !!env.ADMIN_KEY && key === env.ADMIN_KEY;
 
-export async function onRequest({ request, env }) {
+export async function onRequest({ request, env, waitUntil }) {
   const url = new URL(request.url);
 
   if (request.method === 'GET') {
@@ -46,5 +46,11 @@ export async function onRequest({ request, env }) {
   const pending = await read(env, 'pending');
   pending.unshift({ id: Date.now() + '' + Math.floor(Math.random() * 1000), name: String(b.name || '').trim().slice(0, 30) || 'طالب', rating, text, at: new Date().toISOString().slice(0, 10) });
   await write(env, 'pending', pending.slice(0, 100));
+  // إشعار على تلفونك (اختياري): يحتاج متغير NTFY_TOPIC
+  if (env.NTFY_TOPIC) {
+    const n = pending[0];
+    const msg = 'رأي جديد من ' + n.name + ' (' + n.rating + ' نجوم). افتح صفحة المراجعة للموافقة.';
+    waitUntil(fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: { Title: 'New review' }, body: msg }).catch(() => {}));
+  }
   return J({ ok: true });
 }
