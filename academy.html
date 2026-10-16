@@ -240,5 +240,103 @@ $('#prevL').onclick=()=>show(cur-1);$('#nextL').onclick=()=>show(cur+1);$('#back
 $('#goHtml').onclick=()=>{let n=0;while(n<L.length-1&&done.has(n))n++;show(n)};
 const h=/lesson-(\d+)/.exec(location.hash);prog();if(h&&L[+h[1]-1])show(+h[1]-1);
 </script>
+<!-- ===== بداية: الصق كل هذا قبل </body> بملف academy.html ===== -->
+<!-- ضع هالقسم بصفحة الأكاديمية (أو الرئيسية). غيّر data-page حسب الصفحة: home / academy / store -->
+<section class="real-stats" data-page="academy" dir="rtl" style="max-width:960px;margin:40px auto;padding:0 16px;font-family:'Tajawal',Tahoma,sans-serif;color:#eaf2fb">
+  <h2 style="text-align:center;margin:0 0 16px">📊 أرقام حقيقية من الموقع</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-students" style="display:block;font-size:2.4rem;color:#19c37d">–</b><span style="color:#a3b8d0">طالب بدأ التعلّم</span></div>
+    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-visitors" style="display:block;font-size:2.4rem;color:#ff9a3a">–</b><span style="color:#a3b8d0">زائر</span></div>
+    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-views" style="display:block;font-size:2.4rem;color:#ff9a3a">–</b><span style="color:#a3b8d0">مشاهدة صفحة</span></div>
+    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-academy" style="display:block;font-size:2.4rem;color:#ff9a3a">–</b><span style="color:#a3b8d0">زيارة للأكاديمية</span></div>
+  </div>
+</section>
+<script>
+(async function () {
+  var page = document.querySelector('.real-stats').dataset.page, K = 'abd_seen';
+  var isNew = true;
+  try { isNew = !localStorage.getItem(K); } catch (e) {}
+  try {
+    var r = await fetch('/api/stats?page=' + page, { method: 'POST', body: JSON.stringify({ new: isNew }) });
+    var d = await r.json();
+    ['students', 'visitors', 'views', 'academy'].forEach(function (k) {
+      document.getElementById('st-' + k).textContent = (d[k] || 0).toLocaleString('en');
+    });
+    try { localStorage.setItem(K, '1'); } catch (e) {}
+  } catch (e) { /* إذا فشل الاتصال بتبقى الشرطات */ }
+})();
+</script>
+
+<!-- قسم آراء الطلاب: ضعه بصفحة الأكاديمية -->
+<style>
+.rv{max-width:960px;margin:40px auto;padding:0 16px;font-family:'Tajawal',Tahoma,sans-serif;color:#eaf2fb}
+.rv h2{text-align:center;margin:0 0 4px}.rv .avg{text-align:center;color:#ffd23a;margin:0 0 18px}
+.rv .list{display:grid;gap:12px;margin-bottom:22px}
+.rv .c{background:#10223a;border:1px solid #22395a;border-right:5px solid #ff7a30;border-radius:14px;padding:14px 16px}
+.rv .c b{color:#ffd23a}.rv .c small{color:#a3b8d0;margin-inline-start:8px}.rv .c p{margin:6px 0 0;line-height:1.8}
+.rv form{background:#10223a;border:1px solid #22395a;border-radius:16px;padding:16px;display:grid;gap:10px}
+.rv input,.rv textarea{font:inherit;background:#081420;color:#eaf2fb;border:1px solid #22395a;border-radius:10px;padding:10px}
+.rv .stars{display:flex;gap:6px;font-size:1.8rem;cursor:pointer;direction:ltr;justify-content:flex-end}
+.rv .stars span{color:#3a4f6d}.rv .stars span.on{color:#ffd23a}
+.rv button{font:inherit;font-weight:800;border:0;border-radius:99px;padding:10px;background:#ff7a30;color:#fff;cursor:pointer}
+.rv .msg{text-align:center;color:#7fd6ff;min-height:1.4em}
+.rv .hp{position:absolute;left:-9999px}
+</style>
+<section class="rv" dir="rtl" id="rv">
+  <h2>💬 آراء الطلاب</h2>
+  <p class="avg" id="rv-avg"></p>
+  <div class="list" id="rv-list"></div>
+  <form id="rv-form">
+    <input id="rv-name" maxlength="30" placeholder="اسمك (اختياري)">
+    <div class="stars" id="rv-stars" aria-label="التقييم"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+    <textarea id="rv-text" rows="3" maxlength="400" placeholder="شو رأيك بالأكاديمية؟" required></textarea>
+    <input class="hp" id="rv-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit">أرسل رأيك</button>
+    <div class="msg" id="rv-msg"></div>
+  </form>
+</section>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)},rating=0,stars=[].slice.call($('rv-stars').children);
+  function paint(n){stars.forEach(function(s,i){s.className=i<n?'on':''})}
+  stars.forEach(function(s,i){s.onclick=function(){rating=i+1;paint(rating)}});
+  function load(){fetch('/api/reviews').then(function(r){return r.json()}).then(function(d){
+    $('rv-avg').textContent=d.count?('★ '+d.avg+' من 5 · '+d.count+' رأي'):'كن أول من يكتب رأيه';
+    var l=$('rv-list');l.textContent='';
+    d.reviews.forEach(function(r){
+      var c=document.createElement('div');c.className='c';
+      var b=document.createElement('b');b.textContent=r.name;
+      var s=document.createElement('small');s.textContent='★'.repeat(r.rating)+' · '+r.at;
+      var p=document.createElement('p');p.textContent=r.text;
+      c.appendChild(b);c.appendChild(s);c.appendChild(p);l.appendChild(c);
+    });
+  }).catch(function(){})}
+  $('rv-form').onsubmit=function(e){
+    e.preventDefault();var m=$('rv-msg');
+    if(!rating){m.textContent='اختر عدد النجوم أولاً';return}
+    fetch('/api/reviews',{method:'POST',body:JSON.stringify({name:$('rv-name').value,rating:rating,text:$('rv-text').value,website:$('rv-hp').value})})
+    .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
+    .then(function(x){
+      if(x.ok){m.textContent='شكراً! رأيك بيظهر بعد المراجعة 🙏';$('rv-text').value='';rating=0;paint(0)}
+      else m.textContent=x.d.error==='wait'?'استنى دقيقتين قبل رأي ثاني':'تأكد إنك كتبت رأي أطول وحدّدت النجوم';
+    }).catch(function(){m.textContent='صار خطأ، جرّب لاحقاً'});
+  };
+  load();
+})();
+</script>
+
+<!-- ضع هالسكربت بالمكان اللي بيفتح فيه الطالب أول درس (صفحة الدرس) -->
+<script>
+(function () {
+  var K = 'abd_student';
+  try { if (localStorage.getItem(K)) return; } catch (e) {}
+  fetch('/api/stats?page=lesson', { method: 'POST', body: JSON.stringify({ student: true }) })
+    .then(function () { try { localStorage.setItem(K, '1'); } catch (e) {} })
+    .catch(function () {});
+})();
+</script>
+
+<!-- ===== نهاية ===== -->
+
 </body>
 </html>
