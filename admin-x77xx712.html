@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>مراجعة الآراء</title>
+<style>body{font-family:Tahoma,sans-serif;background:#081420;color:#eaf2fb;max-width:640px;margin:0 auto;padding:16px}input,button{font:inherit;padding:10px;border-radius:10px;border:1px solid #22395a}input{background:#10223a;color:#fff;width:100%;margin-bottom:8px}button{cursor:pointer;font-weight:800}.c{background:#10223a;border:1px solid #22395a;border-radius:12px;padding:12px;margin:10px 0}.ok{background:#19c37d;color:#04230f}.no{background:#ff5a5a;color:#2a0000}</style></head><body>
+<h2>مراجعة آراء الطلاب</h2>
+<input id="k" type="password" placeholder="كلمة السر (ADMIN_KEY)"><button onclick="load()">عرض الآراء الجديدة</button>
+<div id="l"></div>
+<script>
+var K='';
+function load(){K=document.getElementById('k').value;
+ fetch('/api/reviews?admin='+encodeURIComponent(K)).then(function(r){return r.json()}).then(function(d){
+  var l=document.getElementById('l');l.textContent='';
+  if(!d.pending){l.textContent='كلمة السر غلط';return}
+  if(!d.pending.length)l.textContent='ما في آراء جديدة';
+  d.pending.forEach(function(r){var c=document.createElement('div');c.className='c';
+   var t=document.createElement('div');t.textContent=r.name+' · '+'★'.repeat(r.rating)+' · '+r.at;
+   var p=document.createElement('p');p.textContent=r.text;
+   var a=btn('قبول','ok','approve',r.id),x=btn('حذف','no','delete',r.id);
+   c.appendChild(t);c.appendChild(p);c.appendChild(a);c.appendChild(document.createTextNode(' '));c.appendChild(x);l.appendChild(c)})})}
+function btn(t,cl,act,id){var b=document.createElement('button');b.textContent=t;b.className=cl;
+ b.onclick=function(){fetch('/api/reviews',{method:'POST',body:JSON.stringify({action:act,id:id,key:K})}).then(load)};return b}
+</script></body></html>
