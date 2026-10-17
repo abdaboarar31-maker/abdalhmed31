@@ -13,7 +13,7 @@ export async function onRequest({ request, env }) {
       if (url.searchParams.has('notify')) { // فحص الإشعار
         if (!env.NTFY_TOPIC) return J({ ntfy: 'NTFY_TOPIC missing' });
         try {
-          const r = await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: { Title: 'Test' }, body: 'test from site' });
+          const r = await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: {Title: 'Test', Authorization: 'Bearer ' + env.NTFY_TOKEN });
           return J({ ntfy: 'status ' + r.status, topic_length: env.NTFY_TOPIC.length });
         } catch (e) { return J({ ntfy: 'error ' + e.message }); }
       }
@@ -58,7 +58,7 @@ export async function onRequest({ request, env }) {
     try {
       const n = pending[0];
       const msg = 'رأي جديد من ' + n.name + ' (' + n.rating + ' نجوم). افتح صفحة المراجعة للموافقة.';
-      await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: { Title: 'New review' }, body: msg });
+      await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: { Title: 'New review', Authorization: 'Bearer ' + env.NTFY_TOKEN });
     } catch (e) {}
   }
   return J({ ok: true });
