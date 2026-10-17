@@ -10,6 +10,13 @@ export async function onRequest({ request, env }) {
   if (request.method === 'GET') {
     if (url.searchParams.has('admin')) {
       if (!isAdmin(env, url.searchParams.get('admin'))) return J({ error: 'no' }, 403);
+      if (url.searchParams.has('notify')) { // فحص الإشعار
+        if (!env.NTFY_TOPIC) return J({ ntfy: 'NTFY_TOPIC missing' });
+        try {
+          const r = await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: { Title: 'Test' }, body: 'test from site' });
+          return J({ ntfy: 'status ' + r.status, topic_length: env.NTFY_TOPIC.length });
+        } catch (e) { return J({ ntfy: 'error ' + e.message }); }
+      }
       return J({ pending: await read(env, 'pending') });
     }
     const list = await read(env, 'reviews');
