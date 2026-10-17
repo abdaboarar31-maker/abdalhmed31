@@ -59,7 +59,7 @@ const T = {
     sec_contact: 'تواصل معي', lbl_name: 'اسمك', lbl_msg: 'رسالتك', send: 'إرسال', ytbtn: '▶ قناتي على يوتيوب', foot_tag: 'تعلّم HTML بالعربي',
     credit: 'تصميم وتطوير: <b>عبد أبو عرار</b>',
     rights: '© {y} عبد أبو عرار. جميع الحقوق محفوظة. يُمنع نسخ أو إعادة نشر المحتوى (الشروحات والكتب والتصاميم) دون إذن خطي.',
-    c_title: 'أهلاً فيك 👋', c_text: 'باستخدامك الموقع بتوافق على تعليماته وشروطه. الموافقة بتنحسب كزيارة وحدة بس لعدّاد الزوار، وما بنجمع أي بيانات شخصية.',
+    c_text: 'أهلاً وسهلاً فيك بموقعي! هون بتتعلّم HTML بالعربي خطوة بخطوة، مجاناً. نتمنى لك رحلة ممتعة 🌟',
     c_ok: 'موافق', c_no: 'لا، شكراً', thanks: 'شكراً لك! انحسبت زيارتك 🙌',
     sent: 'وصلت رسالتك، شكراً!', fill: 'اكتب اسمك ورسالتك أول', fail: 'ما انبعتت الرسالة، جرّب كمان شوي',
     yt_open: 'افتح على يوتيوب', dl: '⬇️ حمّل ملف الكود', all_videos: 'شاهد جميع الفيديوهات', soon: 'قريباً', premieres: 'ينزل',
@@ -348,7 +348,6 @@ function decline() {
   $('#cmodal').hidden = true;
 }
 $('#cok').addEventListener('click', accept);
-$('#cno').addEventListener('click', decline);
 {
   let c = null, s = null;
   try { c = localStorage.getItem('abd-consent'); s = sessionStorage.getItem('abd-skip'); } catch (e) {}
