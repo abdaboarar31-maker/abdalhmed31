@@ -240,34 +240,46 @@ $('#prevL').onclick=()=>show(cur-1);$('#nextL').onclick=()=>show(cur+1);$('#back
 $('#goHtml').onclick=()=>{let n=0;while(n<L.length-1&&done.has(n))n++;window.beginLearn?window.beginLearn(()=>show(n)):show(n)};
 const h=/lesson-(\d+)/.exec(location.hash);prog();if(h&&L[+h[1]-1])show(+h[1]-1);
 </script>
-<!-- ===== بداية: الصق كل هذا قبل </body> بملف academy.html ===== -->
-<!-- ضع هالقسم بصفحة الأكاديمية (أو الرئيسية). غيّر data-page حسب الصفحة: home / academy / store -->
-<section class="real-stats" data-page="academy" dir="rtl" style="max-width:960px;margin:40px auto;padding:0 16px;font-family:'Tajawal',Tahoma,sans-serif;color:#eaf2fb">
-  <h2 style="text-align:center;margin:0 0 16px">📊 أرقام حقيقية من الموقع</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
-    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-students" style="display:block;font-size:2.4rem;color:#19c37d">–</b><span style="color:#a3b8d0">طالب بدأ التعلّم</span></div>
-    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-visitors" style="display:block;font-size:2.4rem;color:#ff9a3a">–</b><span style="color:#a3b8d0">زائر</span></div>
-    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-views" style="display:block;font-size:2.4rem;color:#ff9a3a">–</b><span style="color:#a3b8d0">مشاهدة صفحة</span></div>
-    <div style="background:#10223a;border:1px solid #22395a;border-radius:16px;padding:20px;text-align:center"><b id="st-academy" style="display:block;font-size:2.4rem;color:#ff9a3a">–</b><span style="color:#a3b8d0">زيارة للأكاديمية</span></div>
+<!-- ===== الإحصائيات ===== -->
+<style>
+.rs{max-width:960px;margin:40px auto;padding:0 16px;text-align:center}
+.rs h2{margin:0 0 18px;font-size:1.5rem}
+.rs .nums{justify-content:center;margin-bottom:0}
+.mdl{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:rgba(0,0,0,.65);padding:16px}
+.mdl .bx{background:var(--card);border:1px solid var(--ln);border-radius:22px;padding:28px 24px;max-width:420px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.mdl h3{font-size:1.4rem;margin-bottom:8px}
+.mdl p{color:var(--mu);margin-bottom:18px}
+</style>
+<section class="rs" data-page="academy">
+  <h2>📊 أرقام الأكاديمية</h2>
+  <div class="nums">
+    <div><b id="st-students">–</b><span>طالب بدأ التعلّم</span></div>
+    <div><b id="st-visitors">–</b><span>زائر</span></div>
+    <div><b id="st-academy">–</b><span>زيارة للأكاديمية</span></div>
   </div>
 </section>
 <script>
+function fmtShort(n){
+  if(n>=1000000)return (n/1000000).toFixed(1).replace(/\.0$/,'')+'M';
+  if(n>=1000)return (n/1000).toFixed(1).replace(/\.0$/,'')+'K';
+  return String(n);
+}
 (async function () {
-  var page = document.querySelector('.real-stats').dataset.page, K = 'abd_seen';
+  var page = document.querySelector('.rs').dataset.page, K = 'abd_seen';
   var isNew = true;
   try { isNew = !localStorage.getItem(K); } catch (e) {}
   try {
     var r = await fetch('/api/stats?page=' + page, { method: 'POST', body: JSON.stringify({ new: isNew }) });
     var d = await r.json();
-    ['students', 'visitors', 'views', 'academy'].forEach(function (k) {
-      document.getElementById('st-' + k).textContent = (d[k] || 0).toLocaleString('en');
+    ['students', 'visitors', 'academy'].forEach(function (k) {
+      document.getElementById('st-' + k).textContent = fmtShort(d[k] || 0);
     });
     try { localStorage.setItem(K, '1'); } catch (e) {}
-  } catch (e) { /* إذا فشل الاتصال بتبقى الشرطات */ }
+  } catch (e) {}
 })();
 </script>
 
-<!-- قسم آراء الطلاب: ضعه بصفحة الأكاديمية -->
+<!-- ===== آراء الطلاب ===== -->
 <style>
 .rv{max-width:960px;margin:40px auto;padding:0 16px;font-family:'Tajawal',Tahoma,sans-serif;color:#eaf2fb}
 .rv h2{text-align:center;margin:0 0 4px}.rv .avg{text-align:center;color:#ffd23a;margin:0 0 18px}
@@ -325,18 +337,55 @@ const h=/lesson-(\d+)/.exec(location.hash);prog();if(h&&L[+h[1]-1])show(+h[1]-1)
 })();
 </script>
 
-<!-- ضع هالسكربت بالمكان اللي بيفتح فيه الطالب أول درس (صفحة الدرس) -->
+<!-- ===== نافذة الترحيب + نافذة بدء التعلّم ===== -->
+<div id="wel" class="mdl" hidden>
+  <div class="bx" role="dialog" aria-modal="true">
+    <h3>أهلاً وسهلاً فيك بالأكاديمية 🎓</h3>
+    <p>هون بتتعلّم البرمجة بالعربي من الصفر، خطوة بخطوة، مجاناً وبدون تسجيل. نتمنى لك رحلة ممتعة!</p>
+    <button class="btn" id="welOk" type="button">موافق</button>
+  </div>
+</div>
+<div id="stm" class="mdl" hidden>
+  <div class="bx" role="dialog" aria-modal="true">
+    <h3>جاهز تبدأ التعلّم؟ 🚀</h3>
+    <p>رح تنحسب طالب جديد بالأكاديمية، وتقدمك بينحفظ على جهازك. يلا نبدأ!</p>
+    <button class="btn" id="stmOk" type="button">موافق، ابدأ التعلّم</button>
+  </div>
+</div>
 <script>
 (function () {
-  var K = 'abd_student';
-  try { if (localStorage.getItem(K)) return; } catch (e) {}
-  fetch('/api/stats?page=lesson', { method: 'POST', body: JSON.stringify({ student: true }) })
-    .then(function () { try { localStorage.setItem(K, '1'); } catch (e) {} })
-    .catch(function () {});
+  var $2 = function (i) { return document.getElementById(i); };
+  /* الحقوق تنزل لآخر الصفحة */
+  var f = document.querySelector('footer'); if (f) document.body.appendChild(f);
+
+  /* ترحيب بالأكاديمية (مرة وحدة) */
+  var seen = false;
+  try { seen = !!localStorage.getItem('abd-ac-welcome'); } catch (e) {}
+  if (!seen) setTimeout(function () { $2('wel').hidden = false; }, 600);
+  $2('welOk').onclick = function () {
+    $2('wel').hidden = true;
+    try { localStorage.setItem('abd-ac-welcome', '1'); } catch (e) {}
+  };
+
+  /* تسجيل الطالب لما يبدأ مسار */
+  function registered() { try { return !!localStorage.getItem('abd_student'); } catch (e) { return false; } }
+  var pending = null;
+  window.beginLearn = function (cb) {
+    if (registered()) { cb(); return; }
+    pending = cb; $2('stm').hidden = false;
+  };
+  $2('stmOk').onclick = function () {
+    $2('stm').hidden = true;
+    fetch('/api/stats?page=lesson', { method: 'POST', body: JSON.stringify({ student: true }) })
+      .then(function () { try { localStorage.setItem('abd_student', '1'); } catch (e) {} })
+      .catch(function () {});
+    if (pending) { pending(); pending = null; }
+  };
 })();
 </script>
 
-<!-- ===== نهاية ===== -->
-
+<footer>© <span id="yr2"></span> Abd Code · حقوق النشر محفوظة · <a href="index.html">الرئيسية</a> · <a href="privacy.html">الخصوصية</a></footer>
+<script>document.getElementById('yr2').textContent=new Date().getFullYear();</script>
+</body>
 </body>
 </html>
