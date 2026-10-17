@@ -2,6 +2,7 @@
 const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
 const read = async (env, k) => { try { return JSON.parse((await env.VISITS.get(k)) || '[]'); } catch (e) { return []; } };
 const write = (env, k, v) => env.VISITS.put(k, JSON.stringify(v));
+const nh = (env, t) => { const h = { Title: t }; if (env.NTFY_TOKEN) h.Authorization = 'Bearer ' + env.NTFY_TOKEN; return h; };
 const isAdmin = (env, key) => !!env.ADMIN_KEY && key === env.ADMIN_KEY;
 
 export async function onRequest({ request, env }) {
@@ -13,7 +14,7 @@ export async function onRequest({ request, env }) {
       if (url.searchParams.has('notify')) { // فحص الإشعار
         if (!env.NTFY_TOPIC) return J({ ntfy: 'NTFY_TOPIC missing' });
         try {
-          const r = await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: {Title: 'Test', Authorization: 'Bearer ' + env.NTFY_TOKEN });
+          const r = await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: nh(env, 'Test'), body: 'test from site' });
           return J({ ntfy: 'status ' + r.status, topic_length: env.NTFY_TOPIC.length });
         } catch (e) { return J({ ntfy: 'error ' + e.message }); }
       }
@@ -58,7 +59,7 @@ export async function onRequest({ request, env }) {
     try {
       const n = pending[0];
       const msg = 'رأي جديد من ' + n.name + ' (' + n.rating + ' نجوم). افتح صفحة المراجعة للموافقة.';
-      await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: { Title: 'New review', Authorization: 'Bearer ' + env.NTFY_TOKEN });
+      await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: nh(env, 'New review'), body: msg });
     } catch (e) {}
   }
   return J({ ok: true });
