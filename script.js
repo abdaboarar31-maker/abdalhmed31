@@ -120,15 +120,21 @@ function toast(msg) {
 
 /* ===== أرقام منسّقة + عدّاد التحميلات ===== */
 function fmtNum(n) { return new Intl.NumberFormat(LANG === 'ar' ? 'ar-u-nu-latn' : LANG).format(n); }
+function fmtShort(n) {
+  if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
 function setNum(el, n) {
   if (!el) return;
   if (n == null) { el.textContent = '—'; return; }
-  if (reduced || el.dataset.v === String(n)) { el.textContent = fmtNum(n); el.dataset.v = n; return; }
+  const f = el.id === 'stViews' ? fmtShort : fmtNum;
+  if (reduced || el.dataset.v === String(n)) { el.textContent = f(n); el.dataset.v = n; return; }
   el.dataset.v = n;
   const t0 = performance.now(), dur = 1100;
   (function step(now) {
     const p = Math.min(1, ((now || t0) - t0) / dur);
-    el.textContent = fmtNum(Math.round(n * (1 - Math.pow(1 - p, 3))));
+    el.textContent = f(Math.round(n * (1 - Math.pow(1 - p, 3))));
     if (p < 1) requestAnimationFrame(step);
   })(t0);
 }
@@ -444,8 +450,3 @@ loadStats();
 loadAuto();
 })();
 
-function formatNumber(n) {
-  if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
-  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-  return n.toString();
-}
