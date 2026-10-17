@@ -15,7 +15,8 @@ export async function onRequest({ request, env }) {
         if (!env.NTFY_TOPIC) return J({ ntfy: 'NTFY_TOPIC missing' });
         try {
           const r = await fetch('https://ntfy.sh/' + encodeURIComponent(env.NTFY_TOPIC), { method: 'POST', headers: nh(env, 'Test'), body: 'test from site' });
-          return J({ ntfy: 'status ' + r.status, topic_length: env.NTFY_TOPIC.length });
+          const t = (await r.text()).slice(0, 300);
+          return J({ ntfy: 'status ' + r.status, token_found: !!env.NTFY_TOKEN, token_length: env.NTFY_TOKEN ? env.NTFY_TOKEN.length : 0, reason: t });
         } catch (e) { return J({ ntfy: 'error ' + e.message }); }
       }
       return J({ pending: await read(env, 'pending') });
