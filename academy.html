@@ -237,7 +237,7 @@ $('#chk').onclick=()=>{const d=new DOMParser().parseFromString($('#code').value,
  else{m.style.color='var(--bad)';m.textContent='❌ مش بعد، جرّب تاني. اضغط "تلميح" إذا بدك مساعدة.'}};
 $('#list').onclick=e=>{const b=e.target.closest('[data-i]');if(b)show(+b.dataset.i)};
 $('#prevL').onclick=()=>show(cur-1);$('#nextL').onclick=()=>show(cur+1);$('#back').onclick=home;
-$('#goHtml').onclick=()=>{let n=0;while(n<L.length-1&&done.has(n))n++;show(n)};
+$('#goHtml').onclick=()=>{let n=0;while(n<L.length-1&&done.has(n))n++;window.beginLearn?window.beginLearn(()=>show(n)):show(n)};
 const h=/lesson-(\d+)/.exec(location.hash);prog();if(h&&L[+h[1]-1])show(+h[1]-1);
 </script>
 <!-- ===== بداية: الصق كل هذا قبل </body> بملف academy.html ===== -->
