@@ -116,13 +116,13 @@ footer a{color:var(--ac)}
   <h1>تعلّم البرمجة <span class="g">من الصفر</span><br>بالعربي، خطوة بخطوة</h1>
   <p class="lead">مسارات مرتبة، شرح بسيط، محرر كود حي، وتمارين بتتصحح لحالها. تقدمك بينحفظ على جهازك.</p>
   <div class="nums"><div><b id="nL">7</b><span>درس</span></div><div><b id="nE">7</b><span>تمرين</span></div><div><b>3</b><span>مسارات</span></div></div>
-  <div id="trophy" class="trophy" hidden>🏆 مبروك! خلّصت كل دروس مسار HTML المتوفرة. بنضيف دروس جديدة قريباً.</div>
+  <div id="trophy" class="trophy" hidden>🏆 مبروك! خلّصت كل دروس المسار. كمّل بالمسارات الثانية.</div>
   <h2 class="sec">اختر مسارك</h2>
   <div class="tracks">
     <button class="tk on" id="goHtml" type="button" style="--c:#ff6a2b"><span class="ic">🧱</span><h2>مسار HTML</h2><p>هيكل الصفحة، النصوص، الروابط، الصور، القوائم، الجداول والنماذج.</p>
       <div class="meta"><i>مبتدئ</i><i>3 وحدات</i><i id="cnt"></i></div><div class="bar"><u id="pb"></u></div><span class="cta" id="pt"></span></button>
-    <div class="tk" style="--c:#4d8dff"><span class="ic">🎨</span><h2>مسار CSS</h2><p>الألوان، الخطوط، التخطيط، والحركة.</p><div class="meta"><i>مبتدئ</i></div><span class="soon">قريباً…</span></div>
-    <div class="tk" style="--c:#ffc23c"><span class="ic">⚡</span><h2>مسار JavaScript</h2><p>التفاعل، الأحداث، وبناء مشاريع صغيرة.</p><div class="meta"><i>متوسط</i></div><span class="soon">قريباً…</span></div>
+    <button class="tk" id="goCss" type="button" style="--c:#4d8dff"><span class="ic">🎨</span><h2>مسار CSS</h2><p>الألوان، الخطوط، الصندوق، Flexbox والحركة.</p><div class="meta"><i>مبتدئ</i><i>6 دروس</i></div><div class="bar"><u id="pbC"></u></div><span class="cta" id="ptC"></span></button>
+    <button class="tk" id="goJs" type="button" style="--c:#ffc23c"><span class="ic">⚡</span><h2>مسار JavaScript</h2><p>المتغيرات، الدوال، الشروط، الأحداث والمصفوفات.</p><div class="meta"><i>متوسط</i><i>5 دروس</i></div><div class="bar"><u id="pbJ"></u></div><span class="cta" id="ptJ"></span></button>
   </div>
   <div class="how"><div><b>📖 1. اقرأ</b><span>شرح قصير وواضح بالعربي</span></div><div><b>⌨️ 2. جرّب</b><span>عدّل الكود وشوف النتيجة فوراً</span></div><div><b>✅ 3. حلّ</b><span>تمرين بيقلك صح أو غلط</span></div><div><b>🏆 4. تقدّم</b><span>علامة ✓ وشريط تقدم لكل درس</span></div></div>
 </main>
@@ -130,7 +130,7 @@ footer a{color:var(--ac)}
 <main id="les" class="wrap" hidden>
   <div class="topbar"><u id="tb"></u></div>
   <div class="lay">
-    <aside class="side"><h3>🧱 مسار HTML</h3><div id="list"></div><button class="btn g" id="back" type="button" style="margin-top:12px;width:100%;justify-content:center">← كل المسارات</button></aside>
+    <aside class="side"><h3 id="sh"></h3><div id="list"></div><button class="btn g" id="back" type="button" style="margin-top:12px;width:100%;justify-content:center">← كل المسارات</button></aside>
     <article class="main">
       <div class="crumb" id="crumb"></div>
       <h2 id="ttl" tabindex="-1"></h2>
@@ -150,7 +150,10 @@ footer a{color:var(--ac)}
 
 <script>
 const $=s=>document.querySelector(s);
-const U=['الوحدة 1 · الأساسيات','الوحدة 2 · المحتوى','الوحدة 3 · التفاعل'];
+const U=['الوحدة 1 · الأساسيات','الوحدة 2 · المحتوى','الوحدة 3 · التفاعل','CSS 1 · الأساسيات','CSS 2 · التخطيط والحركة','JS 1 · الأساسيات','JS 2 · التفاعل'];
+const TN=['🧱 مسار HTML','🎨 مسار CSS','⚡ مسار JavaScript'],tr=u=>u<3?0:u<5?1:2;let T=0;
+const css=d=>[...d.querySelectorAll('style')].map(e=>e.textContent).join(' '),js=d=>[...d.querySelectorAll('script')].map(e=>e.textContent).join(' ');
+const ids=t=>L.map((_,j)=>j).filter(j=>tr(L[j].u)===t),nx=i=>!!L[i]&&tr(L[i].u)===T;
 const L=[
 {u:0,t:'هيكل الصفحة',b:`<p>كل صفحة HTML بتبدأ بنفس الهيكل. فيه جزئين: <code>head</code> للمعلومات الخفيفة (مثل عنوان التبويب)، و<code>body</code> لكل شي بيظهر للزائر.</p>
 <pre>&lt;!DOCTYPE html&gt;
@@ -209,20 +212,70 @@ const L=[
 &lt;/form&gt;</pre><div class="tip">💡 هيك بتتعمل صفحة "تواصل معي" بموقعك.</div>`,
  task:'اعمل <code>form</code> فيه <code>input</code> نوعو <code>text</code> وزر <code>button</code>.',
  start:'<form>\n  \n</form>',sol:'<form>\n  <input type="text" placeholder="اسمك">\n  <button>إرسال</button>\n</form>',
- ok:d=>d.querySelector('form input[type="text"]')&&d.querySelector('form button'),hint:'جوا form: input بـ type="text"، وبعدو button.'}
+ ok:d=>d.querySelector('form input[type="text"]')&&d.querySelector('form button'),hint:'جوا form: input بـ type="text"، وبعدو button.'},
+{u:2,t:'انشر موقعك',b:`<p>قبل النشر لازم صفحتك تكون كاملة: <code>title</code> للتبويب، و<code>meta viewport</code> عشان تظهر مزبوطة على الجوال، و<code>h1</code>. بعدها ارفعها على GitHub وCloudflare Pages أو Netlify مجاناً.</p><pre>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</pre><div class="tip">💡 بعد النشر سجّل موقعك بـ Google Search Console عشان يظهر بالبحث.</div>`,
+ task:'اكتب صفحة جاهزة للنشر: <code>title</code> فيه نص، و<code>meta viewport</code>، و<code>h1</code>، و<code>p</code>.',
+ start:'<!DOCTYPE html>\n<html lang="ar">\n<head>\n  <meta charset="UTF-8">\n  \n</head>\n<body>\n  \n</body>\n</html>',
+ sol:'<!DOCTYPE html>\n<html lang="ar">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <title>موقعي</title>\n</head>\n<body>\n  <h1>أهلاً</h1>\n  <p>موقعي جاهز للنشر.</p>\n</body>\n</html>',
+ ok:d=>d.querySelector('meta[name="viewport"]')&&d.title.trim()&&d.querySelector('h1')&&d.querySelector('p'),hint:'محتاج title فيه نص، وmeta name="viewport"، وh1 وp.'},
+{u:3,t:'أول تنسيق CSS',b:`<p>CSS بيغيّر شكل الصفحة. بنكتبو داخل وسم <code>style</code>: اسم العنصر، وبعدو أقواس فيها الخصائص.</p><pre>&lt;style&gt;\n  h1 { color: red; }\n&lt;/style&gt;</pre>`,
+ task:'لوّن عنوان <code>h1</code> بأي لون باستخدام <code>color</code> داخل <code>style</code>.',
+ start:'<style>\n  \n</style>\n<h1>أهلاً</h1>',sol:'<style>\n  h1 { color: red; }\n</style>\n<h1>أهلاً</h1>',
+ ok:d=>/h1\s*\{[^}]*color\s*:/.test(css(d)),hint:'اكتب h1 { color: red; } داخل style.'},
+{u:3,t:'الألوان والخلفيات',b:`<p><code>color</code> للون النص، و<code>background-color</code> للخلفية. الألوان بالاسم (<code>blue</code>) أو بالكود (<code>#ff6a2b</code>).</p><pre>body { background-color: #0f172a; color: white; }</pre>`,
+ task:'خلّي خلفية <code>body</code> غامقة ولون النص فاتح (<code>background-color</code> و<code>color</code>).',
+ start:'<style>\n  body { }\n</style>\n<p>نص تجريبي</p>',sol:'<style>\n  body { background-color: #0f172a; color: white; }\n</style>\n<p>نص تجريبي</p>',
+ ok:d=>/body\s*\{[^}]*background(-color)?\s*:/.test(css(d))&&/body\s*\{[^}]*[^-]color\s*:/.test(css(d)),hint:'جوا body حط background-color و color.'},
+{u:3,t:'الخطوط والنصوص',b:`<p><code>font-size</code> حجم الخط، <code>font-weight</code> السماكة، <code>text-align</code> محاذاة النص (<code>center</code> للوسط).</p><pre>p { font-size: 20px; text-align: center; }</pre>`,
+ task:'نسّق <code>p</code>: حجم خط <code>font-size</code> وتوسيط <code>text-align: center</code>.',
+ start:'<style>\n  p { }\n</style>\n<p>أنا بتعلّم CSS</p>',sol:'<style>\n  p { font-size: 22px; text-align: center; }\n</style>\n<p>أنا بتعلّم CSS</p>',
+ ok:d=>/font-size\s*:/.test(css(d))&&/text-align\s*:\s*center/.test(css(d)),hint:'اكتب font-size و text-align: center.'},
+{u:4,t:'الصندوق: padding وmargin',b:`<p>كل عنصر صندوق: <code>padding</code> مسافة داخلية، <code>margin</code> مسافة خارجية، <code>border</code> إطار، و<code>border-radius</code> يدوّر الزوايا.</p><pre>div { padding: 20px; border: 2px solid blue; border-radius: 12px; }</pre>`,
+ task:'نسّق <code>div</code> بـ <code>padding</code> و<code>border</code> و<code>border-radius</code>.',
+ start:'<style>\n  div { }\n</style>\n<div>صندوقي</div>',sol:'<style>\n  div { padding: 20px; border: 2px solid blue; border-radius: 12px; }\n</style>\n<div>صندوقي</div>',
+ ok:d=>['padding','border\\s*:','border-radius'].every(k=>new RegExp(k).test(css(d))),hint:'لازم padding و border و border-radius.'},
+{u:4,t:'Flexbox للتخطيط',b:`<p><code>display: flex</code> بتخلي العناصر جنب بعض. <code>gap</code> مسافة بينهم، و<code>justify-content</code> بتوزعهم.</p><pre>.row { display: flex; gap: 10px; justify-content: center; }</pre>`,
+ task:'خلّي الحاوية <code>.row</code> <code>display: flex</code> مع <code>gap</code> أو <code>justify-content</code>.',
+ start:'<style>\n  .row { }\n</style>\n<div class="row"><p>1</p><p>2</p><p>3</p></div>',sol:'<style>\n  .row { display: flex; gap: 10px; justify-content: center; }\n</style>\n<div class="row"><p>1</p><p>2</p><p>3</p></div>',
+ ok:d=>/display\s*:\s*flex/.test(css(d))&&/(gap|justify-content)\s*:/.test(css(d)),hint:'اكتب display: flex و gap أو justify-content.'},
+{u:4,t:'الحركة: hover وtransition',b:`<p><code>:hover</code> بيشتغل لما الماوس يمرق على العنصر، و<code>transition</code> بيخلي التغيير ناعم.</p><pre>button { transition: 0.3s; }\nbutton:hover { background: orange; }</pre>`,
+ task:'اعمل لـ <code>button</code> تأثير <code>:hover</code> مع <code>transition</code>.',
+ start:'<style>\n  button { }\n</style>\n<button>مرّر الماوس</button>',sol:'<style>\n  button { transition: 0.3s; }\n  button:hover { background: orange; }\n</style>\n<button>مرّر الماوس</button>',
+ ok:d=>/:hover/.test(css(d))&&/transition\s*:/.test(css(d)),hint:'لازم button:hover و transition.'},
+{u:5,t:'المتغيرات',b:`<p>المتغير بيخزّن قيمة. <code>let</code> قيمتو بتتغير، و<code>const</code> ثابتة. وبنعرضو بالصفحة بـ <code>textContent</code>.</p><pre>const name = "عبد";\ndocument.getElementById("out").textContent = name;</pre>`,
+ task:'اعمل متغير بـ <code>let</code> أو <code>const</code> واعرضو داخل <code>#out</code> بـ <code>textContent</code>.',
+ start:'<p id="out"></p>\n<script>\n  \n<\/script>',sol:'<p id="out"></p>\n<script>\n  const name = "عبد";\n  document.getElementById("out").textContent = name;\n<\/script>',
+ ok:d=>/(let|const)\s+\w+\s*=/.test(js(d))&&/textContent|innerHTML/.test(js(d)),hint:'const name = "..."; ثم document.getElementById("out").textContent = name;'},
+{u:5,t:'الدوال',b:`<p>الدالة كود بتكتبو مرة وبتستدعيه كل ما بدك. بتاخد قيم اسمها parameters.</p><pre>function hello(n) {\n  return "أهلاً " + n;\n}</pre>`,
+ task:'اعمل دالة <code>function</code> بتاخد قيمة، واستدعيها واعرض النتيجة بـ <code>textContent</code>.',
+ start:'<p id="out"></p>\n<script>\n  \n<\/script>',sol:'<p id="out"></p>\n<script>\n  function hello(n) { return "أهلاً " + n; }\n  document.getElementById("out").textContent = hello("عبد");\n<\/script>',
+ ok:d=>/function\s+\w+\s*\(\s*\w+/.test(js(d))&&/\w+\s*\(\s*["'\w]/.test(js(d).replace(/function\s+\w+\s*\([^)]*\)/,''))&&/textContent|innerHTML/.test(js(d)),hint:'function hello(n){...} وبعدين hello("عبد") جوا textContent.'},
+{u:5,t:'الشروط if وelse',b:`<p>الشرط بيخلي الكود يقرر. إذا الشرط صح بينفذ <code>if</code>، وإلا <code>else</code>.</p><pre>if (age >= 18) { ... } else { ... }</pre>`,
+ task:'اعمل متغير رقم وشرط <code>if</code> و<code>else</code> يعرض نتيجة مختلفة بـ <code>textContent</code>.',
+ start:'<p id="out"></p>\n<script>\n  \n<\/script>',sol:'<p id="out"></p>\n<script>\n  let age = 20;\n  if (age >= 18) { out.textContent = "بالغ"; } else { out.textContent = "قاصر"; }\n<\/script>',
+ ok:d=>/if\s*\(.+\)/.test(js(d))&&/else/.test(js(d))&&/textContent|innerHTML/.test(js(d)),hint:'if (شرط) {...} else {...} وجواتهم textContent.'},
+{u:6,t:'الأحداث والأزرار',b:`<p>الحدث بيشتغل لما الزائر يعمل شي. <code>addEventListener("click", ...)</code> بتنفذ كود لما يضغط الزر.</p><pre>btn.addEventListener("click", function () { ... });</pre>`,
+ task:'خلّي الزر يغيّر نص <code>#out</code> لما نضغط عليه باستخدام <code>addEventListener</code> أو <code>onclick</code>.',
+ start:'<button id="btn">اضغط</button>\n<p id="out"></p>\n<script>\n  \n<\/script>',sol:'<button id="btn">اضغط</button>\n<p id="out"></p>\n<script>\n  document.getElementById("btn").addEventListener("click", function () {\n    document.getElementById("out").textContent = "برافو!";\n  });\n<\/script>',
+ ok:d=>/addEventListener\s*\(\s*["']click["']|onclick/.test(js(d))&&/getElementById|querySelector/.test(js(d))&&/textContent|innerHTML/.test(js(d)),hint:'btn.addEventListener("click", function(){ ... }).'},
+{u:6,t:'المصفوفات والحلقات',b:`<p>المصفوفة قائمة قيم بين <code>[ ]</code>. والحلقة بتمرّ على كل عنصر: <code>for</code> أو <code>forEach</code>.</p><pre>const a = ["HTML", "CSS"];\na.forEach(function (x) { ... });</pre>`,
+ task:'اعمل مصفوفة فيها 3 عناصر على الأقل، وامرّ عليها بحلقة (<code>for</code> أو <code>forEach</code>) واعرضها.',
+ start:'<ul id="out"></ul>\n<script>\n  \n<\/script>',sol:'<ul id="out"></ul>\n<script>\n  const a = ["HTML", "CSS", "JavaScript"];\n  a.forEach(function (x) { out.innerHTML += "<li>" + x + "</li>"; });\n<\/script>',
+ ok:d=>/\[[^\]]*,[^\]]*,[^\]]*\]/.test(js(d))&&/(for\s*\(|forEach|\.map\()/.test(js(d))&&/textContent|innerHTML/.test(js(d)),hint:'مصفوفة بـ 3 عناصر وبعدين forEach وجواها innerHTML.'}
 ];
 let done=new Set(),cur=0;
 try{done=new Set(JSON.parse(localStorage.getItem('abd-academy-html')||'[]'))}catch(e){}
 const save=()=>{try{localStorage.setItem('abd-academy-html',JSON.stringify([...done]))}catch(e){}};
 $('#yr').textContent=new Date().getFullYear();$('#nL').textContent=L.length;$('#nE').textContent=L.length;
-function prog(){const p=Math.round(done.size/L.length*100);$('#pb').style.width=p+'%';$('#tb').style.width=p+'%';
- $('#cnt').textContent=L.length+' دروس';$('#pt').textContent=done.size?`تقدمك ${p}% · كمّل من وين وقفت ←`:'ابدأ المسار ←';$('#trophy').hidden=done.size<L.length}
-function list(){$('#list').innerHTML=U.map((u,k)=>`<h4>${u}</h4><div class="u">`+L.map((x,i)=>x.u===k?`<button type="button" data-i="${i}" class="${i===cur?'cur':''} ${done.has(i)?'ok':''}"><span class="n">${done.has(i)?'✓':i+1}</span>${x.t}</button>`:'').join('')+'</div>').join('')}
+function prog(){const P=['','C','J'];let all=false;[0,1,2].forEach(t=>{const q=ids(t),n=q.filter(j=>done.has(j)).length,p=Math.round(n/q.length*100),k=P[t];
+ $('#pb'+k).style.width=p+'%';$('#pt'+k).textContent=n?`تقدمك ${p}% · كمّل من وين وقفت ←`:'ابدأ المسار ←';if(n===q.length)all=true;if(t===T)$('#tb').style.width=p+'%'});
+ $('#cnt').textContent=ids(0).length+' دروس';$('#trophy').hidden=!all}
+function list(){$('#list').innerHTML=U.map((u,k)=>tr(k)===T?`<h4>${u}</h4><div class="u">`+L.map((x,i)=>x.u===k?`<button type="button" data-i="${i}" class="${i===cur?'cur':''} ${done.has(i)?'ok':''}"><span class="n">${done.has(i)?'✓':ids(T).indexOf(i)+1}</span>${x.t}</button>`:'').join('')+'</div>':'').join('')}
 function run(){$('#prev').srcdoc=$('#code').value}
 function show(i){cur=i;const x=L[i];location.hash='lesson-'+(i+1);
- $('#crumb').textContent=`${U[x.u]} · الدرس ${i+1} من ${L.length}`;$('#ttl').textContent=x.t;$('#body').innerHTML=x.b;$('#task').innerHTML=x.task;
+ T=tr(x.u);$('#sh').textContent=TN[T];$('#prev').setAttribute('sandbox',T===2?'allow-scripts':'');$('#crumb').textContent=`${U[x.u]} · الدرس ${ids(T).indexOf(i)+1} من ${ids(T).length}`;$('#ttl').textContent=x.t;$('#body').innerHTML=x.b;$('#task').innerHTML=x.task;
  $('#code').value=x.start;$('#msg').textContent='';run();list();prog();
- $('#prevL').disabled=i===0;$('#nextL').disabled=i+1>=L.length;$('#nextL').classList.toggle('hot',done.has(i)&&i+1<L.length);
+ $('#prevL').disabled=!nx(i-1);$('#nextL').disabled=!nx(i+1);$('#nextL').classList.toggle('hot',done.has(i)&&nx(i+1));
  $('#home').hidden=true;$('#les').hidden=false;window.scrollTo(0,0);document.title=x.t+' — أكاديمية Abd Code'}
 function home(){$('#les').hidden=true;$('#home').hidden=false;history.replaceState(null,'',location.pathname);document.title='أكاديمية Abd Code — تعلّم HTML وCSS وJavaScript مجاناً بالعربي';prog();window.scrollTo(0,0)}
 function burst(){for(let i=0;i<26;i++){const s=document.createElement('span');s.className='cf';s.textContent=['🎉','✨','⭐','🔥'][i%4];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.5+'s';document.body.append(s);setTimeout(()=>s.remove(),2500)}}
@@ -233,11 +286,11 @@ $('#sol').onclick=()=>{$('#code').value=L[cur].sol;run();$('#msg').style.color='
 $('#hint').onclick=()=>{$('#msg').style.color='var(--bl)';$('#msg').textContent='💡 '+L[cur].hint};
 $('#chk').onclick=()=>{const d=new DOMParser().parseFromString($('#code').value,'text/html'),m=$('#msg');
  if(L[cur].ok(d)){const first=!done.has(cur);done.add(cur);save();m.style.color='var(--ok)';m.textContent='🎉 أحسنت! حلّك صح';m.classList.remove('pop');void m.offsetWidth;m.classList.add('pop');
-  if(first)burst();list();prog();$('#nextL').classList.toggle('hot',cur+1<L.length)}
+  if(first)burst();list();prog();$('#nextL').classList.toggle('hot',nx(cur+1))}
  else{m.style.color='var(--bad)';m.textContent='❌ مش بعد، جرّب تاني. اضغط "تلميح" إذا بدك مساعدة.'}};
 $('#list').onclick=e=>{const b=e.target.closest('[data-i]');if(b)show(+b.dataset.i)};
 $('#prevL').onclick=()=>show(cur-1);$('#nextL').onclick=()=>show(cur+1);$('#back').onclick=home;
-$('#goHtml').onclick=()=>{let n=0;while(n<L.length-1&&done.has(n))n++;window.beginLearn?window.beginLearn(()=>show(n)):show(n)};
+['goHtml','goCss','goJs'].forEach((id,t)=>{$('#'+id).onclick=()=>{const q=ids(t);let n=q.find(j=>!done.has(j));if(n===undefined)n=q[0];window.beginLearn?window.beginLearn(()=>show(n)):show(n)}});
 const h=/lesson-(\d+)/.exec(location.hash);prog();if(h&&L[+h[1]-1])show(+h[1]-1);
 </script>
 <!-- ===== الإحصائيات ===== -->

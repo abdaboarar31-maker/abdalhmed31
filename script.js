@@ -18,9 +18,9 @@ const HOME_COUNT = 3;
 
 const PATH = [
   { t: 'HTML', d: 'هيكل الصفحة والوسوم الأساسية', ok: true },
-  { t: 'CSS', d: 'الألوان والتنسيق والتصميم', ok: false },
-  { t: 'JavaScript', d: 'التفاعل والحركة', ok: false },
-  { t: 'انشر موقعك', d: 'ارفعه على الإنترنت مجاناً', ok: false }
+  { t: 'CSS', d: 'الألوان والتنسيق والتصميم', ok: true },
+  { t: 'JavaScript', d: 'التفاعل والحركة', ok: true },
+  { t: 'انشر موقعك', d: 'ارفعه على الإنترنت مجاناً', ok: true }
 ];
 
 const QUIZ = [
