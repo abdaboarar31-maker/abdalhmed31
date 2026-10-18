@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- ملف الصفحة الرئيسية لمتجرنا: كل شي بيشوفو الزائر -->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <!-- يخلي الموقع يتجاوب مع شاشة الجوال -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>متجر تك | أفضل الإلكترونيات</title>
+  <!-- ربط ملف التصميم (CSS) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- الترويسة: اسم المتجر وقائمة التنقل -->
+  <header>
+    <h1>🛒 متجر تك</h1>
+    <nav>
+      <a href="#products">المنتجات</a>
+      <a href="#about">من نحن</a>
+      <a href="#contact">تواصل</a>
+      <button id="mode">🌙</button>
+      <span class="cart">🛍️ <b id="count">0</b></span>
+    </nav>
+  </header>
+
+  <!-- القسم الرئيسي الكبير بأول الصفحة -->
+  <div class="hero">
+    <h2>أفضل الإلكترونيات بأسعار مميزة</h2>
+    <p>شحن سريع وضمان على كل المنتجات</p>
+    <a href="#products" class="btn">تسوّق الآن</a>
+  </div>
+
+  <!-- قسم المنتجات: كل منتج بطاقة -->
+  <section id="products">
+    <h2>منتجاتنا</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images/headphones.jpg" alt="سماعة لاسلكية">
+        <h3>سماعة لاسلكية</h3>
+        <p class="price">$49</p>
+        <button class="add">أضف للسلة</button>
+      </div>
+      <div class="card">
+        <img src="images/watch.jpg" alt="ساعة ذكية">
+        <h3>ساعة ذكية</h3>
+        <p class="price">$89</p>
+        <button class="add">أضف للسلة</button>
+      </div>
+      <div class="card">
+        <img src="images/bag.jpg" alt="حقيبة ظهر">
+        <h3>حقيبة ظهر</h3>
+        <p class="price">$35</p>
+        <button class="add">أضف للسلة</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم من نحن -->
+  <section id="about">
+    <h2>من نحن</h2>
+    <p>متجر تك متجر إلكتروني متخصص بأحدث الأجهزة والإكسسوارات، بنوصّل لباب بيتك بأسرع وقت.</p>
+  </section>
+
+  <!-- قسم التواصل: نموذج رسالة -->
+  <section id="contact">
+    <h2>تواصل معنا</h2>
+    <form>
+      <input type="text" placeholder="اسمك" required>
+      <textarea placeholder="رسالتك" required></textarea>
+      <button>إرسال</button>
+      <p id="msg"></p>
+    </form>
+  </section>
+
+  <!-- التذييل -->
+  <footer>
+    <p>© 2026 متجر تك - كل الحقوق محفوظة</p>
+  </footer>
+
+  <!-- ربط ملف الجافاسكربت (التفاعل) -->
+  <script src="script.js"></script>
+</body>
+</html>
