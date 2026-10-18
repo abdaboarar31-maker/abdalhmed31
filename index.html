@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=5">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="fancy.css?v=3">
 <style>
 .lg{position:relative}
 .lg-menu{position:absolute;top:calc(100% + 8px);inset-inline-end:0;min-width:130px;background:#1e293b;border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:6px;z-index:60;box-shadow:0 10px 30px rgba(0,0,0,.4)}
@@ -101,6 +102,27 @@
     </div>
   </div>
 
+  <section id="how" class="wrap block narrow">
+    <h2 class="sec" data-i18n="how_t">كيف تبدأ؟</h2>
+    <p class="muted mb" data-i18n="how_s">ثلاث خطوات بس وبتصير جاهز.</p>
+    <div class="hs" id="hs">
+      <div class="hs-fill" id="hsFill"></div>
+      <div class="hs-i"><b>1</b><div><h3 data-i18n="how1_t">شاهد الدرس</h3><p data-i18n="how1_d">فيديو مرتب بيشرح الفكرة من الصفر وبدون تعقيد.</p></div></div>
+      <div class="hs-i"><b>2</b><div><h3 data-i18n="how2_t">حمّل الكود وجرّب</h3><p data-i18n="how2_d">تحت كل فيديو زر تحميل، وعدّل على الكود وشوف النتيجة فوراً.</p></div></div>
+      <div class="hs-i"><b>3</b><div><h3 data-i18n="how3_t">ابنِ موقعك</h3><p data-i18n="how3_d">خذ تصميم جاهز أو مشروع من المتجر وطوّره على ذوقك.</p></div></div>
+    </div>
+  </section>
+
+  <section id="why" class="wrap block">
+    <h2 class="sec" data-i18n="why_t">ليش Abd Code؟</h2>
+    <div class="why">
+      <a class="wc" href="#videos"><i>🆓</i><h3 data-i18n="why1_t">مجاني</h3><p data-i18n="why1_d">الشروحات والتجارب الحيّة مجانية للجميع.</p></a>
+      <a class="wc" href="#videos"><i>💬</i><h3 data-i18n="why2_t">بالعربي وبسيط</h3><p data-i18n="why2_d">شرح خطوة بخطوة بلغة قريبة منك.</p></a>
+      <a class="wc" href="codes.html"><i>📦</i><h3 data-i18n="why3_t">أكواد جاهزة</h3><p data-i18n="why3_d">حمّل ملفات الكود وجرّبها بنفسك.</p></a>
+      <a class="wc" href="#playground"><i>⚡</i><h3 data-i18n="why4_t">جرّب مباشرة</h3><p data-i18n="why4_d">محرر حي بالموقع بدون ما تحمّل أي برنامج.</p></a>
+    </div>
+  </section>
+
   <section id="videos" class="wrap block">
     <h2 class="sec" data-i18n="sec_videos">الفيديوهات</h2>
     <div id="vgrid" class="grid"></div>
@@ -159,16 +181,35 @@
     </div>
   </section>
 
-  <section id="contact" class="wrap block narrow">
+  <section id="faq" class="wrap block narrow">
+    <h2 class="sec" data-i18n="faq_t">أسئلة شائعة</h2>
+    <details class="fq"><summary data-i18n="fq1_q">هل الشروحات مجانية؟</summary><p data-i18n="fq1_a">أيوه، الشروحات والتجارب الحيّة مجانية. وفي بالمتجر مشاريع وقوالب مدفوعة اختيارية.</p></details>
+    <details class="fq"><summary data-i18n="fq2_q">شو بحتاج حتى أبدأ؟</summary><p data-i18n="fq2_a">جهاز وإنترنت بس. تقدر تجرب الكود مباشرة من قسم «جرّب بنفسك» بدون ما تحمّل أي برنامج.</p></details>
+    <details class="fq"><summary data-i18n="fq3_q">وين ألاقي ملفات الكود؟</summary><p data-i18n="fq3_a">تحت كل فيديو في زر تحميل، وكمان بصفحة «أكواد جاهزة».</p></details>
+    <details class="fq"><summary data-i18n="fq4_q">كيف أتواصل معك؟</summary><p data-i18n="fq4_a">من نموذج التواصل بأسفل الصفحة، ورسالتك بتوصلني مباشرة على إيميلي.</p></details>
+  </section>
+
+  <section id="contact" class="wrap block">
     <h2 class="sec" data-i18n="sec_contact">تواصل معي</h2>
-    <form id="cform" class="panel cform" novalidate>
-      <label><span data-i18n="lbl_name">اسمك</span><input id="cname" autocomplete="name"></label>
-      <label><span data-i18n="lbl_msg">رسالتك</span><textarea id="cmsg" rows="4"></textarea></label>
-      <div class="actions">
-        <button class="btn" type="submit" data-i18n="send">إرسال</button>
-        <a class="btn ghost" data-channel data-i18n="ytbtn" href="#contact">▶ قناتي على يوتيوب</a>
+    <div class="contact-grid">
+      <div class="ct-side">
+        <h3 data-i18n="ct_h">خلّينا نحكي 👋</h3>
+        <p data-i18n="ct_p">عندك سؤال أو فكرة؟ اكتب رسالتك وبوصلني مباشرة.</p>
+        <ul class="ct-l">
+          <li><i>🎬</i><span data-i18n="ct_1">اقتراح فيديو جديد</span></li>
+          <li><i>🛒</i><span data-i18n="ct_2">سؤال عن منتج بالمتجر</span></li>
+          <li><i>🐞</i><span data-i18n="ct_3">مشكلة بالكود</span></li>
+        </ul>
       </div>
-    </form>
+      <form id="cform" class="panel cform" novalidate>
+        <label><span data-i18n="lbl_name">اسمك</span><input id="cname" autocomplete="name"></label>
+        <label><span data-i18n="lbl_msg">رسالتك</span><textarea id="cmsg" rows="4"></textarea></label>
+        <div class="actions">
+          <button class="btn" type="submit" data-i18n="send">إرسال</button>
+          <a class="btn ghost" data-channel data-i18n="ytbtn" href="#contact">▶ قناتي على يوتيوب</a>
+        </div>
+      </form>
+    </div>
   </section>
 </main>
 
@@ -202,6 +243,7 @@
 <script src="config.js"></script>
 <script src="yt-auto.js"></script>
 <script src="videos-data.js"></script>
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
+<script src="fx.js?v=3" defer></script>
 </body>
 </html>

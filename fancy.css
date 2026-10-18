@@ -1,0 +1,228 @@
+/* ===== fancy.css — طبقة تصميم فخمة فوق style.css (ما بتغيّر أي وظيفة) ===== */
+:root{--fx-ease:cubic-bezier(.22,.8,.2,1)}
+
+/* ---- الخلفية: شفق + شبكة + حبيبات + ضوء المؤشر + شريط التقدم ---- */
+.fx-bg{position:fixed;inset:-20vh 0;z-index:-1;overflow:hidden;pointer-events:none}
+.fx-bg i{position:absolute;border-radius:50%;filter:blur(110px);opacity:.36;animation:fxfl 20s ease-in-out infinite}
+.fx-bg .b1{width:560px;height:560px;background:#ff5a1f;top:-200px;inset-inline-end:-140px}
+.fx-bg .b2{width:480px;height:480px;background:#8b5cf6;top:34%;inset-inline-start:-180px;animation-delay:-7s;opacity:.24}
+.fx-bg .b3{width:520px;height:520px;background:#2563ff;bottom:-240px;inset-inline-end:18%;animation-delay:-12s;opacity:.2}
+@keyframes fxfl{50%{transform:translate(50px,-40px) scale(1.12)}}
+.fx-grid{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.28;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;-webkit-mask:radial-gradient(70% 60% at 50% 15%,#000,transparent);mask:radial-gradient(70% 60% at 50% 15%,#000,transparent)}
+.fx-grain{position:fixed;inset:0;z-index:45;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.fx-spot{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;z-index:-1;pointer-events:none;background:radial-gradient(circle,rgba(255,130,60,.15),transparent 65%);will-change:transform}
+.fx-prog{position:fixed;top:0;inset-inline-start:0;height:3px;width:0;z-index:70;background:linear-gradient(90deg,#ffc23c,#ff6a2b,#ec4899);box-shadow:0 0 12px var(--accent)}
+:root[data-theme="light"] .fx-bg i{opacity:.2}
+:root[data-theme="light"] .fx-grain{opacity:.03}
+:root[data-theme="light"] .fx-spot{background:radial-gradient(circle,rgba(255,130,60,.1),transparent 65%)}
+
+/* ---- الهيدر ---- */
+.top{backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);transition:background-position 1.4s ease,box-shadow .3s}
+.top.fx-s{box-shadow:0 16px 44px rgba(0,0,0,.42)}
+
+/* ---- الهيرو ---- */
+.hero{position:relative;overflow:hidden}
+@keyframes fxup{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+.hero .badge{position:relative;overflow:hidden;backdrop-filter:blur(8px);animation:fxup .8s var(--fx-ease) backwards}
+.hero .badge::after{content:"";position:absolute;top:0;bottom:0;width:40px;left:-80px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:fxsh 4s 1.5s infinite}
+@keyframes fxsh{0%{left:-80px}45%,100%{left:130%}}
+.hero h1{letter-spacing:-.5px;animation:fxup 1s .1s var(--fx-ease) backwards}
+.grad{background:linear-gradient(110deg,#ffc23c,#ff6a2b 35%,#ec4899 65%,#ffc23c);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:fxgs 6s linear infinite}
+@keyframes fxgs{to{background-position:200% center}}
+.hero .lead{animation:fxup .9s .3s var(--fx-ease) backwards}
+.hero .actions{animation:fxup .9s .5s var(--fx-ease) backwards}
+.yt-btn{position:relative;overflow:hidden}
+.yt-btn::before{content:"";position:absolute;top:0;bottom:0;width:60px;left:-90px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:fxsh 3.4s 2s infinite}
+
+/* منصة النافذة: قوس نور + ميلان 3D + شارات عايمة */
+.fx-stage{position:relative;perspective:1200px;padding-top:34px;animation:fxrise 1.3s .3s var(--fx-ease) backwards}
+@keyframes fxrise{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
+.fx-arc{position:absolute;left:50%;top:0;width:128%;height:78%;transform:translateX(-50%);border-radius:50%;border-top:3px solid var(--accent);box-shadow:0 -12px 70px 6px rgba(255,106,43,.55),inset 0 24px 90px rgba(255,106,43,.22);pointer-events:none;animation:fxgl 4s ease-in-out infinite}
+@keyframes fxgl{50%{box-shadow:0 -18px 100px 12px rgba(255,160,70,.75),inset 0 24px 110px rgba(255,106,43,.34)}}
+.fx-stage .win{position:relative;z-index:1;transition:transform .15s ease-out;border-color:rgba(255,255,255,.16);box-shadow:0 30px 80px rgba(255,106,43,.22),0 30px 60px rgba(0,0,0,.4)}
+.fx-chip{position:absolute;z-index:2;direction:ltr;padding:8px 15px;border-radius:14px;font:800 .85rem ui-monospace,Consolas,monospace;background:rgba(14,18,40,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);box-shadow:0 14px 40px -10px rgba(0,0,0,.7);animation:fxbob 5s ease-in-out infinite}
+.fx-chip.h{top:6px;left:2%;color:#ff8a4d}
+.fx-chip.c{top:38%;right:-2%;color:#5cb8ff;animation-delay:-2s}
+.fx-chip.j{bottom:16%;left:-2%;color:#ffd84d;animation-delay:-3.5s}
+@keyframes fxbob{50%{transform:translateY(-14px)}}
+@media(max-width:700px){.fx-chip{display:none}.fx-arc{width:150%}}
+
+/* شريط التقنيات */
+.fx-mq{overflow:hidden;direction:ltr;padding:20px 0;border-block:1px solid var(--line);background:color-mix(in srgb,var(--bg2) 55%,transparent)}
+.fx-mq div{display:flex;gap:56px;width:max-content;animation:fxmv 30s linear infinite;font-weight:800;font-size:1.05rem;letter-spacing:3px;color:var(--muted);opacity:.7}
+.fx-mq span:nth-child(3n+1){color:var(--accent);opacity:.9}
+@keyframes fxmv{to{transform:translateX(-50%)}}
+
+/* ---- الأرقام ---- */
+.num{transition:transform .4s var(--fx-ease)}
+.num:hover{transform:translateY(-6px) scale(1.04)}
+.num b{filter:drop-shadow(0 0 26px rgba(255,106,43,.35))}
+
+/* ---- العناوين ---- */
+.sec{position:relative;display:inline-block;margin-bottom:34px;letter-spacing:-.3px}
+.sec::after{content:"";position:absolute;bottom:-10px;inset-inline-start:0;width:56%;height:4px;border-radius:4px;background:linear-gradient(90deg,#ffc23c,var(--accent),#ec4899);box-shadow:0 0 14px rgba(255,106,43,.6)}
+
+/* ---- الأزرار: لمعة عند اللمس ---- */
+.btn{position:relative;overflow:hidden}
+.btn:not(.ghost):not(.off)::after{content:"";position:absolute;top:0;bottom:0;width:46px;left:-80px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:not(.ghost):not(.off):hover::after{left:130%}
+
+/* ---- كروت الفيديو والألواح ---- */
+.vcard,.panel,.pane,.step,.wc{background:color-mix(in srgb,var(--card) 74%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.vcard{position:relative;transform-style:preserve-3d;will-change:transform;transition:transform .14s ease-out,box-shadow .3s,border-color .3s}
+.vcard:not(.soon):hover{border-color:rgba(255,106,43,.55);box-shadow:0 24px 50px rgba(0,0,0,.35),0 0 40px -10px rgba(255,106,43,.5)}
+.vcard::after,.panel::after,.step::after,.wc::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),rgba(255,106,43,.17),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.vcard:hover::after,.panel:hover::after,.step:hover::after,.wc:hover::after{opacity:1}
+.panel,.step,.wc{position:relative;overflow:hidden}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.22),transparent 60%);transform:translateX(130%);transition:transform .8s}
+.vcard:hover .thumb::after{transform:translateX(-130%)}
+.play-b{box-shadow:0 0 0 0 rgba(255,106,43,.6);animation:fxrg 2.2s infinite}
+@keyframes fxrg{70%{box-shadow:0 0 0 20px rgba(255,106,43,0)}100%{box-shadow:0 0 0 0 rgba(255,106,43,0)}}
+.step.done{box-shadow:0 0 34px -10px rgba(255,106,43,.55)}
+
+/* ---- التواصل الاجتماعي (وإصلاح الوضع الفاتح) ---- */
+.social-title{color:var(--text)}
+.social-subtitle{color:var(--muted)}
+.social-icon{border:1px solid rgba(255,255,255,.12)}
+
+/* ---- شريط "فيديو جديد" ---- */
+.newbar{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;width:min(1180px,calc(100% - 24px));margin:12px auto 0;padding:10px 18px;border-radius:16px;background:linear-gradient(110deg,rgba(255,106,43,.28),rgba(236,72,153,.26));border:1px solid rgba(255,106,43,.5);backdrop-filter:blur(12px);animation:fxup .6s var(--fx-ease) both}
+.nb-x{background:none;border:0;cursor:pointer;color:var(--text);font-size:1rem;margin-inline-start:auto}
+
+/* ---- الفوتر ---- */
+
+/* ---- ظهور الأقسام عند التمرير ---- */
+.fx-rv{opacity:0;transform:translateY(46px);transition:opacity .9s var(--fx-ease),transform .9s var(--fx-ease)}
+.fx-rv.fx-on{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){.fx-bg i,.fx-arc,.fx-chip,.fx-mq div,.grad,.play-b,.hero .badge::after,.yt-btn::before{animation:none!important}.fx-stage,.hero h1,.hero .lead,.hero .actions,.hero .badge{animation:none!important}.fx-rv{opacity:1;transform:none}}
+
+
+/* =====================  حركات إضافية  ===================== */
+
+/* حد دوّار متوهج حول نافذة الكود */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes fxspin{to{--ang:360deg}}
+.fx-stage .win{border:2px solid transparent;background:linear-gradient(#0b0919,#0b0919) padding-box,conic-gradient(from var(--ang),transparent 0 52%,#ffc23c,#ff6a2b,#ec4899,transparent) border-box;animation:fxspin 6s linear infinite}
+
+/* رموز برمجة بتطلع وتطير بخلفية الهيرو */
+.hero>.wrap{position:relative;z-index:1}
+.fx-sym{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.fx-sym span{position:absolute;bottom:-50px;font:800 var(--s,20px) ui-monospace,Consolas,monospace;color:var(--accent);opacity:0;direction:ltr;animation:fxrf var(--d,12s) linear infinite;animation-delay:var(--dl,0s)}
+@keyframes fxrf{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.34}85%{opacity:.2}100%{transform:translateY(-950px) rotate(45deg);opacity:0}}
+
+/* ظهور العناصر بالتتابع داخل كل قسم */
+.fx-on .grid>.vcard,.fx-on .path>.step,.fx-on .nums>.num{animation:fxup .85s var(--fx-ease) backwards;animation-delay:calc(var(--i,0)*.13s)}
+.fx-on .grid>*:nth-child(1),.fx-on .path>*:nth-child(1),.fx-on .nums>*:nth-child(1){--i:0}
+.fx-on .grid>*:nth-child(2),.fx-on .path>*:nth-child(2),.fx-on .nums>*:nth-child(2){--i:1}
+.fx-on .grid>*:nth-child(3),.fx-on .path>*:nth-child(3),.fx-on .nums>*:nth-child(3){--i:2}
+.fx-on .grid>*:nth-child(4),.fx-on .path>*:nth-child(4),.fx-on .nums>*:nth-child(4){--i:3}
+.fx-on .grid>*:nth-child(n+5){--i:4}
+
+/* خط العنوان بينرسم لحاله */
+.fx-rv .sec::after{transform:scaleX(0);transform-origin:100% 50%;transition:transform .9s .35s var(--fx-ease)}
+:root[dir="ltr"] .fx-rv .sec::after{transform-origin:0 50%}
+.fx-rv.fx-on .sec::after{transform:none}
+
+/* روابط القائمة: خط بينزلق */
+.nav a{position:relative}
+.nav a::after{content:"";position:absolute;bottom:2px;inset-inline:14px;height:2px;border-radius:2px;background:linear-gradient(90deg,#ffc23c,var(--accent),#ec4899);transform:scaleX(0);transition:transform .3s var(--fx-ease)}
+.nav a:hover::after{transform:scaleX(1)}
+
+/* شريط التقنيات بيوقف لما تلمسه */
+.fx-mq:hover div{animation-play-state:paused}
+
+/* انفجار شرارات عند الضغط */
+.fx-p{position:fixed;left:0;top:0;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:80}
+
+/* زر الرجوع للأعلى مع حلقة تقدم */
+.fx-top{position:fixed;bottom:22px;inset-inline-start:22px;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 80%,transparent);backdrop-filter:blur(12px);color:var(--text);cursor:pointer;z-index:55;display:grid;place-items:center;font-size:1.1rem;opacity:0;transform:translateY(20px) scale(.8);pointer-events:none;transition:opacity .3s,transform .3s var(--fx-ease)}
+.fx-top.show{opacity:1;transform:none;pointer-events:auto}
+.fx-top:hover{box-shadow:0 0 26px rgba(255,106,43,.55)}
+.fx-top svg{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);transform:rotate(-90deg)}
+.fx-top circle{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-dasharray:151;stroke-dashoffset:151}
+
+@media(prefers-reduced-motion:reduce){.fx-sym span,.fx-stage .win{animation:none!important}.fx-on .grid>.vcard,.fx-on .path>.step,.fx-on .nums>.num{animation:none!important}.fx-rv .sec::after{transform:none}.fx-top{transition:none}}
+
+
+/* =====================  الجولة الثالثة  ===================== */
+
+/* ---- لون خلفية مختلف شوي: بنفسجي عميق بدل الأزرق الغامق ---- */
+:root{--bg:#0d0b1f;--bg2:#15122e;--card:#1b1840;--line:#2f2a63}
+.fx-bg .b2{background:#7c3aed}
+.fx-bg .b3{background:#5b3cff}
+
+/* ---- منع تحديد ونسخ الكلام (ما عدا الحقول والمحرر وبيانات الدفع) ---- */
+body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,[contenteditable],.pay,.pay *{-webkit-user-select:text;user-select:text}
+img,a{-webkit-user-drag:none}
+
+/* ---- الفوتر: بدون حدود ---- */
+footer{border-top:0}
+.credit{border-top:0;padding-top:0;margin-top:10px}
+
+/* ---- كيف تبدأ؟ ---- */
+.hs{position:relative;padding-inline-start:76px;margin-top:34px}
+.hs::before,.hs-fill{content:"";position:absolute;inset-inline-start:23px;top:12px;bottom:12px;width:3px;border-radius:3px;background:var(--line)}
+.hs-fill{background:linear-gradient(#ffc23c,var(--accent),#ec4899);box-shadow:0 0 14px var(--accent);bottom:auto;height:0}
+.hs-i{position:relative;margin-bottom:46px}
+.hs-i:last-child{margin-bottom:0}
+.hs-i>b{position:absolute;inset-inline-start:-76px;top:-4px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--bg2);border:2px solid var(--line);transition:border-color .5s,box-shadow .5s,color .5s}
+.hs-i.on>b{border-color:var(--accent);box-shadow:0 0 26px var(--accent);color:#ffc23c}
+.hs-i h3{font-size:1.3rem}
+.hs-i p{color:var(--muted)}
+
+/* ---- ليش Abd Code؟ ---- */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.wc{display:block;padding:26px;border-radius:24px;border:1px solid var(--line);transition:transform .3s var(--fx-ease),border-color .3s}
+.wc:hover{transform:translateY(-8px);border-color:rgba(255,106,43,.55)}
+.wc i{display:grid;place-items:center;width:54px;height:54px;border-radius:16px;font-style:normal;font-size:1.6rem;margin-bottom:14px;background:linear-gradient(135deg,rgba(255,106,43,.25),rgba(236,72,153,.2))}
+.wc h3{font-size:1.15rem;margin-bottom:4px}
+.wc p{color:var(--muted);font-size:.95rem}
+.fx-on .why>.wc{animation:fxup .85s var(--fx-ease) backwards}
+.fx-on .why>.wc:nth-child(2){animation-delay:.12s}.fx-on .why>.wc:nth-child(3){animation-delay:.24s}.fx-on .why>.wc:nth-child(4){animation-delay:.36s}
+@media(max-width:900px){.why{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.why{grid-template-columns:1fr}}
+
+/* ---- الأسئلة الشائعة ---- */
+.fq{border:1px solid var(--line);border-radius:18px;margin-bottom:12px;background:color-mix(in srgb,var(--card) 70%,transparent);backdrop-filter:blur(12px);transition:border-color .3s,box-shadow .3s}
+.fq summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary::after{content:"+";flex:none;font-size:1.6rem;line-height:1;color:var(--accent);transition:transform .35s var(--fx-ease)}
+.fq[open]{border-color:rgba(255,106,43,.5);box-shadow:0 0 30px -12px rgba(255,106,43,.6)}
+.fq[open] summary::after{transform:rotate(45deg)}
+.fq p{padding:0 22px 20px;color:var(--muted);animation:fxup .4s var(--fx-ease) backwards}
+
+/* ---- تواصل معي ---- */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:20px;align-items:stretch}
+.ct-side{position:relative;overflow:hidden;padding:34px;border-radius:26px;border:1px solid var(--line);background:radial-gradient(90% 70% at 0% 0%,rgba(255,106,43,.32),transparent 70%),radial-gradient(80% 70% at 100% 100%,rgba(139,92,246,.3),transparent 70%),var(--card)}
+.ct-side h3{font-size:1.7rem;margin-bottom:8px}
+.ct-side p{color:var(--muted);margin-bottom:22px}
+.ct-l{list-style:none;display:grid;gap:12px}
+.ct-l li{display:flex;align-items:center;gap:12px;font-weight:600}
+.ct-l i{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;font-style:normal;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14)}
+.cform{padding:32px;background:var(--card);border:1px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,conic-gradient(from var(--ang),transparent 0 68%,var(--accent),#ec4899,transparent) border-box;animation:fxspin 8s linear infinite;border-radius:26px}
+.cform label span{font-weight:700;font-size:.95rem}
+.cform input,.cform textarea{background:color-mix(in srgb,var(--bg) 70%,transparent);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;transition:border-color .25s,box-shadow .25s,background .25s}
+.cform input:focus,.cform textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,106,43,.18);background:var(--bg)}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr}.ct-side,.cform{padding:24px}}
+
+/* ---- قوالب الفيديوهات: شكل جديد ---- */
+.grid{gap:26px;counter-reset:vc}
+.vcard{padding:10px;border-radius:26px;counter-increment:vc}
+.vcard .thumb{border-radius:18px}
+.vcard .thumb img{transition:transform .9s var(--fx-ease)}
+.vcard:hover .thumb img{transform:scale(1.09)}
+.vcard .thumb::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(6,5,20,.82),rgba(6,5,20,.05) 60%)}
+.vcard .thumb::after{z-index:2}
+.vcard:not(.st)::before{content:counter(vc,decimal-leading-zero);position:absolute;top:22px;inset-inline-start:22px;z-index:5;font:800 .85rem ui-monospace,Consolas,monospace;letter-spacing:1px;padding:2px 12px;border-radius:999px;color:#fff;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+.vcard .play-b{z-index:3;width:66px;height:66px;font-size:1.3rem;color:#fff;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.55);backdrop-filter:blur(8px)}
+.vcard:hover .play-b{background:var(--accent);border-color:var(--accent);color:#1b0d04}
+.vcard .thumb em{z-index:3;inset-inline-end:auto;inset-inline-start:12px;bottom:12px;color:#fff;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);padding:1px 13px;border-radius:999px}
+.vcard .soon-b{z-index:3}
+.vcard .vinfo{padding:18px 10px 10px}
+.vcard .vinfo h3{font-size:1.1rem;line-height:1.55;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vcard .vinfo p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vcard .btn.dl:not(.off){background:linear-gradient(135deg,var(--accent),#ffb36b);margin-top:14px}
+
+@media(prefers-reduced-motion:reduce){.cform{animation:none}.fx-on .why>.wc{animation:none!important}.fq p{animation:none}}

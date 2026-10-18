@@ -8,6 +8,7 @@
 <link rel="icon" href="logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="fancy.css?v=3">
 </head>
 <body>
 <header class="top">
@@ -159,5 +160,6 @@ $('#lang').innerHTML = Object.keys(T).map(k => `<option value="${k}">${T[k].name
 $('#lang').addEventListener('change', e => applyLang(e.target.value));
 applyLang(LANG);
 </script>
+<script src="fx.js?v=3" defer></script>
 </body>
 </html>
