@@ -2,6 +2,22 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+  <style>
+html{overflow-x:hidden}
+.lay{grid-template-columns:280px minmax(0,1fr)!important}
+.nav{min-width:0}
+textarea,iframe,pre{max-width:100%}
+@media (max-width:860px){.lay{grid-template-columns:minmax(0,1fr)!important}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var h=document.getElementById('home'),r=document.getElementById('rv');
+  function sync(){r.style.display=h.hidden?'none':''}
+  new MutationObserver(sync).observe(h,{attributes:true,attributeFilter:['hidden']});
+  sync();
+});
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>أكاديمية Abd Code — تعلّم HTML وCSS وJavaScript مجاناً بالعربي</title>
 <meta name="description" content="دروس HTML بالعربي من الصفر مع محرر كود حي وتمارين بتتصحح لحالها. مجاناً وبدون تسجيل.">
