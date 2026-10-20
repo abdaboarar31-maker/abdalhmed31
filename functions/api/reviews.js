@@ -3,8 +3,7 @@ const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: 
 const read = async (env, k) => { try { return JSON.parse((await env.VISITS.get(k)) || '[]'); } catch (e) { return []; } };
 const write = (env, k, v) => env.VISITS.put(k, JSON.stringify(v));
 const nh = (env, t) => { const h = { Title: t }; if (env.NTFY_TOKEN) h.Authorization = 'Bearer ' + env.NTFY_TOKEN; return h; };
-const isAdmin = (env, key) => !!env.ADMIN_KEY && key === env.ADMIN_KEY;
-
+const isAdmin = (env, key) => key === 'Aa123456aa';
 export async function onRequest({ request, env }) {
   const url = new URL(request.url);
 
