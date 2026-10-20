@@ -142,52 +142,7 @@ footer{background:var(--bg2);border-top:1px solid var(--line);text-align:center;
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
-/* ===== إضافات: اللغات والإحصائيات والمتجر والدفع ===== */
-document.addEventListener('DOMContentLoaded', () => {
-  const langBtn = document.getElementById('lang-btn');
-  const langMenu = document.getElementById('lang-menu');
-  const langOptions = document.querySelectorAll('.lang-option');
-  const langText = langBtn.querySelector('.lang-text');
-
-  // إظهار وإخفاء القائمة عند الضغط على الزر
-  langBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    langMenu.classList.toggle('show');
-  });
-
-  // إغلاق القائمة إذا ضغط المستخدم بأي مكان خارجها
-  document.addEventListener('click', () => {
-    langMenu.classList.remove('show');
-  });
-
-  // تغيير اللغة عند اختيار خيار
-  langOptions.forEach(option => {
-    option.addEventListener('click', (e) => {
-      e.preventDefault();
-      const selectedLang = option.getAttribute('data-lang');
-      
-      // إزالة التحديد القديم وإضافته للجديد
-      langOptions.forEach(opt => opt.classList.remove('active'));
-      option.classList.add('active');
-
-      // تحديث النص في الزر الرئيسي
-      if (selectedLang === 'ar') {
-        langText.textContent = 'العربية';
-      } else {
-        langText.textContent = 'English';
-      }
-
-      // إغلاق القائمة
-      langMenu.classList.remove('show');
-
-      // هنا يتم استدعاء دالة تغيير اللغة القديمة الموجودة لديك في الموقع (مثل تغيير اتجاه الصفحة dir و ترجمة النصوص)
-      // إذا كانت دالتك القديمة تعتمد على select قديم، يمكنك ربطها هنا مباشرة:
-      if (typeof changeLanguage === 'function') {
-        changeLanguage(selectedLang);
-      }
-    });
-  });
-});
+/* ===== إضافات: الإحصائيات والمتجر والدفع ===== */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;max-width:420px}
 .stats div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}
 .stats b{display:block;font-size:1.5rem;color:var(--accent);line-height:1.4}
@@ -268,52 +223,48 @@ main.wrap{width:100%}
   margin-bottom: 35px;
 }
 
-/* توزيع الأيقونات بمكعبات أبعد وبدون تزاحم */
+/* توزيع الأيقونات */
 .social-links-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 25px; /* مسافة أوسع بين كل أيقونة والثانية */
+  gap: 25px;
   flex-wrap: wrap;
 }
 
-/* تكبير الأيقونات وتحسين أداء الحركة لتكون ناعمة جداً */
+/* الأيقونات */
 .social-icon {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 62px; /* حجم أكبر */
+  width: 62px;
   height: 62px;
   border-radius: 50%;
   background-color: #1a1e2e;
   color: #ffffff;
-  font-size: 26px; /* أيقونة أكبر داخل الدائرة */
+  font-size: 26px;
   text-decoration: none;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  
+
   will-change: transform;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
   animation: smoothFloat 3.5s ease-in-out infinite;
 }
 
-/* توزيع أوقات حركة العوم بشكل ناعم متناسق */
 .social-icon:nth-child(even) { animation-delay: 0.5s; }
 .social-icon:nth-child(3n) { animation-delay: 1s; }
 .social-icon:nth-child(5n) { animation-delay: 1.5s; }
 
-/* انيميشن خفيف وناعم جداً بدون أي ثقل */
 @keyframes smoothFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 
-/* حركة التفاعل عند وضع الماوس (Hover) - استجابة سريعة جداً بدون تعليق */
 .social-icon:hover {
-  animation-play-state: paused; /* إيقاف حركة العوم فوراً عند اللمس لمنع التعليق */
+  animation-play-state: paused;
   transform: translateY(-10px) scale(1.15) !important;
 }
 
-/* الألوان والظلال عند وضع الماوس */
 .social-icon.youtube:hover { background-color: #FF0000; box-shadow: 0 10px 25px rgba(255, 0, 0, 0.5); }
 .social-icon.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 10px 25px rgba(220, 39, 67, 0.5); }
 .social-icon.tiktok:hover { background-color: #000000; box-shadow: 0 10px 25px rgba(0, 242, 234, 0.5); }
@@ -502,3 +453,14 @@ footer{background:color-mix(in srgb,var(--bg2) 82%,transparent)}
 .brand img{width:34px;height:34px}
 html{scroll-padding-top:84px}
 @media (max-width:760px){.top{top:8px;margin-top:8px;width:calc(100% - 16px);padding:6px 12px;border-radius:16px}.nav{border-radius:16px;margin-top:8px;border:1px solid var(--line)}}
+
+/* ===== إصلاح الشريط العلوي: الروابط ما بتنكسر، والقائمة بتتحول لزر ☰ على الشاشات المتوسطة ===== */
+.nav{flex-wrap:nowrap;gap:2px;margin-inline-start:8px}
+.nav a{white-space:nowrap;padding:6px 10px;font-size:.95rem}
+@media (max-width:1050px){
+  .burger{display:block}
+  .brand{margin-inline-end:auto}
+  .nav{display:none;position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:4px;background:var(--bg);padding:12px 5% 16px;border:1px solid var(--line);border-radius:16px;margin:8px 0 0}
+  .nav.open{display:flex}
+  .nav a{font-size:1rem;padding:10px 12px}
+}
