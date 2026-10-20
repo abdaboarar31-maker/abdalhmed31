@@ -1,3 +1,7 @@
+*{box-sizing:border-box}
+body{margin:0;overflow-x:hidden}
+img{max-width:100%}
+
 :root{
   --bg:#0a1128; --bg2:#0f1838; --card:#141f47; --text:#eef1ff; --muted:#9aa6d6; --line:#25326a;
   --accent:#ff6a2b; --blue:#4d8dff; --ok:#22c55e; --bad:#ef4444; --r:18px;
