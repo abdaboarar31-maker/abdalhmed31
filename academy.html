@@ -25,15 +25,16 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:po
 [hidden]{display:none!important}
 
 /* الشريط العلوي */
-.top{position:sticky;top:10px;z-index:30;margin:10px auto 0;width:min(1180px,calc(100% - 24px));display:flex;align-items:center;gap:12px;padding:8px 20px;border-radius:18px;border:1px solid var(--ln);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 20px rgba(0,0,0,.14)}
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:14px;padding:10px 5%;border-bottom:1px solid var(--ln);background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.2rem;direction:ltr;background:linear-gradient(90deg,var(--ac),#ffc23c);-webkit-background-clip:text;background-clip:text;color:transparent;flex:none}
 .brand img{width:32px;height:32px}
-.nav{display:flex;gap:14px;flex:1;justify-content:center}
-.nav a{padding:6px 16px;border-radius:99px;color:var(--mu);white-space:nowrap;font-weight:500}
-.ib{flex:none;background:var(--card);border:1px solid var(--ln);border-radius:12px;min-width:38px;height:38px;padding:0 10px;font-size:.95rem;line-height:1}
+.nav{display:flex;gap:32px;flex:1;justify-content:center}
+.nav a{padding:6px 2px;color:var(--mu);white-space:nowrap;font-weight:500;border-bottom:2px solid transparent;transition:.2s}
+.ib{flex:none;background:transparent;border:1px solid var(--ln);border-radius:50%;width:38px;height:38px;padding:0;font-size:.85rem;font-weight:800;line-height:1}
 .ib:hover{border-color:var(--ac)}
 .burger{display:none}
-.nav a:hover,.nav a.on{background:var(--card);color:var(--tx)}
+.nav a:hover{color:var(--tx)}
+.nav a.on{color:var(--tx);border-bottom-color:var(--ac)}
 
 .wrap{max-width:1100px;margin:0 auto;padding:30px 5% 70px}
 .badge{display:inline-block;padding:4px 16px;border-radius:99px;font-weight:700;font-size:.9rem;background:rgba(255,106,43,.14);border:1px solid rgba(255,106,43,.45);color:var(--ac);margin-bottom:14px}
@@ -84,7 +85,7 @@ h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.25;font-weight:800}
 .topbar{height:6px;background:var(--bg2);border-radius:99px;overflow:hidden;margin-bottom:18px}
 .topbar u{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),#ffc23c);transition:width .6s}
 .lay{display:grid;grid-template-columns:280px minmax(0,1fr);gap:22px;align-items:start}
-.side{background:var(--card);border:1px solid var(--ln);border-radius:20px;padding:16px;position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto}
+.side{background:var(--card);border:1px solid var(--ln);border-radius:20px;padding:16px;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow:auto}
 .side h3{font-size:1.05rem;margin-bottom:6px}
 .side h4{font-size:.8rem;color:var(--mu);margin:12px 4px 4px;font-weight:500}
 .side button{display:flex;align-items:center;gap:10px;width:100%;text-align:start;background:none;border:0;border-radius:10px;padding:7px 10px;color:var(--mu)}
@@ -164,7 +165,7 @@ footer a{color:var(--ac)}
  .hero{grid-template-columns:1fr}
  .lay{grid-template-columns:minmax(0,1fr)}.side{position:static;max-height:none}
  .side .u{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.side h4{display:none}.side button{width:auto;white-space:nowrap;border:1px solid var(--ln)}
- .ed{grid-template-columns:1fr}.top{width:calc(100% - 16px);top:8px;padding:6px 12px;gap:8px}.brand{margin-inline-end:auto}.burger{display:block}.nav{display:none;position:absolute;top:calc(100% + 8px);inset-inline:0;flex-direction:column;gap:4px;background:var(--bg);border:1px solid var(--ln);border-radius:16px;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,.25)}.nav.open{display:flex}.nav a{padding:10px 14px}
+ .ed{grid-template-columns:1fr}.top{padding:8px 4%;gap:8px}.brand{margin-inline-end:auto}.burger{display:block}.nav{display:none;position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--ln);padding:6px 4% 10px;box-shadow:0 14px 24px rgba(0,0,0,.2)}.nav.open{display:flex}.nav a{padding:12px 4px;border-bottom:1px solid var(--ln)}.nav a:last-child{border-bottom:0}.nav a.on{color:var(--ac)}
  .chip{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cw-c div{opacity:1;transform:none}}
@@ -174,7 +175,7 @@ footer a{color:var(--ac)}
 <header class="top">
   <a class="brand" href="index.html"><img src="logo.svg" alt="" width="32" height="32"><span>Abd Code</span></a>
   <nav class="nav" id="nav"><a href="index.html" data-i="n_home">الرئيسية</a><a href="academy.html" class="on" data-i="n_acad">الأكاديمية</a><a href="studio.html" data-i="n_studio">ستوديو الكود</a><a href="codes.html" data-i="n_codes">أكواد جاهزة</a><a href="store.html" data-i="n_store">المتجر</a></nav>
-  <button id="lang" class="ib" type="button" aria-label="Language">🌐 EN</button>
+  <button id="lang" class="ib" type="button" aria-label="Language">EN</button>
   <button id="theme" class="ib" type="button" aria-label="Theme">🌙</button>
   <button id="burger" class="ib burger" type="button" aria-label="Menu">☰</button>
 </header>
@@ -573,7 +574,7 @@ function applyLang(){const d=document.documentElement;d.lang=LG;d.dir=LG==='ar'?
  document.querySelectorAll('[data-i]').forEach(e=>e.textContent=$t(e.dataset.i));
  document.querySelectorAll('[data-ih]').forEach(e=>e.innerHTML=$t(e.dataset.ih).replace('{y}',new Date().getFullYear()));
  document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=$t(e.dataset.ph));
- $('#lang').textContent=LG==='ar'?'🌐 EN':'🌐 ع';
+ $('#lang').textContent=LG==='ar'?'EN':'ع';
  if($('#les').hidden)document.title=$t('title_h');else ui();
  prog()}
 function setTheme(m){document.documentElement.dataset.theme=m;$('#theme').textContent=m==='light'?'☀️':'🌙';try{localStorage.setItem('abd-theme',m)}catch(e){}}
