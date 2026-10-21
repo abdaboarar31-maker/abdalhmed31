@@ -11,27 +11,28 @@
 <meta property="og:title" content="أكاديمية Abd Code — تعلّم البرمجة مجاناً بالعربي">
 <meta property="og:description" content="مسارات مرتبة، كود حي، وتمارين بتتصحح لحالها. بدون تسجيل.">
 <meta property="og:url" content="https://abdcode.pages.dev/academy.html">
+<script>try{var m=localStorage.getItem("abd-theme");if(m)document.documentElement.dataset.theme=m}catch(e){}</script>
 <link rel="icon" href="logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a1128;--bg2:#0f1838;--card:#141f47;--tx:#eef1ff;--mu:#9aa6d6;--ln:#25326a;--ac:#ff6a2b;--bl:#4d8dff;--ok:#22c55e;--bad:#ef4444}
+:root{--bg:#0f1424;--bg2:#151b30;--card:#1a2140;--tx:#eef1ff;--mu:#9ba5cf;--ln:#283054;--ac:#ff6a2b;--bl:#4d8dff;--ok:#22c55e;--bad:#ef4444}
+:root[data-theme="light"]{--bg:#f4f6fc;--bg2:#e9edf8;--card:#ffffff;--tx:#12183a;--mu:#5a6593;--ln:#d9dfef}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{background:var(--bg);color:var(--tx);font-family:'Tajawal',Tahoma,sans-serif;line-height:1.8;min-height:100vh;
-background-image:radial-gradient(40% 50% at 20% 20%,rgba(255,106,43,.12),transparent 70%),radial-gradient(45% 55% at 80% 30%,rgba(77,141,255,.12),transparent 70%),radial-gradient(50% 60% at 50% 85%,rgba(139,92,246,.11),transparent 70%);background-size:140% 140%;background-attachment:fixed;background-repeat:no-repeat;animation:wv 30s ease-in-out infinite alternate}
-@keyframes wv{0%{background-position:0 0,100% 0,50% 100%}100%{background-position:100% 100%,0 100%,60% 0}}
+body{background:var(--bg);color:var(--tx);font-family:'Tajawal',Tahoma,sans-serif;line-height:1.8;min-height:100vh;transition:background .3s,color .3s}
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 [hidden]{display:none!important}
 
 /* الشريط العلوي */
-.top{position:sticky;top:10px;z-index:30;margin:10px auto 0;width:min(1180px,calc(100% - 24px));display:flex;align-items:center;gap:10px;padding:6px 18px;border-radius:20px;border:1px solid var(--ln);background:linear-gradient(110deg,rgba(255,106,43,.30),rgba(139,92,246,.30),rgba(77,141,255,.30)) 0 0/300% 100%,rgba(10,17,40,.8);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.28);transition:background-position 1.4s}
-.top:hover{background-position:100% 0,0 0}
+.top{position:sticky;top:10px;z-index:30;margin:10px auto 0;width:min(1180px,calc(100% - 24px));display:flex;align-items:center;gap:12px;padding:8px 20px;border-radius:18px;border:1px solid var(--ln);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 20px rgba(0,0,0,.14)}
 .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:1.2rem;direction:ltr;background:linear-gradient(90deg,var(--ac),#ffc23c);-webkit-background-clip:text;background-clip:text;color:transparent;flex:none}
 .brand img{width:32px;height:32px}
-.nav{display:flex;gap:4px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
-.nav::-webkit-scrollbar{display:none}
-.nav a{padding:5px 12px;border-radius:99px;color:var(--mu);white-space:nowrap;font-weight:500}
+.nav{display:flex;gap:14px;flex:1;justify-content:center}
+.nav a{padding:6px 16px;border-radius:99px;color:var(--mu);white-space:nowrap;font-weight:500}
+.ib{flex:none;background:var(--card);border:1px solid var(--ln);border-radius:12px;min-width:38px;height:38px;padding:0 10px;font-size:.95rem;line-height:1}
+.ib:hover{border-color:var(--ac)}
+.burger{display:none}
 .nav a:hover,.nav a.on{background:var(--card);color:var(--tx)}
 
 .wrap{max-width:1100px;margin:0 auto;padding:30px 5% 70px}
@@ -45,7 +46,7 @@ h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.25;font-weight:800}
 .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;padding:20px 0 40px}
 .hbtns{display:flex;gap:12px;flex-wrap:wrap}
 .hv{position:relative;padding:20px 0}
-.cw{direction:ltr;background:#0b1020;border:1px solid #27345f;border-radius:18px;box-shadow:0 30px 70px rgba(255,106,43,.22),0 20px 50px rgba(0,0,0,.4);overflow:hidden;animation:fl 6s ease-in-out infinite}
+.cw{direction:ltr;background:#0b1020;border:1px solid #27345f;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.28);overflow:hidden;animation:fl 6s ease-in-out infinite}
 @keyframes fl{50%{transform:translateY(-10px)}}
 .cw-b{display:flex;align-items:center;gap:7px;padding:10px 14px;border-bottom:1px solid #27345f;color:#8793c8;font-size:.8rem}
 .cw-b i{width:11px;height:11px;border-radius:50%;background:#ff5f57}.cw-b i:nth-child(2){background:#febc2e}.cw-b i:nth-child(3){background:#28c840}
@@ -66,7 +67,7 @@ h1{font-size:clamp(2rem,6vw,3.5rem);line-height:1.25;font-weight:800}
 .tk{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--ln);border-radius:22px;padding:24px;text-align:start;display:flex;flex-direction:column;gap:8px}
 .tk::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--c,var(--ac))}
 .tk.on{cursor:pointer;transition:transform .25s,box-shadow .25s;border-color:var(--c,var(--ac))}
-.tk.on:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(0,0,0,.35)}
+.tk.on:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(0,0,0,.18)}
 .tk .ic{font-size:2.2rem}.tk h2{font-size:1.45rem}.tk p{color:var(--mu);font-size:.97rem}
 .meta{display:flex;gap:8px;flex-wrap:wrap;font-size:.82rem}
 .meta i{font-style:normal;background:var(--bg2);border:1px solid var(--ln);border-radius:99px;padding:0 12px}
@@ -103,7 +104,7 @@ pre{direction:ltr;text-align:left;background:#0b1020;color:#cfd8ff;border:1px so
 .qh{color:var(--bl);font-weight:800;margin-bottom:4px}
 .qq{font-weight:800;font-size:1.05rem}
 .qo{display:grid;gap:8px;margin-top:6px}
-.qo button{text-align:start;background:var(--card);border:2px solid var(--ln);border-radius:12px;padding:10px 14px;direction:rtl;transition:.2s}
+.qo button{text-align:start;background:var(--card);border:2px solid var(--ln);border-radius:12px;padding:10px 14px;unicode-bidi:plaintext;transition:.2s}
 .qo button:hover:not(:disabled){border-color:var(--ac)}
 .qo button.ok{border-color:var(--ok);background:rgba(34,197,94,.18)}
 .qo button.bad{border-color:var(--bad);background:rgba(239,68,68,.18);opacity:.7}
@@ -137,17 +138,17 @@ footer a{color:var(--ac)}
 .rs{max-width:960px;margin:40px auto;padding:0 16px;text-align:center}
 .rs h2{margin:0 0 18px;font-size:1.5rem}
 .rs .nums{justify-content:center;margin-bottom:0}
-.rv{max-width:960px;margin:40px auto;padding:0 16px;position:relative;overflow:hidden;color:#eaf2fb}
+.rv{max-width:960px;margin:40px auto;padding:0 16px;position:relative;overflow:hidden;color:var(--tx)}
 .rv h2{text-align:center;margin:0 0 4px}.rv .avg{text-align:center;color:#ffd23a;margin:0 0 18px}
 .rv .list{display:grid;gap:12px;margin-bottom:22px}
-.rv .c{background:#10223a;border:1px solid #22395a;border-right:5px solid #ff7a30;border-radius:14px;padding:14px 16px}
-.rv .c b{color:#ffd23a}.rv .c small{color:#a3b8d0;margin-inline-start:8px}.rv .c p{margin:6px 0 0;line-height:1.8}
-.rv form{background:#10223a;border:1px solid #22395a;border-radius:16px;padding:16px;display:grid;gap:10px}
-.rv input,.rv textarea{font:inherit;background:#081420;color:#eaf2fb;border:1px solid #22395a;border-radius:10px;padding:10px;min-height:0}
+.rv .c{background:var(--card);border:1px solid var(--ln);border-inline-start:5px solid #ff7a30;border-radius:14px;padding:14px 16px}
+.rv .c b{color:#ffd23a}.rv .c small{color:var(--mu);margin-inline-start:8px}.rv .c p{margin:6px 0 0;line-height:1.8}
+.rv form{background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:16px;display:grid;gap:10px}
+.rv input,.rv textarea{font:inherit;background:var(--bg2);color:var(--tx);border:1px solid var(--ln);border-radius:10px;padding:10px;min-height:0}
 .rv .stars{display:flex;gap:6px;font-size:1.8rem;cursor:pointer;direction:ltr;justify-content:flex-end}
-.rv .stars span{color:#3a4f6d}.rv .stars span.on{color:#ffd23a}
+.rv .stars span{color:var(--ln)}.rv .stars span.on{color:#ffd23a}
 .rv button{font:inherit;font-weight:800;border:0;border-radius:99px;padding:10px;background:#ff7a30;color:#fff;cursor:pointer}
-.rv .msg{text-align:center;color:#7fd6ff;min-height:1.4em}
+.rv .msg{text-align:center;color:var(--bl);min-height:1.4em}
 .rv .hp{position:absolute;right:0;left:auto;width:1px;height:1px;opacity:0;pointer-events:none}
 
 /* النوافذ */
@@ -163,7 +164,7 @@ footer a{color:var(--ac)}
  .hero{grid-template-columns:1fr}
  .lay{grid-template-columns:minmax(0,1fr)}.side{position:static;max-height:none}
  .side .u{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.side h4{display:none}.side button{width:auto;white-space:nowrap;border:1px solid var(--ln)}
- .ed{grid-template-columns:1fr}.top{width:calc(100% - 16px);top:8px;padding:6px 12px}.brand span{display:none}
+ .ed{grid-template-columns:1fr}.top{width:calc(100% - 16px);top:8px;padding:6px 12px;gap:8px}.brand{margin-inline-end:auto}.burger{display:block}.nav{display:none;position:absolute;top:calc(100% + 8px);inset-inline:0;flex-direction:column;gap:4px;background:var(--bg);border:1px solid var(--ln);border-radius:16px;padding:10px;box-shadow:0 14px 30px rgba(0,0,0,.25)}.nav.open{display:flex}.nav a{padding:10px 14px}
  .chip{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cw-c div{opacity:1;transform:none}}
@@ -172,63 +173,72 @@ footer a{color:var(--ac)}
 <body>
 <header class="top">
   <a class="brand" href="index.html"><img src="logo.svg" alt="" width="32" height="32"><span>Abd Code</span></a>
-  <nav class="nav"><a href="index.html">الرئيسية</a><a href="academy.html" class="on">الأكاديمية</a><a href="studio.html">ستوديو الكود</a><a href="index.html#videos">الفيديوهات</a><a href="codes.html">أكواد جاهزة</a><a href="css-designs.html">تصاميم CSS</a><a href="store.html">المتجر</a></nav>
+  <nav class="nav" id="nav"><a href="index.html" data-i="n_home">الرئيسية</a><a href="academy.html" class="on" data-i="n_acad">الأكاديمية</a><a href="studio.html" data-i="n_studio">ستوديو الكود</a><a href="codes.html" data-i="n_codes">أكواد جاهزة</a><a href="store.html" data-i="n_store">المتجر</a></nav>
+  <button id="lang" class="ib" type="button" aria-label="Language">🌐 EN</button>
+  <button id="theme" class="ib" type="button" aria-label="Theme">🌙</button>
+  <button id="burger" class="ib burger" type="button" aria-label="Menu">☰</button>
 </header>
 
 <main id="home" class="wrap">
   <section class="hero">
     <div>
-      <span class="badge">🎓 مجاني بالكامل · بدون تسجيل · بشهادة</span>
-      <h1>ابدأ رحلتك <span class="g">بالبرمجة</span><br>وطلّع شهادتك 🚀</h1>
-      <p class="lead">اختر مسارك، وتعلّم درس درس. كل درس فيه شرح بسيط، سؤال سريع، وتمرين بتطبقه بنفسك. لما تنجح بكل الدروس بتاخد شهادة.</p>
-      <div class="hbtns"><a class="btn" href="#tracks">ابدأ الآن ←</a><a class="btn gh" href="#how">كيف تشتغل الأكاديمية؟</a></div>
+      <span class="badge" data-i="badge">🎓 مجاني بالكامل · بدون تسجيل · بشهادة</span>
+      <h1 data-ih="h1">ابدأ رحلتك <span class="g">بالبرمجة</span><br>وطلّع شهادتك 🚀</h1>
+      <p class="lead" data-i="lead">اختر مسارك، وتعلّم درس درس. كل درس فيه شرح بسيط، سؤال سريع، وتمرين بتطبقه بنفسك. لما تنجح بكل الدروس بتاخد شهادة.</p>
+      <div class="hbtns"><a class="btn" href="#tracks" data-i="start">ابدأ الآن ←</a><a class="btn gh" href="#how" data-i="howb">كيف تشتغل الأكاديمية؟</a></div>
     </div>
     <div class="hv" aria-hidden="true">
       <div class="cw"><div class="cw-b"><i></i><i></i><i></i><span>my-site.html</span></div>
         <div class="cw-c">
-          <div style="--d:.3s"><span class="t">&lt;h1&gt;</span>أهلاً بالعالم<span class="t">&lt;/h1&gt;</span></div>
+          <div style="--d:.3s"><span class="t">&lt;h1&gt;</span>Hello World<span class="t">&lt;/h1&gt;</span></div>
           <div style="--d:.9s"><span class="t">&lt;p</span> <span class="a">class</span>=<span class="s">"hello"</span><span class="t">&gt;</span></div>
-          <div style="--d:1.5s">&nbsp;&nbsp;أنا بتعلّم البرمجة 💪</div>
+          <div style="--d:1.5s">&nbsp;&nbsp;I'm learning to code 💪</div>
           <div style="--d:2.1s"><span class="t">&lt;/p&gt;</span></div>
-          <div style="--d:2.7s"><span class="t">&lt;button&gt;</span>ابدأ<span class="t">&lt;/button&gt;</span></div>
-          <div style="--d:3.3s">✅ صح! الدرس مكتمل 🎉</div>
+          <div style="--d:2.7s"><span class="t">&lt;button&gt;</span>Start<span class="t">&lt;/button&gt;</span></div>
+          <div style="--d:3.3s">✅ Lesson complete 🎉</div>
         </div></div>
       <span class="chip h">HTML</span><span class="chip c">CSS</span><span class="chip j">JS</span><span class="chip k">🎓</span>
     </div>
   </section>
-  <div class="nums"><div><b id="nL">19</b><span>درس</span></div><div><b id="nE">19</b><span>تمرين وسؤال</span></div><div><b>3</b><span>مسارات</span></div><div><b>3</b><span>شهادات</span></div></div>
+  <div class="nums"><div><b id="nL">19</b><span data-i="st_les">درس</span></div><div><b id="nE">19</b><span data-i="st_ex">تمرين وسؤال</span></div><div><b>3</b><span data-i="st_tr">مسارات</span></div><div><b>3</b><span data-i="st_ce">شهادات</span></div></div>
 
-  <h2 class="sec" id="tracks">اختر مسارك</h2>
+  <h2 class="sec" id="tracks" data-i="choose">اختر مسارك</h2>
   <div class="tracks">
-    <button class="tk on" id="goHtml" type="button" style="--c:#ff6a2b"><span class="ic">🧱</span><h2>مسار HTML</h2><p>هيكل الصفحة، النصوص، الروابط، الصور، القوائم، الجداول والنماذج.</p>
-      <div class="meta"><i>مبتدئ</i><i id="cnt"></i><i>🎓 شهادة</i></div><div class="bar"><u id="pb"></u></div><span class="cta" id="pt"></span></button>
-    <button class="tk on" id="goCss" type="button" style="--c:#4d8dff"><span class="ic">🎨</span><h2>مسار CSS</h2><p>الألوان، الخطوط، الصندوق، Flexbox والحركة.</p><div class="meta"><i>مبتدئ</i><i id="cntC"></i><i>🎓 شهادة</i></div><div class="bar"><u id="pbC"></u></div><span class="cta" id="ptC"></span></button>
-    <button class="tk on" id="goJs" type="button" style="--c:#ffc23c"><span class="ic">⚡</span><h2>مسار JavaScript</h2><p>المتغيرات، الدوال، الشروط، الأحداث والمصفوفات.</p><div class="meta"><i>متوسط</i><i id="cntJ"></i><i>🎓 شهادة</i></div><div class="bar"><u id="pbJ"></u></div><span class="cta" id="ptJ"></span></button>
+    <button class="tk on" id="goHtml" type="button" style="--c:#ff6a2b"><span class="ic">🧱</span><h2 data-i="t_html">مسار HTML</h2><p data-i="d_html">هيكل الصفحة، النصوص، الروابط، الصور، القوائم، الجداول والنماذج.</p>
+      <div class="meta"><i data-i="lv_b">مبتدئ</i><i id="cnt"></i><i data-i="cert_b">🎓 شهادة</i></div><div class="bar"><u id="pb"></u></div><span class="cta" id="pt"></span></button>
+    <button class="tk on" id="goCss" type="button" style="--c:#4d8dff"><span class="ic">🎨</span><h2 data-i="t_css">مسار CSS</h2><p data-i="d_css">الألوان، الخطوط، الصندوق، Flexbox والحركة.</p><div class="meta"><i data-i="lv_b">مبتدئ</i><i id="cntC"></i><i data-i="cert_b">🎓 شهادة</i></div><div class="bar"><u id="pbC"></u></div><span class="cta" id="ptC"></span></button>
+    <button class="tk on" id="goJs" type="button" style="--c:#ffc23c"><span class="ic">⚡</span><h2 data-i="t_js">مسار JavaScript</h2><p data-i="d_js">المتغيرات، الدوال، الشروط، الأحداث والمصفوفات.</p><div class="meta"><i data-i="lv_m">متوسط</i><i id="cntJ"></i><i data-i="cert_b">🎓 شهادة</i></div><div class="bar"><u id="pbJ"></u></div><span class="cta" id="ptJ"></span></button>
   </div>
 
-  <div id="certs" class="certs" hidden><h2 class="sec">🎓 مبروك! شهاداتك جاهزة</h2><div id="certl" class="act"></div></div>
+  <div id="certs" class="certs" hidden><h2 class="sec" data-i="certs_t">🎓 مبروك! شهاداتك جاهزة</h2><div id="certl" class="act"></div></div>
 
-  <div class="how" id="how"><div><b>📖 1. اقرأ</b><span>شرح قصير وواضح بالعربي</span></div><div><b>❓ 2. جاوب</b><span>سؤال سريع على الدرس</span></div><div><b>⌨️ 3. طبّق</b><span>تمرين بتكتب فيه كود وبتشوف النتيجة</span></div><div><b>🔓 4. افتح اللي بعده</b><span>ما بتفتح الدرس الجاي إلا لما تنجح بالحالي</span></div><div><b>🎓 5. شهادتك</b><span>بتخلص المسار وبتحمّل شهادتك</span></div></div>
+  <div class="how" id="how">
+    <div><b data-i="how1">📖 1. اقرأ</b><span data-i="how1d">شرح قصير وواضح بالعربي</span></div>
+    <div><b data-i="how2">❓ 2. جاوب</b><span data-i="how2d">سؤال سريع على الدرس</span></div>
+    <div><b data-i="how3">⌨️ 3. طبّق</b><span data-i="how3d">تمرين بتكتب فيه كود وبتشوف النتيجة</span></div>
+    <div><b data-i="how4">🔓 4. افتح اللي بعده</b><span data-i="how4d">ما بتفتح الدرس الجاي إلا لما تنجح بالحالي</span></div>
+    <div><b data-i="how5">🎓 5. شهادتك</b><span data-i="how5d">بتخلص المسار وبتحمّل شهادتك</span></div>
+  </div>
 
   <section class="rs" data-page="academy">
-    <h2>📊 أرقام الأكاديمية</h2>
+    <h2 data-i="stats_t">📊 أرقام الأكاديمية</h2>
     <div class="nums">
-      <div><b id="st-students">–</b><span>طالب بدأ التعلّم</span></div>
-      <div><b id="st-visitors">–</b><span>زائر</span></div>
-      <div><b id="st-academy">–</b><span>زيارة للأكاديمية</span></div>
+      <div><b id="st-students">–</b><span data-i="s_stu">طالب بدأ التعلّم</span></div>
+      <div><b id="st-visitors">–</b><span data-i="s_vis">زائر</span></div>
+      <div><b id="st-academy">–</b><span data-i="s_acd">زيارة للأكاديمية</span></div>
     </div>
   </section>
 
-  <section class="rv" dir="rtl" id="rv">
-    <h2>💬 آراء الطلاب</h2>
+  <section class="rv" id="rv">
+    <h2 data-i="rv_t">💬 آراء الطلاب</h2>
     <p class="avg" id="rv-avg"></p>
     <div class="list" id="rv-list"></div>
     <form id="rv-form">
-      <input id="rv-name" maxlength="30" placeholder="اسمك (اختياري)">
-      <div class="stars" id="rv-stars" aria-label="التقييم"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <textarea id="rv-text" rows="3" maxlength="400" placeholder="شو رأيك بالأكاديمية؟" required style="min-height:0"></textarea>
+      <input id="rv-name" maxlength="30" placeholder="اسمك (اختياري)" data-ph="rv_name">
+      <div class="stars" id="rv-stars" aria-label="rating"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <textarea id="rv-text" rows="3" maxlength="400" placeholder="شو رأيك بالأكاديمية؟" data-ph="rv_text" required style="min-height:0"></textarea>
       <input class="hp" id="rv-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button type="submit">أرسل رأيك</button>
+      <button type="submit" data-i="rv_send">أرسل رأيك</button>
       <div class="msg" id="rv-msg"></div>
     </form>
   </section>
@@ -237,50 +247,50 @@ footer a{color:var(--ac)}
 <main id="les" class="wrap" hidden>
   <div class="topbar"><u id="tb"></u></div>
   <div class="lay">
-    <aside class="side"><h3 id="sh"></h3><div id="list"></div><button class="btn gh" id="back" type="button" style="margin-top:12px;width:100%">← كل المسارات</button></aside>
+    <aside class="side"><h3 id="sh"></h3><div id="list"></div><button class="btn gh" id="back" type="button" data-i="back" style="margin-top:12px;width:100%">← كل المسارات</button></aside>
     <article class="main">
       <div class="crumb" id="crumb"></div>
       <h2 id="ttl" tabindex="-1"></h2>
       <div id="body"></div>
       <div id="qz" class="qz"></div>
-      <div class="task"><b>🎯 تمرين:</b> <span id="task"></span></div>
+      <div class="task"><b data-i="task_l">🎯 تمرين:</b> <span id="task"></span></div>
       <div class="ed">
-        <div><h5>الكود (عدّل عليه)</h5><textarea id="code" spellcheck="false" aria-label="code"></textarea></div>
-        <div><h5>النتيجة</h5><iframe id="prev" title="preview" sandbox=""></iframe></div>
+        <div><h5 data-i="code_l">الكود (عدّل عليه)</h5><textarea id="code" spellcheck="false" aria-label="code"></textarea></div>
+        <div><h5 data-i="res_l">النتيجة</h5><iframe id="prev" title="preview" sandbox=""></iframe></div>
       </div>
-      <div class="act"><button class="btn" id="chk" type="button">تحقق من حلّي ✓</button><button class="btn gh" id="hint" type="button">💡 تلميح</button><button class="btn gh" id="sol" type="button">عرض الحل</button><button class="btn gh" id="rst" type="button">إعادة</button></div>
+      <div class="act"><button class="btn" id="chk" type="button" data-i="chk">تحقق من حلّي ✓</button><button class="btn gh" id="hint" type="button" data-i="hint">💡 تلميح</button><button class="btn gh" id="sol" type="button" data-i="sol">عرض الحل</button><button class="btn gh" id="rst" type="button" data-i="rst">إعادة</button></div>
       <p id="msg" style="margin-top:12px"></p>
-      <div class="nav2"><button class="btn gh" id="prevL" type="button">→ السابق</button><button class="btn next" id="nextL" type="button">التالي ←</button></div>
+      <div class="nav2"><button class="btn gh" id="prevL" type="button" data-i="prev">→ السابق</button><button class="btn next" id="nextL" type="button">التالي ←</button></div>
     </article>
   </div>
 </main>
 
 <div id="wel" class="mdl" hidden>
   <div class="bx" role="dialog" aria-modal="true">
-    <h3>أهلاً وسهلاً فيك بالأكاديمية 🎓</h3>
-    <p>هون بتتعلّم البرمجة بالعربي من الصفر، خطوة بخطوة، مجاناً وبدون تسجيل. نتمنى لك رحلة ممتعة!</p>
-    <button class="btn" id="welOk" type="button">موافق</button>
+    <h3 data-i="wel_h">أهلاً وسهلاً فيك بالأكاديمية 🎓</h3>
+    <p data-i="wel_p">هون بتتعلّم البرمجة بالعربي من الصفر، خطوة بخطوة، مجاناً وبدون تسجيل. نتمنى لك رحلة ممتعة!</p>
+    <button class="btn" id="welOk" type="button" data-i="ok">موافق</button>
   </div>
 </div>
 <div id="stm" class="mdl" hidden>
   <div class="bx" role="dialog" aria-modal="true">
-    <h3>جاهز تبدأ التعلّم؟ 🚀</h3>
-    <p>رح تنحسب طالب جديد بالأكاديمية، وتقدمك بينحفظ على جهازك. يلا نبدأ!</p>
-    <button class="btn" id="stmOk" type="button">موافق، ابدأ التعلّم</button>
+    <h3 data-i="stm_h">جاهز تبدأ التعلّم؟ 🚀</h3>
+    <p data-i="stm_p">رح تنحسب طالب جديد بالأكاديمية، وتقدمك بينحفظ على جهازك. يلا نبدأ!</p>
+    <button class="btn" id="stmOk" type="button" data-i="stm_ok">موافق، ابدأ التعلّم</button>
   </div>
 </div>
 <div id="cert" class="mdl" hidden>
   <div class="bx big" role="dialog" aria-modal="true">
-    <h3>🎓 شهادتك جاهزة</h3>
-    <p>اكتب اسمك مثل ما بدك يظهر على الشهادة، وبعدين حمّلها.</p>
-    <input id="cn" maxlength="40" placeholder="اسمك الكامل">
+    <h3 data-i="cert_h">🎓 شهادتك جاهزة</h3>
+    <p data-i="cert_p">اكتب اسمك مثل ما بدك يظهر على الشهادة، وبعدين حمّلها.</p>
+    <input id="cn" maxlength="40" placeholder="اسمك الكامل" data-ph="cert_ph">
     <canvas id="cv" width="1600" height="1100"></canvas>
-    <div class="act" style="justify-content:center"><button class="btn" id="cdl" type="button">⬇️ تحميل الشهادة</button><button class="btn gh" id="ccl" type="button">إغلاق</button></div>
+    <div class="act" style="justify-content:center"><button class="btn" id="cdl" type="button" data-i="cdl">⬇️ تحميل الشهادة</button><button class="btn gh" id="ccl" type="button" data-i="ccl">إغلاق</button></div>
   </div>
 </div>
 <div id="tst" class="tst" role="status"></div>
 
-<footer>© <span id="yr"></span> Abd Code · حقوق النشر محفوظة · <a href="index.html">الرئيسية</a> · <a href="privacy.html">الخصوصية</a></footer>
+<footer data-ih="foot">© {y} Abd Code · حقوق النشر محفوظة · <a href="index.html">الرئيسية</a> · <a href="privacy.html">الخصوصية</a></footer>
 
 <script>
 const $=s=>document.querySelector(s);
@@ -427,48 +437,48 @@ const open=i=>{const q=ids(tr(L[i].u)),k=q.indexOf(i);return k===0||done.has(q[k
 const trackDone=t=>ids(t).every(j=>done.has(j));
 function fin(i){if(qOk(i)&&eOk(i)&&!done.has(i)){done.add(i);sv();return true}return false}
 function toast(t){const e=$('#tst');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2600)}
-$('#yr').textContent=new Date().getFullYear();$('#nL').textContent=L.length;$('#nE').textContent=L.length*2;
+$('#nL').textContent=L.length;$('#nE').textContent=L.length*2;
 function prog(){const P=['','C','J'];[0,1,2].forEach(t=>{const q=ids(t),n=q.filter(j=>done.has(j)).length,p=Math.round(n/q.length*100),k=P[t];
- $('#pb'+k).style.width=p+'%';$('#pt'+k).textContent=n===q.length?'🎓 خلّصت المسار! حمّل شهادتك من تحت ↓':n?`تقدمك ${p}% · كمّل من وين وقفت ←`:'ابدأ المسار ←';
- $('#cnt'+(k||'')).textContent=q.length+' دروس';if(t===T)$('#tb').style.width=p+'%'});
- const c=$('#certl');c.innerHTML='';let any=false;[0,1,2].forEach(t=>{if(trackDone(t)){any=true;const b=document.createElement('button');b.type='button';b.className='btn';b.textContent='🎓 شهادة مسار '+TC[t];b.onclick=()=>openCert(t);c.append(b)}});
+ $('#pb'+k).style.width=p+'%';$('#pt'+k).textContent=n===q.length?$t('prog_done'):n?$t('prog_n').replace('{p}',p):$t('prog_s');
+ $('#cnt'+(k||'')).textContent=$t('cnt').replace('{n}',q.length);if(t===T)$('#tb').style.width=p+'%'});
+ const c=$('#certl');c.innerHTML='';let any=false;[0,1,2].forEach(t=>{if(trackDone(t)){any=true;const b=document.createElement('button');b.type='button';b.className='btn';b.textContent=$t('cert_btn')+TC[t];b.onclick=()=>openCert(t);c.append(b)}});
  $('#certs').hidden=!any}
-function list(){let h='';U.forEach((u,k)=>{if(tr(k)!==T)return;h+=`<h4>${u}</h4><div class="u">`;L.forEach((x,i)=>{if(x.u!==k)return;const lk=!open(i);h+=`<button type="button" data-i="${i}" ${lk?'disabled':''} class="${i===cur?'cur':''} ${done.has(i)?'ok':''}"><span class="n">${done.has(i)?'✓':lk?'🔒':ids(T).indexOf(i)+1}</span>${x.t}</button>`});h+='</div>'});$('#list').innerHTML=h}
+function list(){let h='';U.forEach((u,k)=>{if(tr(k)!==T)return;h+=`<h4>${un(k)}</h4><div class="u">`;L.forEach((x,i)=>{if(x.u!==k)return;const lk=!open(i);h+=`<button type="button" data-i="${i}" ${lk?'disabled':''} class="${i===cur?'cur':''} ${done.has(i)?'ok':''}"><span class="n">${done.has(i)?'✓':lk?'🔒':ids(T).indexOf(i)+1}</span>${x.t}</button>`});h+='</div>'});$('#list').innerHTML=h}
 function run(){$('#prev').srcdoc=$('#code').value}
 function nav(){const q=ids(T),k=q.indexOf(cur),last=k===q.length-1,nb=$('#nextL');
  $('#prevL').disabled=k===0;
- if(last){nb.textContent=trackDone(T)?'🎓 احصل على شهادتك':'آخر درس بالمسار';nb.disabled=!trackDone(T);nb.dataset.m='cert'}
- else{nb.textContent='التالي ←';nb.disabled=!done.has(cur);nb.dataset.m='next'}
+ if(last){nb.textContent=trackDone(T)?$t('nxt_cert'):$t('nxt_last');nb.disabled=!trackDone(T);nb.dataset.m='cert'}
+ else{nb.textContent=$t('next');nb.disabled=!done.has(cur);nb.dataset.m='next'}
  nb.classList.toggle('hot',!nb.disabled)}
 function stat(){const m=$('#msg'),a=qOk(cur),b=eOk(cur);m.classList.remove('pop');
- if(done.has(cur)){m.style.color='var(--ok)';m.textContent='🎉 الدرس مكتمل! تقدر تكمل للدرس الجاي'}
- else if(a&&!b){m.style.color='var(--bl)';m.textContent='✅ جاوبت صح. باقي تحل التمرين'}
- else if(b&&!a){m.style.color='var(--bl)';m.textContent='✅ التمرين صح. باقي تجاوب على السؤال السريع'}
+ if(done.has(cur)){m.style.color='var(--ok)';m.textContent=$t('ms_done')}
+ else if(a&&!b){m.style.color='var(--bl)';m.textContent=$t('ms_q')}
+ else if(b&&!a){m.style.color='var(--bl)';m.textContent=$t('ms_e')}
  else m.textContent=''}
 function pass(){const ok=fin(cur);stat();if(ok){const m=$('#msg');void m.offsetWidth;m.classList.add('pop');burst()}list();prog();nav();
  if(ok&&trackDone(T)){try{if(!localStorage.getItem('abd-cert-d'+T))localStorage.setItem('abd-cert-d'+T,new Date().toISOString())}catch(e){}setTimeout(()=>openCert(T),1500)}}
-function quiz(i){const d=Q[i],b=$('#qz'),dn=qOk(i);b.innerHTML='<div class="qh">❓ سؤال سريع (لازم تجاوب صح)</div>';
+function quiz(i){const d=Q[i],b=$('#qz'),dn=qOk(i);b.innerHTML='<div class="qh">'+$t('qh')+'</div>';
  const p=document.createElement('p');p.className='qq';p.textContent=d[0];b.append(p);const w=document.createElement('div');w.className='qo';b.append(w);
  const o=d.slice(1).map((t,k)=>({t,ok:!k}));for(let k=o.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[o[k],o[j]]=[o[j],o[k]]}
  o.forEach(x=>{const e=document.createElement('button');e.type='button';e.textContent=x.t;if(dn){e.disabled=true;if(x.ok)e.classList.add('ok')}
   e.onclick=()=>{if(x.ok){qp.add(i);sv();w.querySelectorAll('button').forEach(z=>z.disabled=true);e.classList.add('ok');pass()}
-   else{e.classList.add('bad');e.disabled=true;const m=$('#msg');m.style.color='var(--bad)';m.textContent='❌ إجابة غلط، جرّب تاني'}};w.append(e)})}
+   else{e.classList.add('bad');e.disabled=true;const m=$('#msg');m.style.color='var(--bad)';m.textContent=$t('q_bad')}};w.append(e)})}
 function show(i){
- if(!open(i)){const q=ids(tr(L[i].u));toast('🔒 لازم تنجح بالدرس السابق أول');i=q.find(j=>!done.has(j));if(i===undefined)i=q[0]}
+ if(!open(i)){const q=ids(tr(L[i].u));toast($t('lock'));i=q.find(j=>!done.has(j));if(i===undefined)i=q[0]}
  cur=i;const x=L[i];location.hash='lesson-'+(i+1);
- T=tr(x.u);$('#sh').textContent=TN[T];$('#prev').setAttribute('sandbox',T===2?'allow-scripts':'');$('#crumb').textContent=`${U[x.u]} · الدرس ${ids(T).indexOf(i)+1} من ${ids(T).length}`;$('#ttl').textContent=x.t;$('#body').innerHTML=x.b;$('#task').innerHTML=x.task;
- $('#code').value=x.start;run();quiz(i);stat();list();prog();nav();
- $('#home').hidden=true;$('#les').hidden=false;window.scrollTo(0,0);document.title=x.t+' — أكاديمية Abd Code'}
-function home(){$('#les').hidden=true;$('#home').hidden=false;history.replaceState(null,'',location.pathname);document.title='أكاديمية Abd Code — تعلّم HTML وCSS وJavaScript مجاناً بالعربي';prog();window.scrollTo(0,0)}
+ T=tr(x.u);$('#prev').setAttribute('sandbox',T===2?'allow-scripts':'');$('#ttl').textContent=x.t;$('#body').innerHTML=x.b;$('#task').innerHTML=x.task;
+ $('#code').value=x.start;run();quiz(i);ui();prog();
+ $('#home').hidden=true;$('#les').hidden=false;window.scrollTo(0,0);document.title=x.t+' — '+$t('brand_t')}
+function home(){$('#les').hidden=true;$('#home').hidden=false;history.replaceState(null,'',location.pathname);document.title=$t('title_h');prog();window.scrollTo(0,0)}
 function burst(){for(let i=0;i<26;i++){const s=document.createElement('span');s.className='cf';s.textContent=['🎉','✨','⭐','🔥'][i%4];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.5+'s';document.body.append(s);setTimeout(()=>s.remove(),2500)}}
 let tm;$('#code').addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(run,250)});
 $('#code').addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const t=e.target,s=t.selectionStart;t.value=t.value.slice(0,s)+'  '+t.value.slice(t.selectionEnd);t.selectionStart=t.selectionEnd=s+2}});
 $('#rst').onclick=()=>{$('#code').value=L[cur].start;run();stat()};
-$('#sol').onclick=()=>{$('#code').value=L[cur].sol;run();const m=$('#msg');m.style.color='var(--mu)';m.textContent='👀 هاد الحل. اضغط تحقق، وجرّب تكتبو بنفسك المرة الجاي.'};
+$('#sol').onclick=()=>{$('#code').value=L[cur].sol;run();const m=$('#msg');m.style.color='var(--mu)';m.textContent=$t('sol_m')};
 $('#hint').onclick=()=>{const m=$('#msg');m.style.color='var(--bl)';m.textContent='💡 '+L[cur].hint};
 $('#chk').onclick=()=>{const d=new DOMParser().parseFromString($('#code').value,'text/html'),m=$('#msg');
  if(L[cur].ok(d)){ep.add(cur);sv();pass()}
- else{m.classList.remove('pop');m.style.color='var(--bad)';m.textContent='❌ مش بعد، جرّب تاني. اضغط "تلميح" إذا بدك مساعدة.'}};
+ else{m.classList.remove('pop');m.style.color='var(--bad)';m.textContent=$t('chk_bad')}};
 $('#list').onclick=e=>{const b=e.target.closest('[data-i]');if(b&&!b.disabled)show(+b.dataset.i)};
 $('#prevL').onclick=()=>{const q=ids(T),k=q.indexOf(cur);if(k>0)show(q[k-1])};
 $('#nextL').onclick=()=>{const q=ids(T),k=q.indexOf(cur);if($('#nextL').dataset.m==='cert')openCert(T);else if(done.has(cur))show(q[k+1])};
@@ -504,9 +514,76 @@ async function drawCert(){
  x.font='500 26px monospace';x.fillStyle='rgba(255,255,255,.35)';x.direction='ltr';x.fillText('ABD-'+TC[cT].slice(0,2).toUpperCase()+'-'+d.getFullYear()+(d.getMonth()+1)+d.getDate(),W/2,1040)}
 let ct;$('#cn').addEventListener('input',()=>{try{localStorage.setItem('abd-cert-name',$('#cn').value.trim())}catch(e){}clearTimeout(ct);ct=setTimeout(drawCert,200)});
 $('#ccl').onclick=()=>{$('#cert').hidden=true};
-$('#cdl').onclick=async()=>{if(!$('#cn').value.trim()){toast('اكتب اسمك أول');$('#cn').focus();return}await drawCert();
+$('#cdl').onclick=async()=>{if(!$('#cn').value.trim()){toast($t('need_name'));$('#cn').focus();return}await drawCert();
  $('#cv').toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='abd-code-certificate-'+TC[cT]+'.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4000)},'image/png')};
 
+
+/* ===== اللغة والثيم ===== */
+const I={
+ar:{n_home:'الرئيسية',n_acad:'الأكاديمية',n_studio:'ستوديو الكود',n_codes:'أكواد جاهزة',n_store:'المتجر',
+badge:'🎓 مجاني بالكامل · بدون تسجيل · بشهادة',h1:'ابدأ رحلتك <span class="g">بالبرمجة</span><br>وطلّع شهادتك 🚀',
+lead:'اختر مسارك، وتعلّم درس درس. كل درس فيه شرح بسيط، سؤال سريع، وتمرين بتطبقه بنفسك. لما تنجح بكل الدروس بتاخد شهادة.',
+start:'ابدأ الآن ←',howb:'كيف تشتغل الأكاديمية؟',st_les:'درس',st_ex:'تمرين وسؤال',st_tr:'مسارات',st_ce:'شهادات',choose:'اختر مسارك',
+t_html:'مسار HTML',t_css:'مسار CSS',t_js:'مسار JavaScript',
+d_html:'هيكل الصفحة، النصوص، الروابط، الصور، القوائم، الجداول والنماذج.',d_css:'الألوان، الخطوط، الصندوق، Flexbox والحركة.',d_js:'المتغيرات، الدوال، الشروط، الأحداث والمصفوفات.',
+lv_b:'مبتدئ',lv_m:'متوسط',cert_b:'🎓 شهادة',certs_t:'🎓 مبروك! شهاداتك جاهزة',
+how1:'📖 1. اقرأ',how1d:'شرح قصير وواضح بالعربي',how2:'❓ 2. جاوب',how2d:'سؤال سريع على الدرس',how3:'⌨️ 3. طبّق',how3d:'تمرين بتكتب فيه كود وبتشوف النتيجة',
+how4:'🔓 4. افتح اللي بعده',how4d:'ما بتفتح الدرس الجاي إلا لما تنجح بالحالي',how5:'🎓 5. شهادتك',how5d:'بتخلص المسار وبتحمّل شهادتك',
+stats_t:'📊 أرقام الأكاديمية',s_stu:'طالب بدأ التعلّم',s_vis:'زائر',s_acd:'زيارة للأكاديمية',
+rv_t:'💬 آراء الطلاب',rv_name:'اسمك (اختياري)',rv_text:'شو رأيك بالأكاديمية؟',rv_send:'أرسل رأيك',
+back:'← كل المسارات',task_l:'🎯 تمرين:',code_l:'الكود (عدّل عليه)',res_l:'النتيجة',chk:'تحقق من حلّي ✓',hint:'💡 تلميح',sol:'عرض الحل',rst:'إعادة',prev:'→ السابق',next:'التالي ←',
+wel_h:'أهلاً وسهلاً فيك بالأكاديمية 🎓',wel_p:'هون بتتعلّم البرمجة بالعربي من الصفر، خطوة بخطوة، مجاناً وبدون تسجيل. نتمنى لك رحلة ممتعة!',ok:'موافق',
+stm_h:'جاهز تبدأ التعلّم؟ 🚀',stm_p:'رح تنحسب طالب جديد بالأكاديمية، وتقدمك بينحفظ على جهازك. يلا نبدأ!',stm_ok:'موافق، ابدأ التعلّم',
+cert_h:'🎓 شهادتك جاهزة',cert_p:'اكتب اسمك مثل ما بدك يظهر على الشهادة، وبعدين حمّلها.',cert_ph:'اسمك الكامل',cdl:'⬇️ تحميل الشهادة',ccl:'إغلاق',
+foot:'© {y} Abd Code · حقوق النشر محفوظة · <a href="index.html">الرئيسية</a> · <a href="privacy.html">الخصوصية</a>',
+prog_done:'🎓 خلّصت المسار! حمّل شهادتك من تحت ↓',prog_n:'تقدمك {p}% · كمّل من وين وقفت ←',prog_s:'ابدأ المسار ←',cnt:'{n} دروس',cert_btn:'🎓 شهادة مسار ',
+nxt_cert:'🎓 احصل على شهادتك',nxt_last:'آخر درس بالمسار',ms_done:'🎉 الدرس مكتمل! تقدر تكمل للدرس الجاي',ms_q:'✅ جاوبت صح. باقي تحل التمرين',ms_e:'✅ التمرين صح. باقي تجاوب على السؤال السريع',
+qh:'❓ سؤال سريع (لازم تجاوب صح)',q_bad:'❌ إجابة غلط، جرّب تاني',lock:'🔒 لازم تنجح بالدرس السابق أول',crumb:'{u} · الدرس {i} من {n}',
+sol_m:'👀 هاد الحل. اضغط تحقق، وجرّب تكتبو بنفسك المرة الجاي.',chk_bad:'❌ مش بعد، جرّب تاني. اضغط "تلميح" إذا بدك مساعدة.',need_name:'اكتب اسمك أول',
+brand_t:'أكاديمية Abd Code',title_h:'أكاديمية Abd Code — تعلّم HTML وCSS وJavaScript مجاناً بالعربي',lg_note:''},
+en:{n_home:'Home',n_acad:'Academy',n_studio:'Code Studio',n_codes:'Ready Codes',n_store:'Store',
+badge:'🎓 Free · No sign-up · With certificate',h1:'Start your <span class="g">coding</span> journey<br>and earn your certificate 🚀',
+lead:'Pick your track and learn lesson by lesson. Each lesson has a simple explanation, a quick question and a hands-on exercise. Pass every lesson to earn a certificate.',
+start:'Start now →',howb:'How does it work?',st_les:'Lessons',st_ex:'Exercises & quizzes',st_tr:'Tracks',st_ce:'Certificates',choose:'Choose your track',
+t_html:'HTML Track',t_css:'CSS Track',t_js:'JavaScript Track',
+d_html:'Page structure, text, links, images, lists, tables and forms.',d_css:'Colors, fonts, the box model, Flexbox and animation.',d_js:'Variables, functions, conditions, events and arrays.',
+lv_b:'Beginner',lv_m:'Intermediate',cert_b:'🎓 Certificate',certs_t:'🎓 Congrats! Your certificates are ready',
+how1:'📖 1. Read',how1d:'A short, clear explanation',how2:'❓ 2. Answer',how2d:'A quick question on the lesson',how3:'⌨️ 3. Practice',how3d:'Write code and see the result',
+how4:'🔓 4. Unlock the next one',how4d:'The next lesson opens only after you pass this one',how5:'🎓 5. Your certificate',how5d:'Finish the track and download your certificate',
+stats_t:'📊 Academy stats',s_stu:'Students started',s_vis:'Visitors',s_acd:'Academy visits',
+rv_t:'💬 Student reviews',rv_name:'Your name (optional)',rv_text:'What do you think of the academy?',rv_send:'Send your review',
+back:'← All tracks',task_l:'🎯 Exercise:',code_l:'Code (edit it)',res_l:'Result',chk:'Check my answer ✓',hint:'💡 Hint',sol:'Show solution',rst:'Reset',prev:'← Previous',next:'Next →',
+wel_h:'Welcome to the academy 🎓',wel_p:'Learn coding in Arabic from scratch, step by step, free and with no sign-up. Enjoy the journey!',ok:'OK',
+stm_h:'Ready to start learning? 🚀',stm_p:'You will be counted as a new student and your progress is saved on your device. Let\'s go!',stm_ok:'OK, start learning',
+cert_h:'🎓 Your certificate is ready',cert_p:'Type your name as you want it on the certificate, then download it.',cert_ph:'Your full name',cdl:'⬇️ Download certificate',ccl:'Close',
+foot:'© {y} Abd Code · All rights reserved · <a href="index.html">Home</a> · <a href="privacy.html">Privacy</a>',
+prog_done:'🎓 Track complete! Get your certificate below ↓',prog_n:'Progress {p}% · Continue where you left off →',prog_s:'Start the track →',cnt:'{n} lessons',cert_btn:'🎓 Certificate: ',
+nxt_cert:'🎓 Get your certificate',nxt_last:'Last lesson in the track',ms_done:'🎉 Lesson complete! You can continue',ms_q:'✅ Correct answer. Now solve the exercise',ms_e:'✅ Exercise passed. Now answer the quick question',
+qh:'❓ Quick question (must answer correctly)',q_bad:'❌ Wrong answer, try again',lock:'🔒 Pass the previous lesson first',crumb:'{u} · Lesson {i} of {n}',
+sol_m:'👀 This is the solution. Press check, and try writing it yourself next time.',chk_bad:'❌ Not yet, try again. Press "Hint" if you need help.',need_name:'Type your name first',
+brand_t:'Abd Code Academy',title_h:'Abd Code Academy — Learn HTML, CSS and JavaScript for free',lg_note:'Interface translated. The lessons themselves are in Arabic.'}
+};
+let LG='ar';try{LG=localStorage.getItem('abd-lang')||'ar'}catch(e){}
+const $t=k=>(I[LG]&&I[LG][k])||I.ar[k]||k;
+const UE=['Unit 1 · Basics','Unit 2 · Content','Unit 3 · Interaction','CSS 1 · Basics','CSS 2 · Layout & motion','JS 1 · Basics','JS 2 · Interaction'],TNE=['🧱 HTML Track','🎨 CSS Track','⚡ JavaScript Track'];
+const un=k=>LG==='ar'?U[k]:UE[k],tn=k=>LG==='ar'?TN[k]:TNE[k];
+function ui(){const q=ids(T);$('#sh').textContent=tn(T);$('#crumb').textContent=$t('crumb').replace('{u}',un(L[cur].u)).replace('{i}',q.indexOf(cur)+1).replace('{n}',q.length);
+ const h=document.querySelector('#qz .qh');if(h)h.textContent=$t('qh');stat();list();nav()}
+function applyLang(){const d=document.documentElement;d.lang=LG;d.dir=LG==='ar'?'rtl':'ltr';
+ document.querySelectorAll('[data-i]').forEach(e=>e.textContent=$t(e.dataset.i));
+ document.querySelectorAll('[data-ih]').forEach(e=>e.innerHTML=$t(e.dataset.ih).replace('{y}',new Date().getFullYear()));
+ document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=$t(e.dataset.ph));
+ $('#lang').textContent=LG==='ar'?'🌐 EN':'🌐 ع';
+ if($('#les').hidden)document.title=$t('title_h');else ui();
+ prog()}
+function setTheme(m){document.documentElement.dataset.theme=m;$('#theme').textContent=m==='light'?'☀️':'🌙';try{localStorage.setItem('abd-theme',m)}catch(e){}}
+let TH='dark';try{TH=localStorage.getItem('abd-theme')||'dark'}catch(e){}
+setTheme(TH);
+$('#theme').onclick=()=>setTheme(document.documentElement.dataset.theme==='light'?'dark':'light');
+$('#lang').onclick=()=>{LG=LG==='ar'?'en':'ar';try{localStorage.setItem('abd-lang',LG)}catch(e){}applyLang();if(LG==='en')toast($t('lg_note'))};
+$('#burger').onclick=()=>$('#nav').classList.toggle('open');
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>$('#nav').classList.remove('open')));
+applyLang();
 const h=/lesson-(\d+)/.exec(location.hash);prog();if(h&&L[+h[1]-1])show(+h[1]-1);
 </script>
 
