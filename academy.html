@@ -169,25 +169,97 @@ footer a{color:var(--ac)}
  .chip{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cw-c div{opacity:1;transform:none}}
+
+/* ===== ستايل Apple ===== */
+:root{--bg:#000;--bg2:#0a0a0c;--card:#1c1c1e;--tx:#f5f5f7;--mu:#98989d;--ln:rgba(255,255,255,.12);--fill:rgba(255,255,255,.1)}
+:root[data-theme="light"]{--bg:#f5f5f7;--bg2:#ebebef;--card:#ffffff;--tx:#1d1d1f;--mu:#6e6e73;--ln:rgba(0,0,0,.12);--fill:rgba(0,0,0,.06)}
+html{font-size:clamp(16px,.55vw + 11px,20px)}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Tajawal','Segoe UI',Tahoma,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.7;background:var(--bg);background-image:none}
+.wrap{max-width:min(1360px,92vw);padding:24px 0 90px}
+.top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;height:52px;padding:0 4vw;border-bottom:1px solid var(--ln);background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+.brand{font-size:1.05rem;gap:8px;background:none;color:var(--tx)}
+.brand img{width:24px;height:24px}
+.nav{display:flex;gap:6px;flex:1;justify-content:center}
+.nav a{padding:6px 14px;font-size:.88rem;color:var(--mu);border-bottom:0;border-radius:99px;font-weight:500}
+.nav a:hover{color:var(--tx)}
+.nav a.on{color:var(--tx);background:var(--fill)}
+.ib{display:grid;place-items:center;background:var(--fill);border:0;border-radius:50%;width:32px;height:32px;padding:0;font-size:.85rem;font-weight:500;color:var(--tx)}
+.ib:hover{background:var(--ln)}
+.burger{display:none}
+.lw{position:relative}
+.lg{display:flex;align-items:center;gap:6px;width:auto;padding:0 12px;border-radius:99px}
+.lmenu{position:absolute;top:calc(100% + 8px);inset-inline-end:0;min-width:150px;background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:6px;box-shadow:0 14px 40px rgba(0,0,0,.35);z-index:60}
+.lmenu button{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;border-radius:9px;padding:9px 12px;text-align:start;font-size:.92rem;color:var(--tx)}
+.lmenu button:hover{background:var(--fill)}
+.lmenu button.on::after{content:"✓";color:var(--ac)}
+.hero{display:block;text-align:center;padding:clamp(36px,7vw,100px) 0 30px}
+.hero h1{font-size:clamp(3rem,9vw,7rem);line-height:1.05;font-weight:800;letter-spacing:-.02em}
+.lead{margin:18px auto 26px;max-width:44rem;font-size:clamp(1.1rem,1.7vw,1.6rem);color:var(--mu)}
+.hbtns{justify-content:center}
+.free{color:var(--mu);font-size:.9rem;margin-top:16px}
+.hv{max-width:560px;margin:48px auto 0;padding:0}
+.cw{border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.4);animation:none;text-align:left}
+.cw-c{min-height:150px}
+.nums{justify-content:center;text-align:center;margin:48px 0 0}
+.nums b{background:none;color:var(--tx);-webkit-text-fill-color:currentColor}
+.sec{font-size:clamp(1.8rem,3.4vw,3rem);font-weight:800;text-align:center;letter-spacing:-.01em;margin:80px 0 28px;scroll-margin-top:70px}
+.btn{border-radius:980px;padding:12px 28px;font-weight:500;font-size:1rem;color:#fff;background:var(--ac)}
+.btn:hover:not(:disabled){transform:none;filter:brightness(1.1)}
+.btn.gh{background:var(--fill);color:var(--tx);border:0}
+.tracks{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.tk{background:var(--card);border:0;border-radius:28px;padding:32px;gap:10px}
+.tk::before{display:none}
+.tk.on,.tk.on:hover{border:0}
+.tk.on:hover{transform:scale(1.015);box-shadow:none}
+.tk .ic{font-size:2.6rem}.tk h2{font-size:1.6rem}
+.meta i{background:var(--fill);border:0}
+.bar{background:var(--fill)}
+.how{margin-top:0}
+.how div{background:var(--card);border:0;border-radius:22px;padding:22px}
+.certs{border-radius:24px}
+.rs h2,.rv h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800}
+.rv .c,.rv form{border-radius:20px}
+.main,.side{border:0;border-radius:28px}
+.side{top:68px}
+.qz{border:0;background:var(--bg2);border-radius:18px}
+.ed>div{border-radius:16px}
+.ed textarea{min-height:clamp(260px,34vh,460px)}
+.ed iframe{height:clamp(260px,34vh,460px)}
+.lay{grid-template-columns:clamp(240px,22vw,320px) minmax(0,1fr)}
+footer{background:none;border-top:1px solid var(--ln)}
+.mdl .bx{border:0;border-radius:26px}
+@media (max-width:860px){
+ .top{padding:0 4vw;gap:8px}
+ .brand{margin-inline-end:auto}
+ .burger{display:grid}
+ .nav{display:none;position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--ln);padding:6px 4vw 12px}
+ .nav.open{display:flex}
+ .nav a{font-size:1rem;padding:14px 4px;border-radius:0;border-bottom:1px solid var(--ln)}
+ .nav a:last-child{border-bottom:0}
+ .nav a.on{background:none;color:var(--ac)}
+ #lgn{display:none}
+ .lay{grid-template-columns:minmax(0,1fr)}
+ .hero{padding-top:30px}
+ .side{top:auto}
+}
 </style>
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="index.html"><img src="logo.svg" alt="" width="32" height="32"><span>Abd Code</span></a>
-  <nav class="nav" id="nav"><a href="index.html" data-i="n_home">الرئيسية</a><a href="academy.html" class="on" data-i="n_acad">الأكاديمية</a><a href="studio.html" data-i="n_studio">ستوديو الكود</a><a href="codes.html" data-i="n_codes">أكواد جاهزة</a><a href="store.html" data-i="n_store">المتجر</a></nav>
-  <button id="lang" class="ib" type="button" aria-label="Language">EN</button>
+  <a class="brand" href="index.html"><img src="logo.svg" alt="" width="24" height="24"><span>Abd Code</span></a>
+  <nav class="nav" id="nav"><a href="index.html" data-i="n_home">الرئيسية</a><a href="academy.html" class="on" data-i="n_acad">الأكاديمية</a><a href="studio.html" data-i="n_studio">ستوديو الكود</a></nav>
+  <div class="lw"><button id="lang" class="ib lg" type="button" aria-haspopup="true" aria-expanded="false">🌐 <span id="lgn">العربية</span></button>
+    <div id="lmenu" class="lmenu" hidden><button type="button" data-l="ar">العربية</button><button type="button" data-l="en">English</button></div></div>
   <button id="theme" class="ib" type="button" aria-label="Theme">🌙</button>
   <button id="burger" class="ib burger" type="button" aria-label="Menu">☰</button>
 </header>
 
 <main id="home" class="wrap">
   <section class="hero">
-    <div>
-      <span class="badge" data-i="badge">🎓 مجاني بالكامل · بدون تسجيل · بشهادة</span>
-      <h1 data-ih="h1">ابدأ رحلتك <span class="g">بالبرمجة</span><br>وطلّع شهادتك 🚀</h1>
-      <p class="lead" data-i="lead">اختر مسارك، وتعلّم درس درس. كل درس فيه شرح بسيط، سؤال سريع، وتمرين بتطبقه بنفسك. لما تنجح بكل الدروس بتاخد شهادة.</p>
-      <div class="hbtns"><a class="btn" href="#tracks" data-i="start">ابدأ الآن ←</a><a class="btn gh" href="#how" data-i="howb">كيف تشتغل الأكاديمية؟</a></div>
-    </div>
+    <h1 data-ih="h1">الأكاديمية<br><span class="g">Abd Code</span></h1>
+    <p class="lead" data-i="lead">تعلّم البرمجة من الصفر، درس درس، وخذ شهادتك بالآخر.</p>
+    <div class="hbtns"><a class="btn" href="#tracks" data-i="start">ابدأ الآن ←</a><a class="btn gh" href="#how" id="howb" data-i="howb">كيف بتشتغل الأكاديمية؟</a></div>
+    <p class="free" data-i="badge">مجاني بالكامل · بدون تسجيل · مع شهادة</p>
     <div class="hv" aria-hidden="true">
       <div class="cw"><div class="cw-b"><i></i><i></i><i></i><span>my-site.html</span></div>
         <div class="cw-c">
@@ -195,10 +267,8 @@ footer a{color:var(--ac)}
           <div style="--d:.9s"><span class="t">&lt;p</span> <span class="a">class</span>=<span class="s">"hello"</span><span class="t">&gt;</span></div>
           <div style="--d:1.5s">&nbsp;&nbsp;I'm learning to code 💪</div>
           <div style="--d:2.1s"><span class="t">&lt;/p&gt;</span></div>
-          <div style="--d:2.7s"><span class="t">&lt;button&gt;</span>Start<span class="t">&lt;/button&gt;</span></div>
-          <div style="--d:3.3s">✅ Lesson complete 🎉</div>
+          <div style="--d:2.7s">✅ Lesson complete 🎉</div>
         </div></div>
-      <span class="chip h">HTML</span><span class="chip c">CSS</span><span class="chip j">JS</span><span class="chip k">🎓</span>
     </div>
   </section>
   <div class="nums"><div><b id="nL">19</b><span data-i="st_les">درس</span></div><div><b id="nE">19</b><span data-i="st_ex">تمرين وسؤال</span></div><div><b>3</b><span data-i="st_tr">مسارات</span></div><div><b>3</b><span data-i="st_ce">شهادات</span></div></div>
@@ -213,7 +283,8 @@ footer a{color:var(--ac)}
 
   <div id="certs" class="certs" hidden><h2 class="sec" data-i="certs_t">🎓 مبروك! شهاداتك جاهزة</h2><div id="certl" class="act"></div></div>
 
-  <div class="how" id="how">
+  <h2 class="sec" id="how" data-i="howb">كيف بتشتغل الأكاديمية؟</h2>
+  <div class="how">
     <div><b data-i="how1">📖 1. اقرأ</b><span data-i="how1d">شرح قصير وواضح بالعربي</span></div>
     <div><b data-i="how2">❓ 2. جاوب</b><span data-i="how2d">سؤال سريع على الدرس</span></div>
     <div><b data-i="how3">⌨️ 3. طبّق</b><span data-i="how3d">تمرين بتكتب فيه كود وبتشوف النتيجة</span></div>
@@ -522,9 +593,9 @@ $('#cdl').onclick=async()=>{if(!$('#cn').value.trim()){toast($t('need_name'));$(
 /* ===== اللغة والثيم ===== */
 const I={
 ar:{n_home:'الرئيسية',n_acad:'الأكاديمية',n_studio:'ستوديو الكود',n_codes:'أكواد جاهزة',n_store:'المتجر',
-badge:'🎓 مجاني بالكامل · بدون تسجيل · بشهادة',h1:'ابدأ رحلتك <span class="g">بالبرمجة</span><br>وطلّع شهادتك 🚀',
-lead:'اختر مسارك، وتعلّم درس درس. كل درس فيه شرح بسيط، سؤال سريع، وتمرين بتطبقه بنفسك. لما تنجح بكل الدروس بتاخد شهادة.',
-start:'ابدأ الآن ←',howb:'كيف تشتغل الأكاديمية؟',st_les:'درس',st_ex:'تمرين وسؤال',st_tr:'مسارات',st_ce:'شهادات',choose:'اختر مسارك',
+badge:'مجاني بالكامل · بدون تسجيل · مع شهادة',h1:'الأكاديمية<br><span class="g">Abd Code</span>',
+lead:'تعلّم البرمجة من الصفر، درس درس، وخذ شهادتك بالآخر.',
+start:'ابدأ الآن ←',howb:'كيف بتشتغل الأكاديمية؟',st_les:'درس',st_ex:'تمرين وسؤال',st_tr:'مسارات',st_ce:'شهادات',choose:'اختر مسارك',
 t_html:'مسار HTML',t_css:'مسار CSS',t_js:'مسار JavaScript',
 d_html:'هيكل الصفحة، النصوص، الروابط، الصور، القوائم، الجداول والنماذج.',d_css:'الألوان، الخطوط، الصندوق، Flexbox والحركة.',d_js:'المتغيرات، الدوال، الشروط، الأحداث والمصفوفات.',
 lv_b:'مبتدئ',lv_m:'متوسط',cert_b:'🎓 شهادة',certs_t:'🎓 مبروك! شهاداتك جاهزة',
@@ -543,9 +614,9 @@ qh:'❓ سؤال سريع (لازم تجاوب صح)',q_bad:'❌ إجابة غل
 sol_m:'👀 هاد الحل. اضغط تحقق، وجرّب تكتبو بنفسك المرة الجاي.',chk_bad:'❌ مش بعد، جرّب تاني. اضغط "تلميح" إذا بدك مساعدة.',need_name:'اكتب اسمك أول',
 brand_t:'أكاديمية Abd Code',title_h:'أكاديمية Abd Code — تعلّم HTML وCSS وJavaScript مجاناً بالعربي',lg_note:''},
 en:{n_home:'Home',n_acad:'Academy',n_studio:'Code Studio',n_codes:'Ready Codes',n_store:'Store',
-badge:'🎓 Free · No sign-up · With certificate',h1:'Start your <span class="g">coding</span> journey<br>and earn your certificate 🚀',
-lead:'Pick your track and learn lesson by lesson. Each lesson has a simple explanation, a quick question and a hands-on exercise. Pass every lesson to earn a certificate.',
-start:'Start now →',howb:'How does it work?',st_les:'Lessons',st_ex:'Exercises & quizzes',st_tr:'Tracks',st_ce:'Certificates',choose:'Choose your track',
+badge:'Free · No sign-up · With certificate',h1:'The Academy<br><span class="g">Abd Code</span>',
+lead:'Learn to code from scratch, lesson by lesson, and earn your certificate.',
+start:'Start now →',howb:'How does the academy work?',st_les:'Lessons',st_ex:'Exercises & quizzes',st_tr:'Tracks',st_ce:'Certificates',choose:'Choose your track',
 t_html:'HTML Track',t_css:'CSS Track',t_js:'JavaScript Track',
 d_html:'Page structure, text, links, images, lists, tables and forms.',d_css:'Colors, fonts, the box model, Flexbox and animation.',d_js:'Variables, functions, conditions, events and arrays.',
 lv_b:'Beginner',lv_m:'Intermediate',cert_b:'🎓 Certificate',certs_t:'🎓 Congrats! Your certificates are ready',
@@ -574,14 +645,18 @@ function applyLang(){const d=document.documentElement;d.lang=LG;d.dir=LG==='ar'?
  document.querySelectorAll('[data-i]').forEach(e=>e.textContent=$t(e.dataset.i));
  document.querySelectorAll('[data-ih]').forEach(e=>e.innerHTML=$t(e.dataset.ih).replace('{y}',new Date().getFullYear()));
  document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=$t(e.dataset.ph));
- $('#lang').textContent=LG==='ar'?'EN':'ع';
+ $('#lgn').textContent=LG==='ar'?'العربية':'English';document.querySelectorAll('#lmenu button').forEach(b=>b.classList.toggle('on',b.dataset.l===LG));
  if($('#les').hidden)document.title=$t('title_h');else ui();
  prog()}
 function setTheme(m){document.documentElement.dataset.theme=m;$('#theme').textContent=m==='light'?'☀️':'🌙';try{localStorage.setItem('abd-theme',m)}catch(e){}}
 let TH='dark';try{TH=localStorage.getItem('abd-theme')||'dark'}catch(e){}
 setTheme(TH);
 $('#theme').onclick=()=>setTheme(document.documentElement.dataset.theme==='light'?'dark':'light');
-$('#lang').onclick=()=>{LG=LG==='ar'?'en':'ar';try{localStorage.setItem('abd-lang',LG)}catch(e){}applyLang();if(LG==='en')toast($t('lg_note'))};
+const lm=$('#lmenu');
+$('#lang').onclick=e=>{e.stopPropagation();lm.hidden=!lm.hidden;$('#lang').setAttribute('aria-expanded',String(!lm.hidden))};
+lm.querySelectorAll('button').forEach(b=>b.onclick=()=>{LG=b.dataset.l;try{localStorage.setItem('abd-lang',LG)}catch(e){}lm.hidden=true;applyLang();if(LG==='en')toast($t('lg_note'))});
+document.addEventListener('click',()=>{lm.hidden=true});
+$('#howb').onclick=e=>{e.preventDefault();$('#how').scrollIntoView({behavior:'smooth',block:'start'})};
 $('#burger').onclick=()=>$('#nav').classList.toggle('open');
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>$('#nav').classList.remove('open')));
 applyLang();
