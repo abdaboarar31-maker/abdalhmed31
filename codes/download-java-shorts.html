@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تحميل ملفات Java Shorts | Abd Code</title>
+<style>
+:root{--bg:#0e101c;--panel:#181c30;--txt:#fff;--mut:#aab;--red:#ff2d2d;--grn:#32dc78;--acc:#ffaa28;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 80% 0,#3a2a10,transparent 50%),var(--bg);color:var(--txt);font-family:Tahoma,"Segoe UI",system-ui,sans-serif}
+.box{width:100%;max-width:480px;background:var(--panel);border:2px solid var(--acc);border-radius:24px;padding:28px 22px;text-align:center}
+h1{font-size:24px;margin-bottom:8px}
+p{color:var(--mut);line-height:1.8;font-size:15px;margin-bottom:18px}
+.step{display:flex;align-items:center;gap:12px;text-align:right;background:#0e101c;border-radius:16px;padding:14px;margin-bottom:12px;opacity:.5;transition:.3s}
+.step.on{opacity:1}
+.step b{min-width:34px;height:34px;border-radius:50%;background:var(--acc);color:#111;display:grid;place-items:center}
+.step.done b{background:var(--grn)}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:15px;font:inherit;font-size:17px;font-weight:700;color:#fff;text-decoration:none;cursor:pointer;margin-top:10px}
+.sub{background:var(--red)}
+.dl{background:var(--grn);color:#08210f}
+.dl[aria-disabled="true"]{background:#333;color:#888;pointer-events:none}
+#msg{margin-top:12px;font-size:14px;color:var(--acc);min-height:22px}
+</style>
+</head>
+<body>
+<main class="box">
+  <h1>☕ ملفات Java Shorts</h1>
+  <p>سكربتات الفيديوهات الخمسة + الصور المصغرة.<br>اشترك بالقناة لتفتح التحميل، مجاناً 🎁</p>
+
+  <div class="step on" id="s1"><b>1</b><span>اشترك بقناة Abd Code على يوتيوب</span></div>
+  <a class="btn sub" id="sub" href="https://www.youtube.com/@abdcode3?sub_confirmation=1" target="_blank" rel="noopener">🔔 اشترك بالقناة</a>
+
+  <div class="step" id="s2" style="margin-top:18px"><b>2</b><span>ارجع لهون وانتظر 10 ثواني</span></div>
+  <div class="step" id="s3"><b>3</b><span>حمّل ملفاتك</span></div>
+
+  <a class="btn dl" id="d1" aria-disabled="true" href="codes/java-shorts.zip" download>⬇ تحميل السكربتات والعناوين</a>
+  <a class="btn dl" id="d2" aria-disabled="true" href="codes/java-thumbnails.zip" download>⬇ تحميل الصور المصغرة</a>
+  <div id="msg"></div>
+</main>
+<script>
+var KEY="abd_java_shorts_ok",$=function(s){return document.querySelector(s)};
+var opened=false,counting=false,hidden=false;
+function unlock(){
+  ["#d1","#d2"].forEach(function(s){$(s).setAttribute("aria-disabled","false")});
+  ["#s1","#s2"].forEach(function(s){$(s).classList.add("on","done")});
+  $("#s3").classList.add("on","done");
+  $("#msg").textContent="شكراً لاشتراكك 💙 التحميل مفتوح!";
+  try{localStorage.setItem(KEY,"1")}catch(e){}
+}
+function count(){
+  if(counting)return;counting=true;
+  $("#s2").classList.add("on");
+  var n=10;$("#msg").textContent="انتظر "+n+" ثواني…";
+  var t=setInterval(function(){
+    n--;
+    if(n<=0){clearInterval(t);unlock()}
+    else $("#msg").textContent="انتظر "+n+" ثواني…";
+  },1000);
+}
+try{if(localStorage.getItem(KEY)==="1")unlock()}catch(e){}
+$("#sub").addEventListener("click",function(){
+  opened=true;hidden=false;
+  $("#s1").classList.add("done");
+  $("#msg").textContent="اشترك بالقناة وارجع لهون…";
+  setTimeout(function(){if(opened&&!hidden)count()},8000);
+});
+document.addEventListener("visibilitychange",function(){
+  if(!opened)return;
+  if(document.hidden)hidden=true;
+  else if(hidden)count();
+});
+</script>
+</body>
+</html>
