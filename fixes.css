@@ -1,0 +1,13 @@
+/* Abd Code - تعديلات إضافية | fixes.css */
+
+/* 1) عنوان "ابق على تواصل معي" ما كان بينشاف بالوضع الفاتح */
+.social-title{color:var(--text)}
+.social-subtitle{color:var(--muted)}
+
+/* 2) أزرار أول الصفحة: لما ما يتسع الزرين جنب بعض ينزل واحد تحت التاني */
+.hero .actions{flex-wrap:wrap}
+
+/* 3) خلفية الموج على الجوال: ثابتة بدون حركة عشان ما تثقّل الهاتف */
+@media (max-width:760px){
+  body{animation:none;background-attachment:scroll;background-size:100% 100%}
+}
