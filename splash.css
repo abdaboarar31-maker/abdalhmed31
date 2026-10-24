@@ -1,0 +1,46 @@
+/* Abd Code - شاشة افتتاحية | splash.css */
+
+/* غطاء فوري يمنع ظهور الموقع قبل الشاشة */
+html.asp-run::before{content:"";position:fixed;inset:0;background:#0a1128;z-index:2147483000}
+html.asp-run.asp-ready::before{display:none}
+html.asp-run,html.asp-run body{overflow:hidden}
+
+#asp{
+  --asp-bg:#0a1128; --asp-ink:#eef1ff; --asp-a:#ff6a2b; --asp-b:#4d8dff; --asp-gold:#ffc23c;
+  position:fixed;inset:0;z-index:2147483001;display:grid;place-items:center;
+  background:var(--asp-bg);overflow:hidden;direction:ltr;
+  transition:opacity .9s ease,visibility .9s;
+}
+#asp::before{content:"";position:absolute;left:50%;top:50%;width:130vmax;height:130vmax;transform:translate(-50%,-50%);background:radial-gradient(40% 40% at 72% 30%,rgba(255,106,43,.20),transparent 70%),radial-gradient(45% 45% at 26% 72%,rgba(77,141,255,.20),transparent 70%);pointer-events:none}
+#asp.asp-out{opacity:0;visibility:hidden;pointer-events:none}
+#asp.asp-out .asp-content{transform:scale(1.06);filter:blur(8px)}
+.asp-content{position:relative;text-align:center;transition:transform .9s ease,filter .9s ease}
+
+.asp-fl{position:absolute;font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;font-weight:800;color:var(--asp-b);opacity:0;pointer-events:none;animation:aspFloat 5s ease-in-out infinite}
+@keyframes aspFloat{0%,100%{opacity:0;transform:translateY(14px) rotate(-6deg)}50%{opacity:.22;transform:translateY(-14px) rotate(6deg)}}
+
+/* الاسم: خط كود مثل الطباعة */
+.asp-stage{position:relative;display:inline-block;padding:0 .95em;font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,"Courier New",monospace;font-weight:800;font-size:clamp(2.1rem,11.5vw,4.4rem);letter-spacing:-.02em;line-height:1.3;white-space:pre;color:var(--asp-ink)}
+.asp-l{display:inline-block;opacity:0;transform:translateY(.12em);filter:blur(8px);transition:opacity .3s ease,transform .3s ease,filter .3s ease}
+.asp-l.on{opacity:1;transform:none;filter:blur(0)}
+.asp-l.code{background:linear-gradient(90deg,var(--asp-gold),var(--asp-a));-webkit-background-clip:text;background-clip:text;color:transparent}
+.asp-l.wave{animation:aspWave .8s ease-out both}
+@keyframes aspWave{0%{text-shadow:0 0 0 rgba(255,106,43,0)}35%{text-shadow:0 0 .4em rgba(255,106,43,.95),0 0 1em rgba(77,141,255,.45)}100%{text-shadow:0 0 0 rgba(255,106,43,0)}}
+
+/* الشعار: بيمشي قدام الحروف كأنه بيكتب */
+.asp-pen{position:absolute;top:50%;left:0;height:.9em;margin-top:-.45em;opacity:0;will-change:transform;transition:transform .13s linear,opacity .35s ease;filter:drop-shadow(0 0 .3em rgba(255,106,43,.5)) drop-shadow(0 0 .3em rgba(77,141,255,.4))}
+.asp-pen>*{display:block;border-radius:22%;box-shadow:0 0 0 1px rgba(77,141,255,.3);height:100%;width:auto;transform-origin:15% 90%;animation:aspWrite .2s ease-in-out infinite alternate}
+.asp-pen.rest>*{animation:none}
+@keyframes aspWrite{from{transform:rotate(-7deg) translateY(1px)}to{transform:rotate(5deg) translateY(-3px)}}
+.asp-fb{aspect-ratio:1;display:grid!important;place-items:center;border-radius:.18em;background:linear-gradient(135deg,var(--asp-a),var(--asp-b));color:#fff;font:800 .3em/1 "JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+
+@media (prefers-reduced-motion:reduce){.asp-fl{animation:none}.asp-l.wave{animation:none}.asp-pen>*{animation:none}}
+
+/* الوضع الفاتح (لما الزائر يكون مختار الوضع الفاتح بالموقع) */
+html.asp-run.asp-light::before{background:#f5f7ff}
+#asp.lt{--asp-bg:#f5f7ff;--asp-ink:#0f1635;--asp-gold:#f59e0b}
+#asp.lt::before{background:radial-gradient(40% 40% at 72% 30%,rgba(255,106,43,.16),transparent 70%),radial-gradient(45% 45% at 26% 72%,rgba(77,141,255,.16),transparent 70%)}
+#asp.lt .asp-pen{filter:drop-shadow(0 6px 12px rgba(10,17,40,.28))}
+#asp.lt .asp-pen>*{box-shadow:none}
+#asp.lt .asp-l.wave{animation-name:aspWaveLt}
+@keyframes aspWaveLt{0%{text-shadow:0 0 0 rgba(255,106,43,0)}35%{text-shadow:0 0 .35em rgba(255,106,43,.55)}100%{text-shadow:0 0 0 rgba(255,106,43,0)}}
