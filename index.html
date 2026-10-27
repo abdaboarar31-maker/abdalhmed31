@@ -24,15 +24,6 @@
 <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 <link rel="stylesheet" href="fancy.css?v=3">
 <link rel="stylesheet" href="fixes.css?v=1">
-<style>
-.lg{position:relative}
-.lg-menu{position:absolute;top:calc(100% + 8px);inset-inline-end:0;min-width:130px;background:#1e293b;border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:6px;z-index:60;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-.lg-menu[hidden]{display:none}
-.lg-menu button{display:block;width:100%;text-align:start;background:none;border:0;color:#fff;padding:10px 12px;border-radius:8px;font:inherit;cursor:pointer}
-.lg-menu button:hover,.lg-menu button.on{background:rgba(255,255,255,.14)}
-.new-b{display:inline-block;margin-inline-start:4px;padding:2px 8px;border-radius:50px;background:linear-gradient(90deg,#ff6a2b,#ec4899);color:#fff;font-size:11px;font-weight:800;vertical-align:middle;animation:newpulse 1.6s ease-in-out infinite}
-@keyframes newpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-</style>
   <meta property="og:site_name" content="Abd Code">
 <script type="application/ld+json">
 {
@@ -46,21 +37,8 @@
 </head>
 <body>
 
-<header class="top">
-  <a class="brand" href="#home"><img src="logo.svg" alt="" width="40" height="40"><span>Abd Code</span></a>
-  <nav id="nav" class="nav">
-    <a href="#home" data-i18n="nav_home">الرئيسية</a>
-    <a href="academy.html">الأكاديمية <span class="new-b">جديد</span></a>
-    <a href="studio.html">ستوديو الكود</a>
-    <a href="#videos" data-i18n="nav_videos">الفيديوهات</a>
-    <a href="codes.html">أكواد جاهزة</a>
-    <a href="css-designs.html">تصاميم CSS <span class="new-b">جديد</span></a>
-    <a href="store.html" data-i18n="nav_store">المتجر</a>
-  </nav>
-  <div class="lg"><button id="langBtn" class="icon-btn" type="button" aria-label="Language">🌐</button><div id="langMenu" class="lg-menu" hidden></div></div>
-  <button id="theme" class="icon-btn" aria-label="تبديل الوضع">🌙</button>
-  <button id="burger" class="icon-btn burger" aria-label="القائمة">☰</button>
-</header>
+<!-- النافبار: بيجي من layout.js -->
+<div id="site-header"></div>
 
 <main>
   <section id="home" class="hero">
@@ -223,13 +201,8 @@
   </section>
 </main>
 
-<footer>
-  <div class="foot-brand"><img src="logo.svg" alt="" width="34" height="34"><b>Abd Code</b></div>
-  <p data-i18n="foot_tag">تعلّم HTML بالعربي</p>
-  <p class="credit" data-i18n-html="credit">تصميم وتطوير: <b>عبد أبو عرار</b></p>
-  <p class="credit"><a href="about.html">من أنا</a> · <a href="privacy.html">سياسة الخصوصية</a> · <a href="codes.html">أكواد جاهزة</a> · <a href="#contact">تواصل معي</a></p>
-  <p class="rights" data-i18n-html="rights"></p>
-</footer>
+<!-- الفوتر: بيجي من layout.js -->
+<div id="site-footer"></div>
 
 <div id="modal" class="modal" hidden>
   <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="mt">
@@ -250,6 +223,8 @@
 </div>
 
 <div id="toast" class="toast" role="status"></div>
+<!-- لازم layout.js ييجي قبل باقي السكربتات -->
+<script src="layout.js?v=1"></script>
 <script src="config.js"></script>
 <script src="yt-auto.js"></script>
 <script src="videos-data.js"></script>
