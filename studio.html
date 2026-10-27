@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="splash.css?v=3">
+<script src="splash.js?v=3"></script>
 <title>ستوديو الكود — اكتب HTML وCSS وJavaScript وشوف النتيجة | Abd Code</title>
 <meta name="description" content="محرر كود أونلاين مجاني بالعربي: اكتب HTML وCSS وJavaScript وشوف النتيجة مباشرة، مع قوالب جاهزة وتحميل الصفحة.">
 <link rel="canonical" href="https://abdcode.pages.dev/studio.html">
@@ -11,6 +13,11 @@
 <meta property="og:title" content="ستوديو الكود — محرر HTML وCSS وJavaScript أونلاين">
 <meta property="og:description" content="اكتب كودك وشوف النتيجة فوراً. مجاني وبدون تسجيل.">
 <meta property="og:url" content="https://abdcode.pages.dev/studio.html">
+<meta property="og:image" content="https://abdcode.pages.dev/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://abdcode.pages.dev/og-image.png">
 <link rel="icon" href="logo.svg">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
 <style>
@@ -48,46 +55,48 @@ textarea[hidden]{display:none}
 iframe{height:100%;width:100%;max-width:100%;border:0;background:#fff;transition:width .3s}
 .mob{display:none}
 @media (max-width:860px){
- body{height:auto;min-height:100%}
- .work{grid-template-columns:1fr;flex:none}
- .pane{height:62vh}
- .pane.off{display:none}
- .mob{display:flex;gap:8px;width:min(1400px,calc(100% - 24px));margin:10px auto 0}.mob .b{flex:1}.mob .b.on{background:var(--ac);color:#1b0d04;font-weight:800}
- .top{width:calc(100% - 16px)}.brand span{display:none}
+body{height:auto;min-height:100%}
+.work{grid-template-columns:1fr;flex:none}
+.pane{height:62vh}
+.pane.off{display:none}
+.mob{display:flex;gap:8px;width:min(1400px,calc(100% - 24px));margin:10px auto 0}.mob .b{flex:1}.mob .b.on{background:var(--ac);color:#1b0d04;font-weight:800}
+.top{width:calc(100% - 16px)}.brand span{display:none}
 }
 </style>
 </head>
 <body>
-<header class="top">
-  <a class="brand" href="index.html"><img src="logo.svg" alt="" width="32" height="32"><span>Abd Code</span></a>
-  <nav class="nav"><a href="index.html">الرئيسية</a><a href="academy.html">الأكاديمية</a><a href="studio.html" class="on">ستوديو الكود</a><a href="codes.html">أكواد جاهزة</a></nav>
-</header>
+<!-- النافبار: بيجي من layout.js -->
+<div id="site-header"></div>
 
 <div class="bar">
-  <h1>🧪 ستوديو الكود</h1>
-  <select id="tpl" class="b" aria-label="قوالب"><option value="">📂 قوالب جاهزة…</option><option value="hello">صفحة ترحيب</option><option value="btn">زر متوهج</option><option value="glass">كرت زجاجي</option><option value="count">عدّاد (JavaScript)</option><option value="nav">شريط تنقل</option><option value="cards">كروت متجاوبة</option><option value="form">نموذج تواصل</option><option value="todo">قائمة مهام (JavaScript)</option><option value="clock">ساعة رقمية (JavaScript)</option></select>
-  <button class="b" id="dev" type="button" title="حجم المعاينة">🖥️ كمبيوتر</button>
-  <button class="b" id="cp" type="button">📋 نسخ</button>
-  <button class="b" id="fs" type="button" title="حجم الخط">🔠 الخط</button>
-  <button class="b" id="fu" type="button" title="ملء الشاشة">⛶ ملء الشاشة</button>
-  <button class="b" id="sh" type="button">🔗 مشاركة</button>
-  <button class="b p" id="dl" type="button">⬇ تحميل الصفحة</button>
-  <button class="b" id="rs" type="button">🗑️ مسح</button>
+<h1>🧪 ستوديو الكود</h1>
+<select id="tpl" class="b" aria-label="قوالب"><option value="">📂 قوالب جاهزة…</option><option value="hello">صفحة ترحيب</option><option value="btn">زر متوهج</option><option value="glass">كرت زجاجي</option><option value="count">عدّاد (JavaScript)</option><option value="nav">شريط تنقل</option><option value="cards">كروت متجاوبة</option><option value="form">نموذج تواصل</option><option value="todo">قائمة مهام (JavaScript)</option><option value="clock">ساعة رقمية (JavaScript)</option></select>
+<button class="b" id="dev" type="button" title="حجم المعاينة">🖥️ كمبيوتر</button>
+<button class="b" id="cp" type="button">📋 نسخ</button>
+<button class="b" id="fs" type="button" title="حجم الخط">🔠 الخط</button>
+<button class="b" id="fu" type="button" title="ملء الشاشة">⛶ ملء الشاشة</button>
+<button class="b" id="sh" type="button">🔗 مشاركة</button>
+<button class="b p" id="dl" type="button">⬇ تحميل الصفحة</button>
+<button class="b" id="rs" type="button">🗑️ مسح</button>
 </div>
 <div class="mob"><button class="b on" id="mC" type="button">الكود</button><button class="b" id="mP" type="button">النتيجة</button></div>
-
 <main class="work">
-  <section class="pane" id="pc">
-    <div class="tabs" role="tablist"><button class="on" data-t="html" type="button">HTML</button><button data-t="css" type="button">CSS</button><button data-t="js" type="button">JavaScript</button></div>
-    <div class="ed"><textarea id="html" spellcheck="false" aria-label="HTML"></textarea><textarea id="css" spellcheck="false" aria-label="CSS" hidden></textarea><textarea id="js" spellcheck="false" aria-label="JavaScript" hidden></textarea></div>
-    <div class="stat" id="stat">HTML · 0 سطر</div>
-  </section>
-  <section class="pane" id="pp">
-    <div class="tabs"><button class="on" type="button" style="cursor:default">النتيجة (مباشرة)</button></div>
-    <div class="pv"><iframe id="out" title="result" sandbox="allow-scripts allow-modals"></iframe></div>
-  </section>
+<section class="pane" id="pc">
+<div class="tabs" role="tablist"><button class="on" data-t="html" type="button">HTML</button><button data-t="css" type="button">CSS</button><button data-t="js" type="button">JavaScript</button></div>
+<div class="ed"><textarea id="html" spellcheck="false" aria-label="HTML"></textarea><textarea id="css" spellcheck="false" aria-label="CSS" hidden></textarea><textarea id="js" spellcheck="false" aria-label="JavaScript" hidden></textarea></div>
+<div class="stat" id="stat">HTML · 0 سطر</div>
+</section>
+<section class="pane" id="pp">
+<div class="tabs"><button class="on" type="button" style="cursor:default">النتيجة (مباشرة)</button></div>
+<div class="pv"><iframe id="out" title="result" sandbox="allow-scripts allow-modals"></iframe></div>
+</section>
 </main>
 
+<!-- الفوتر: بيجي من layout.js -->
+<div id="site-footer"></div>
+
+<script>window.LAYOUT = { variant: 'plain', links: ['home','academy','studio','codes'] };</script>
+<script src="layout.js?v=1"></script>
 <script>
 const $=s=>document.querySelector(s),T={html:$('#html'),css:$('#css'),js:$('#js')};
 const TPL={
@@ -109,7 +118,7 @@ function stat(){$('#stat').style.color='';const n=T[cur].value.split('\n').lengt
 let tm;function run(){$('#out').srcdoc=doc().replace('<script>\n','<script>onerror=function(m){parent.postMessage({err:String(m)},"*")};<\/script>\n<script>\n');stat()}
 addEventListener('message',e=>{if(e.source===$('#out').contentWindow&&e.data&&e.data.err){$('#stat').textContent='⚠ خطأ بالجافاسكربت: '+e.data.err;$('#stat').style.color='#ff6b6b'}});
 for(const k in T){T[k].addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(()=>{run();save()},300)});
- T[k].addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const t=e.target,s=t.selectionStart;t.value=t.value.slice(0,s)+'  '+t.value.slice(t.selectionEnd);t.selectionStart=t.selectionEnd=s+2}})}
+T[k].addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();const t=e.target,s=t.selectionStart;t.value=t.value.slice(0,s)+'  '+t.value.slice(t.selectionEnd);t.selectionStart=t.selectionEnd=s+2}})}
 document.querySelectorAll('.tabs [data-t]').forEach(b=>b.onclick=()=>{cur=b.dataset.t;document.querySelectorAll('.tabs [data-t]').forEach(x=>x.classList.toggle('on',x===b));for(const k in T)T[k].hidden=k!==cur;T[cur].focus();stat()});
 $('#tpl').onchange=e=>{const t=TPL[e.target.value];if(!t)return;if(T.html.value.trim()&&!confirm('بدك تستبدل الكود الحالي بالقالب؟'))return void(e.target.value='');for(const k in T)T[k].value=t[k];save();run();e.target.value=''};
 $('#dev').onclick=()=>{dev=(dev+1)%3;const w=['100%','768px','390px'][dev];$('#out').style.width=w;$('#dev').textContent=['🖥️ كمبيوتر','📟 تابلت','📱 جوال'][dev]};
