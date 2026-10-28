@@ -41,7 +41,10 @@
   #send{font:inherit;font-weight:800;background:var(--brand);color:#fff;border:0;
     border-radius:12px;padding:0 22px;cursor:pointer}
   #send:disabled{opacity:.5;cursor:not-allowed}
+  html.embed body{padding:0;display:block;background:#fff}
+  html.embed .chat{height:100vh;max-width:none;border:0;border-radius:0;box-shadow:none}
 </style>
+<script>if(location.search.indexOf("embed")>-1)document.documentElement.classList.add("embed")</script>
 </head>
 <body>
 <main class="chat">
