@@ -121,10 +121,16 @@
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ messages: history })
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => null);
       wait.className = "msg bot";
-      render(wait, data.reply);
-      history.push({ role: "assistant", content: data.reply });
+      if (!data) {
+        render(wait, "الوسيط مش شغال على الموقع (رمز " + res.status + "). تأكد من رفع _worker.js.");
+        history.pop();
+      } else {
+        render(wait, data.reply);
+        if (res.ok) history.push({ role: "assistant", content: data.reply });
+        else history.pop();
+      }
     } catch (e) {
       wait.className = "msg bot";
       render(wait, "ما قدرت أتصل. جرّب كمان مرة.");
