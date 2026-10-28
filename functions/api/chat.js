@@ -1,5 +1,9 @@
 export async function onRequestPost({ request, env }) {
   try {
+    if (!env.AI) {
+      return Response.json({ reply: "خطأ: البايندنغ AI مش واصل للوسيط. ارفع الموقع من جديد بعد إضافته." }, { status: 500 });
+    }
+
     const body = await request.json();
     const messages = (body.messages || []).slice(-8).map(m => ({
       role: m.role === "assistant" ? "assistant" : "user",
@@ -24,9 +28,9 @@ export async function onRequestPost({ request, env }) {
     });
 
     const reply = result.response;
-    if (!reply) return Response.json({ reply: "صار خطأ، جرّب كمان مرة." }, { status: 500 });
+    if (!reply) return Response.json({ reply: "صار خطأ: الرد فاضي." }, { status: 500 });
     return Response.json({ reply });
   } catch (e) {
-    return Response.json({ reply: "صار خطأ، يمكن خلصت الحصة اليومية. جرّب بكرة." }, { status: 500 });
+    return Response.json({ reply: "صار خطأ: " + (e && e.message ? e.message : String(e)) }, { status: 500 });
   }
 }
