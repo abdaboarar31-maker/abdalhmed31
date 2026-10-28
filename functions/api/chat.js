@@ -13,7 +13,7 @@ export async function onRequestPost({ request, env }) {
       return Response.json({ reply: "اكتب سؤالك أول." }, { status: 400 });
     }
 
-    const result = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+    const result = await env.AI.run("@cf/meta/llama-3.1-8b-instruct-fp8", {
       max_tokens: 400,
       messages: [
         {
@@ -27,7 +27,7 @@ export async function onRequestPost({ request, env }) {
       ]
     });
 
-    const reply = result.response;
+    const reply = result.response ?? result.choices?.[0]?.message?.content;
     if (!reply) return Response.json({ reply: "صار خطأ: الرد فاضي." }, { status: 500 });
     return Response.json({ reply });
   } catch (e) {
